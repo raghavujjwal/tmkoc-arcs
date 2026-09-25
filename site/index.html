@@ -30,6 +30,11 @@ body{
 /* The wash: one soft blend of sky blue, sunflower and coral behind the whole page, running
    blue at the top through yellow to coral at the bottom. The field sits directly on it. */
 #wash{position:absolute; left:0; top:0; width:100%; z-index:0; pointer-events:none; display:block}
+/* The Jetha-G packet as a faint, softened backdrop. Fixed to the viewport so it stays put
+   while the page scrolls over it; kept low enough in opacity that text reads cleanly. */
+#backdrop{position:fixed; inset:-12px; z-index:0; pointer-events:none;
+  background:url(bg.jpg) center / cover no-repeat;
+  opacity:.14; filter:blur(2px) saturate(.9)}
 
 /* ---- masthead ---- */
 .masthead{
@@ -169,6 +174,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
 </style>
 
 <canvas id="wash" aria-hidden="true"></canvas>
+<div id="backdrop" aria-hidden="true"></div>
 <div class="wrap">
   <header class="masthead">
     <div>
