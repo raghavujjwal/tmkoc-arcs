@@ -159,8 +159,49 @@
     return bd < reach*reach ? best : -1;
   }
 
-  var API = {GAP:GAP, LENS_R:LENS_R, LENS_K:LENS_K, MAG:MAG,
-             radiusOf:radiusOf, compute:compute, lensTarget:lensTarget, pick:pick};
+  // Stage two: one era on its own, scaled up to fill the field. Scaling the finished spiral
+  // scales bubbles and gaps together, so an era that shared the page with four others gets
+  // bigger bubbles and more room between them, not just more empty space around it.
+  var ERA_TOP = 78, ERA_BOTTOM = 36, ERA_MAX_SCALE = 2.0;
+  function computeEra(arcs, era, W, maxH){
+    var idx = [];
+    arcs.forEach(function(a, i){ if(a.era === era) idx.push(i); });
+    if(!idx.length) return {nodes:[], cluster:null, H:200, W:W};
+    var sp = spiralCluster(idx.map(function(i){ return radiusOf(arcs[i]); }));
+    var margin = W < 620 ? 12 : 28;
+    var room = Math.min(W - 2*margin, (maxH || 820) - ERA_TOP - ERA_BOTTOM);
+    var s = Math.min(ERA_MAX_SCALE, room / (2*sp.R));
+    var R = sp.R * s, cx = W/2, cy = ERA_TOP + R;
+    var nodes = [];
+    idx.forEach(function(i, k){
+      var p = sp.pts[k];
+      nodes[i] = {i:i, r:p.r*s, hx:cx + p.x*s, hy:cy + p.y*s};
+    });
+    return {nodes:nodes, cluster:{era:era, idx:idx, cx:cx, cy:cy, R:R, s:s,
+            first:arcs[idx[0]].start_ep, last:arcs[idx[idx.length-1]].end_ep},
+            H:Math.ceil(cy + R + ERA_BOTTOM), W:W};
+  }
+
+  // Stage one: pick a whole era -- the cluster whose circle (plus a little slack, and its
+  // label above it) contains the point.
+  function pickEra(clusters, x, y){
+    var k, c, dx, dy;
+    // Labels first: on a phone, clusters stack and each label sits just below the previous
+    // cluster, inside its slack -- checking circles first made tapping "CLASSIC" open Early.
+    for(k=0;k<clusters.length;k++){
+      c = clusters[k];
+      if(Math.abs(x - c.cx) < 80 && y >= c.labelY - 6 && y <= c.labelY + 36) return k;
+    }
+    for(k=0;k<clusters.length;k++){
+      c = clusters[k]; dx = x - c.cx; dy = y - c.cy;
+      if(dx*dx + dy*dy <= (c.R + 16)*(c.R + 16)) return k;
+    }
+    return -1;
+  }
+
+  var API = {GAP:GAP, LENS_R:LENS_R, LENS_K:LENS_K, MAG:MAG, ERA_TOP:ERA_TOP,
+             radiusOf:radiusOf, compute:compute, computeEra:computeEra,
+             lensTarget:lensTarget, pick:pick, pickEra:pickEra};
   if(typeof module !== 'undefined' && module.exports) module.exports = API;
   else root.ArcLayout = API;
 })(this);

@@ -84,5 +84,50 @@ for (const W of [360, 700, 1000, 1240]) {
   for (const [k, v] of Object.entries(checks)) console.log(`  [${v ? 'ok' : 'FAIL'}] ${k}`);
   if (!Object.values(checks).every(Boolean)) allPass = false;
 }
+// ---- stage one: picking a whole era ---------------------------------------------------
+for (const W of [360, 700, 1240]) {
+  const { clusters, nodes } = L.compute(arcs, D.eras, W);
+  let wrong = 0, missCentre = 0, missLabel = 0;
+  clusters.forEach((c, k) => {
+    if (L.pickEra(clusters, c.cx, c.cy) !== k) missCentre++;
+    if (L.pickEra(clusters, c.cx, c.labelY + 10) !== k) missLabel++;
+    // every arc of the era, at rest, must pick this era and no other
+    for (const i of c.idx) if (L.pickEra(clusters, nodes[i].hx, nodes[i].hy) !== k) wrong++;
+  });
+  const ok = wrong === 0 && missCentre === 0 && missLabel === 0;
+  console.log(`\nwidth ${W}px, era picking: centre misses ${missCentre}, label misses ${missLabel}, ` +
+    `arcs resolving to the wrong era ${wrong}`);
+  console.log(`  [${ok ? 'ok' : 'FAIL'}] every era pickable by its body and its label, never the wrong one`);
+  if (!ok) allPass = false;
+}
+
+// ---- stage two: one era, scaled up -----------------------------------------------------
+console.log('');
+for (const W of [360, 1240]) {
+  for (const era of D.eras) {
+    const { nodes: sparse, cluster, H } = L.computeEra(arcs, era, W, 820);
+    const ns = sparse.filter(Boolean);
+    let overlaps = 0, miss = 0, off = 0, drift = 0, far = 0;
+    for (let a = 0; a < ns.length; a++)
+      for (let b = a + 1; b < ns.length; b++)
+        if (Math.hypot(ns[a].hx - ns[b].hx, ns[a].hy - ns[b].hy) < ns[a].r + ns[b].r) overlaps++;
+    for (const n of ns) {
+      if (L.pick(sparse, n.hx, n.hy) !== n.i) miss++;
+      const me = L.lensTarget(n, n.hx, n.hy, W, H);
+      drift = Math.max(drift, Math.hypot(me.x - n.hx, me.y - n.hy) / (n.r * me.s));
+      if (n.hx - n.r < 0 || n.hx + n.r > W || n.hy - n.r < 0 || n.hy + n.r > H) off++;
+    }
+    for (let k = 1; k < cluster.idx.length; k++) {
+      const p = sparse[cluster.idx[k - 1]], q = sparse[cluster.idx[k]];
+      if (Math.hypot(p.hx - q.hx, p.hy - q.hy) - p.r - q.r > (2 * 42 + L.GAP) * cluster.s) far++;
+    }
+    const ok = overlaps === 0 && miss === 0 && off === 0 && drift < 0.5 && far === 0 &&
+               cluster.cy - cluster.R >= L.ERA_TOP - 1;
+    console.log(`  [${ok ? 'ok' : 'FAIL'}] ${W}px ${era.padEnd(8)} scale ${cluster.s.toFixed(2)}, ${H}px tall: ` +
+      `overlaps ${overlaps}, unpickable ${miss}, outside field ${off}, long steps ${far}`);
+    if (!ok) allPass = false;
+  }
+}
+
 console.log('\nFIELD GEOMETRY', allPass ? 'PASS' : 'FAIL');
 process.exit(allPass ? 0 : 1);

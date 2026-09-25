@@ -693,3 +693,28 @@ real to borrow.
   Bawri Ki Engagement?!" slipped through. Found because two exact-match edits failed on
   visibly identical text; fixed, and every tracked text file scanned for control
   characters (none elsewhere). A new CP11 check rejects any borrowed placeholder.
+
+
+---
+
+### CP19 — Two-stage selection: era, then arcs  `DONE`
+Stage one shows the five era clusters; the pointer picks whole eras (halo, others dimmed,
+label shows arc count, or match count while searching). Stage two shows one era alone,
+scaled up to fill the field (`layout.computeEra`: up to 2x — bubbles and gaps grow
+together), with the arc lens, bloom and click-for-episodes. Arcs keep their identity
+across stages, so opening an era animates the same bubbles out to their larger places;
+other eras fade where they stand. "← All eras", previous/next era, `Esc`, era chips and
+the browser back button all navigate; `#era=Name` deep-links an era.
+
+**Tests extended** (`check_field.js`): every era picked by its body and its label and
+never the wrong one, at 360/700/1240px; and for every era at 360 and 1240px, the zoomed
+layout has no overlaps, every arc pickable, the hovered arc stays under the pointer, and
+nothing leaves the field.
+
+**Bugs caught:**
+1. By the test — on phones, tapping an era's label opened the era above it. Clusters
+   stack, each label sits inside the previous cluster's tap slack, and circles were
+   checked first. Labels are now checked first.
+2. By the render — mojibake ("â€"" for an en dash). The page never declared an encoding;
+   GitHub Pages sends one in its headers, but a browser without it guessed, and guessed
+   differently between two loads of the same file. `<meta charset="utf-8">` added.

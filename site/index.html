@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Gokuldham Arc Index</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,6 +105,18 @@ input[type=search]:focus-visible,button:focus-visible,a:focus-visible,canvas:foc
   letter-spacing:.05em; text-transform:uppercase; color:#12305A}
 .stage-note kbd{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:#12305A;
   background:rgba(255,255,255,.6); border-radius:3px; padding:0 4px}
+.stage-note{right:auto; max-width:calc(100% - 330px)}
+@media (max-width:620px){ .stage-note{max-width:none; right:18px} .stage-nav{top:auto; bottom:12px} }
+.stage-nav{position:absolute; top:12px; right:16px; display:flex; gap:6px; z-index:2}
+.stage-nav[hidden]{display:none}
+.stage-nav button{
+  font:inherit; font-size:12.5px; cursor:pointer; padding:4px 12px; border-radius:999px;
+  background:rgba(255,255,255,.9); color:#12305A; border:1px solid rgba(18,48,90,.18);
+  box-shadow:0 2px 8px rgba(18,48,90,.10);
+}
+.stage-nav button:hover{background:#fff; border-color:rgba(18,48,90,.4)}
+.stage-nav button:disabled{opacity:.35; cursor:default}
+.stage-nav #to-eras{font-weight:600}
 .stage-legend{
   display:flex; flex-wrap:wrap; gap:6px 18px; padding:10px 4px 0;
   font-size:11.5px; color:var(--faint);
@@ -206,10 +219,11 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   <section class="stage" id="stage">
     <canvas id="field" tabindex="0" role="application"
       aria-label="Field of all story arcs in broadcast order. Use left and right arrow keys to step through arcs, Enter to open one."></canvas>
-    <div class="stage-note">
-      <b>Every arc, in order</b>
-      <span>move through the field &middot; click an arc to see its episodes &middot;
-        <kbd>&larr;</kbd> <kbd>&rarr;</kbd> step through the run</span>
+    <div class="stage-note" id="stage-note"></div>
+    <div class="stage-nav" id="stage-nav" hidden>
+      <button id="to-eras">&larr; All eras</button>
+      <button id="era-prev"></button>
+      <button id="era-next"></button>
     </div>
   </section>
   <div class="stage-legend" id="legend"></div>
@@ -293,12 +307,13 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   var tagCounts = {};
   arcs.forEach(function(a){ a.tags.forEach(function(t){ tagCounts[t]=(tagCounts[t]||0)+1; }); });
   var tagNames = Object.keys(tagCounts).sort(function(x,y){return tagCounts[y]-tagCounts[x];});
-  function chip(box, label, value, key, swatch){
+  function chip(box, label, value, key, swatch, onClick){
     var b = document.createElement('button');
     b.className='chip'; b.type='button'; b.dataset.v=value;
     b.innerHTML = (swatch ? '<span class="sw" style="background:'+swatch+'"></span>' : '') + esc(label);
     b.setAttribute('aria-pressed','false');
     b.addEventListener('click', function(){
+      if(onClick) return onClick(value);
       state[key] = state[key]===value ? null : value;
       [].forEach.call(box.querySelectorAll('.chip'), function(c){
         c.setAttribute('aria-pressed', String(c.dataset.v===state[key]));
@@ -308,7 +323,10 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
     box.appendChild(b);
   }
   var eraBox = document.getElementById('eras');
-  D.eras.forEach(function(e){ chip(eraBox, e, e, 'era', eraColor(e)); });
+  // Era chips are shortcuts into stage two, not filters: they open that era directly.
+  D.eras.forEach(function(e){ chip(eraBox, e, e, 'era', eraColor(e), function(v){
+    if(curEra === v) backToEras(); else { openEra(v); scrollToStage(); }
+  }); });
   var tagBox = document.getElementById('tags');
   if(tagNames.length) tagNames.forEach(function(t){ chip(tagBox, t, t, 'tag'); });
   else tagBox.hidden = true;
@@ -323,7 +341,6 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
     return (a._h = parts.join(' ').toLowerCase());
   }
   function matches(a){
-    if(state.era && a.era!==state.era) return false;
     if(state.tag && a.tags.indexOf(state.tag)===-1) return false;
     if(state.q){
       if(/^\d+$/.test(state.q)){
@@ -336,12 +353,14 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   }
   var filtering = false, hits = [];
   function applyFilters(){
-    filtering = !!(state.q || state.era || state.tag);
+    filtering = !!(state.q || state.tag);
     hits = [];
     arcs.forEach(function(a, i){ a._match = matches(a); if(a._match) hits.push(i); });
-    document.getElementById('count').textContent = filtering
-      ? hits.length + ' of ' + arcs.length + ' arcs match — the rest fade back in the field'
-      : '';
+    var inEra = typeof mode !== 'undefined' && mode === 'era';
+    var here = inEra ? hits.filter(function(i){ return arcs[i].era === curEra; }).length : 0;
+    document.getElementById('count').textContent = !filtering ? '' : inEra
+      ? here + ' of the ' + curEra + ' arcs match (' + hits.length + ' across all eras, listed below)'
+      : hits.length + ' of ' + arcs.length + ' arcs match — each era shows how many';
     if(openIdx < 0) renderPanel();
     wake();
   }
@@ -410,32 +429,54 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   });
   function openArc(i, scroll){
     if(i<0 || i>=arcs.length) return;
+    if(mode !== 'era' || arcs[i].era !== curEra) openEra(arcs[i].era);
     openIdx = i; focusIdx = i; renderPanel(); wake();
     if(scroll) panel.scrollIntoView({behavior: REDUCED ? 'auto' : 'smooth', block:'start'});
   }
 
   // =========================== the field =====================================
-  // Five spiral clusters, one per era: each era's first arc at the centre, later arcs
-  // winding outward, the clusters flowing as a zigzag with each spiral's outer end facing
-  // the next era. Geometry lives in layout.js, shared with the test. The pointer is a lens
-  // that locks onto the nearest arc: it swells and blooms while its neighbours part.
+  // Two stages. First the five eras, each a spiral cluster (first arc at the centre,
+  // winding outward), and the pointer picks a whole era. Then the chosen era alone, scaled
+  // up to fill the field, where the pointer is the arc lens: it locks onto the nearest arc,
+  // which swells and blooms while its neighbours part. Arcs keep their identity between
+  // stages, so opening an era is the same bubbles springing out to their larger places.
+  // Geometry lives in layout.js, shared with the test.
   var L = window.ArcLayout;
   var stage = document.getElementById('stage'), cv = document.getElementById('field'),
       ctx = cv.getContext('2d');
-  var W = 0, H = 0, DPR = 1, nodes = [], clusters = [];
+  var W = 0, H = 0, DPR = 1, nodes = [], pickNodes = [], clusters = [], eraCluster = null;
+  var mode = 'eras', curEra = null, hotEra = -1, focusEra = -1;
   var ptr = {x:-1e4, y:-1e4, vx:0, vy:0, on:false, t:0};
-  var hot = -1, focusIdx = -1, running = false, t0 = performance.now();
+  var hot = -1, focusIdx = -1, running = false, t0 = performance.now(), firstLayout = true;
   var K = REDUCED ? 0.30 : 0.11, DAMP = REDUCED ? 0.30 : 0.78;
 
   function layout(){
     W = stage.clientWidth; DPR = Math.min(2, window.devicePixelRatio || 1);
-    var res = L.compute(arcs, D.eras, W), old = nodes;
-    H = res.H; clusters = res.clusters; nodes = [];
-    res.nodes.forEach(function(p, i){
-      var o = old[i];
-      nodes[i] = {i:i, a:arcs[i], r:p.r, hx:p.hx, hy:p.hy,
-        x: o ? o.x : p.hx, y: o ? o.y : p.hy, vx:0, vy:0, s:1, al:1, ph:Math.random()*6.283};
+    var res, old = nodes;
+    if(mode === 'eras'){
+      res = L.compute(arcs, D.eras, W);
+      clusters = res.clusters; eraCluster = null;
+    } else {
+      res = L.computeEra(arcs, curEra, W, Math.max(480, Math.min(900, innerHeight - 40)));
+      eraCluster = res.cluster;
+    }
+    H = res.H; nodes = [];
+    arcs.forEach(function(a, i){
+      var p = res.nodes[i], o = old[i];
+      if(p){
+        nodes[i] = {i:i, a:a, r:p.r, hx:p.hx, hy:p.hy, hidden:false,
+          x: o ? o.x : p.hx, y: o ? o.y : p.hy, vx: o ? o.vx : 0, vy: o ? o.vy : 0,
+          rr: o ? o.rr : p.r, s: o ? o.s : 1, al: o ? o.al : (firstLayout ? 1 : 0),
+          ph: o ? o.ph : Math.random()*6.283};
+      } else if(o){
+        o.hidden = true; nodes[i] = o;              // fades out where it stands
+      } else {
+        nodes[i] = {i:i, a:a, r:4, rr:4, hx:-50, hy:-50, x:-50, y:-50, vx:0, vy:0, s:1, al:0,
+                    ph:0, hidden:true};
+      }
     });
+    pickNodes = nodes.map(function(n){ return n.hidden ? null : n; });
+    firstLayout = false;
     cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
     cv.style.height = H + 'px';
     wake();
@@ -443,32 +484,44 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
 
   // ---- animation -----------------------------------------------------------------
   function step(now){
-    var t = now - t0;
-    var fx = ptr.x, fy = ptr.y, lock = ptr.on ? hot : focusIdx, active = ptr.on || focusIdx >= 0;
-    if(lock >= 0 && nodes[lock]){ fx = nodes[lock].hx; fy = nodes[lock].hy; }
+    var t = now - t0, inEra = mode === 'era';
+    var lock = inEra ? (ptr.on ? hot : focusIdx) : -1;
+    var lensOn = inEra && (ptr.on || focusIdx >= 0);
+    var fx = ptr.x, fy = ptr.y;
+    if(lock >= 0 && nodes[lock] && !nodes[lock].hidden){ fx = nodes[lock].hx; fy = nodes[lock].hy; }
+    var ek = inEra ? -1 : (ptr.on ? hotEra : focusEra);
+    var hoverName = ek >= 0 && clusters[ek] ? clusters[ek].era : null;
     var moving = false;
     for(var j=0;j<nodes.length;j++){
       var n = nodes[j]; if(!n) continue;
-      var tx = n.hx, ty = n.hy, ts = 1;
-      if(active){
-        var lt = L.lensTarget(n, fx, fy, W, H);
-        tx = lt.x; ty = lt.y; ts = lt.s;
-        if(!REDUCED && ptr.on && ts > 1){
-          var f = Math.sqrt((ts-1)/(L.MAG-1));
-          n.vx += ptr.vx*0.05*f*f; n.vy += ptr.vy*0.05*f*f;
+      var tx = n.hx, ty = n.hy, ts = 1, ta;
+      if(n.hidden){
+        ta = 0;
+      } else {
+        if(lensOn){
+          var lt = L.lensTarget(n, fx, fy, W, H);
+          tx = lt.x; ty = lt.y; ts = lt.s;
+          if(!REDUCED && ptr.on && ts > 1){
+            var f = Math.sqrt((ts-1)/(L.MAG-1));
+            n.vx += ptr.vx*0.05*f*f; n.vy += ptr.vy*0.05*f*f;
+          }
         }
+        if(hoverName && n.a.era === hoverName) ts = 1.08;
+        if(inEra && (j === hot || j === openIdx)) ts *= 1.15;
+        ta = (!filtering || n.a._match) ? 1 : 0.2;
+        if(hoverName && n.a.era !== hoverName) ta *= 0.5;
       }
       if(!REDUCED){ tx += Math.sin(t*0.0009 + n.ph)*1.2; ty += Math.cos(t*0.0011 + n.ph*1.3)*1.2; }
-      if(j === hot || j === openIdx) ts *= 1.15;
       n.vx = n.vx*DAMP + (tx - n.x)*K; n.vy = n.vy*DAMP + (ty - n.y)*K;
       n.x += n.vx; n.y += n.vy;
       n.s += (ts - n.s)*0.2;
-      var ta = (!filtering || n.a._match) ? 1 : 0.2;
+      n.rr += (n.r - n.rr)*0.14;                    // radius eases between stages too
       n.al += (ta - n.al)*0.15;
-      if(Math.abs(n.vx)+Math.abs(n.vy) > 0.02 || Math.abs(ts-n.s) > 0.004 || Math.abs(ta-n.al) > 0.004) moving = true;
+      if(Math.abs(n.vx)+Math.abs(n.vy) > 0.02 || Math.abs(ts-n.s) > 0.004 ||
+         Math.abs(ta-n.al) > 0.004 || Math.abs(n.r-n.rr) > 0.05) moving = true;
     }
     ptr.vx *= 0.8; ptr.vy *= 0.8;
-    draw(t);
+    draw(t, ek);
     if(document.hidden || !onScreen || (REDUCED && !moving && !ptr.on)){ running = false; return; }
     requestAnimationFrame(step);
   }
@@ -478,38 +531,59 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   }
   function wake(){ if(!running){ running = true; requestAnimationFrame(step); } }
 
-  function draw(t){
+  function threadThrough(idx){
+    ctx.beginPath();
+    idx.forEach(function(i, k){ var n = nodes[i]; if(k===0) ctx.moveTo(n.x, n.y); else ctx.lineTo(n.x, n.y); });
+    ctx.stroke();
+  }
+
+  function draw(t, ek){
     ctx.setTransform(DPR,0,0,DPR,0,0);
     ctx.clearRect(0, 0, W, H);
+    var j;
 
-    // The thread through broadcast order: solid along each spiral, a soft dashed curve
-    // from one era's last arc to the next era's first.
-    ctx.lineWidth = 1.4; ctx.strokeStyle = 'rgba(24,45,90,.20)';
-    clusters.forEach(function(c){
-      ctx.beginPath();
-      c.idx.forEach(function(i, k){ var n = nodes[i]; if(k===0) ctx.moveTo(n.x, n.y); else ctx.lineTo(n.x, n.y); });
-      ctx.stroke();
-    });
-    ctx.setLineDash([4, 6]); ctx.strokeStyle = 'rgba(24,45,90,.28)';
-    for(var k=0;k<clusters.length-1;k++){
-      var a = nodes[clusters[k].idx[clusters[k].idx.length-1]], b = nodes[clusters[k+1].idx[0]];
-      var mx = (a.x + b.x)/2, my = (a.y + b.y)/2 - 40;
-      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.quadraticCurveTo(mx, my, b.x, b.y); ctx.stroke();
+    if(mode === 'eras'){
+      // The thread through broadcast order: solid along each spiral, a soft dashed curve
+      // from one era's last arc to the next era's first.
+      ctx.lineWidth = 1.4; ctx.strokeStyle = 'rgba(24,45,90,.20)';
+      clusters.forEach(function(c){ threadThrough(c.idx); });
+      ctx.setLineDash([4, 6]); ctx.strokeStyle = 'rgba(24,45,90,.28)';
+      for(var k=0;k<clusters.length-1;k++){
+        var a = nodes[clusters[k].idx[clusters[k].idx.length-1]], b = nodes[clusters[k+1].idx[0]];
+        ctx.beginPath(); ctx.moveTo(a.x, a.y);
+        ctx.quadraticCurveTo((a.x + b.x)/2, (a.y + b.y)/2 - 40, b.x, b.y); ctx.stroke();
+      }
+      ctx.setLineDash([]);
+      if(ek >= 0){
+        // A soft halo marks the era under the pointer as one thing you can pick.
+        var c = clusters[ek];
+        var g = ctx.createRadialGradient(c.cx, c.cy, c.R*0.6, c.cx, c.cy, c.R + 30);
+        g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(0.8, 'rgba(255,255,255,.28)');
+        g.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c.cx, c.cy, c.R + 30, 0, 6.2832); ctx.fill();
+      }
+      for(j=0;j<nodes.length;j++) if(nodes[j].al > 0.02) drawNode(nodes[j], t);
+      drawEraLabels(ek);
+    } else {
+      // Arcs of other eras fade out where they stand while this era's spring outward.
+      for(j=0;j<nodes.length;j++) if(nodes[j].hidden && nodes[j].al > 0.02) drawNode(nodes[j], t);
+      ctx.lineWidth = 1.6; ctx.strokeStyle = 'rgba(24,45,90,.22)';
+      if(eraCluster) threadThrough(eraCluster.idx);
+      var sel = openIdx >= 0 && !ptr.on ? openIdx : (hot >= 0 ? hot : openIdx);
+      if(sel >= 0 && nodes[sel].hidden) sel = -1;
+      if(sel >= 0){
+        // Light the thread to its neighbours within the era.
+        ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(255,255,255,.95)'; ctx.beginPath();
+        var lo = sel > 0 && arcs[sel-1].era === curEra ? sel-1 : sel;
+        var hi = sel < arcs.length-1 && arcs[sel+1].era === curEra ? sel+1 : sel;
+        ctx.moveTo(nodes[lo].x, nodes[lo].y);
+        for(var q=lo+1;q<=hi;q++) ctx.lineTo(nodes[q].x, nodes[q].y);
+        ctx.stroke();
+      }
+      for(j=0;j<nodes.length;j++){ var m = nodes[j]; if(!m.hidden && j !== sel) drawNode(m, t); }
+      if(openIdx >= 0 && openIdx !== sel && !nodes[openIdx].hidden) drawNode(nodes[openIdx], t, true);
+      if(sel >= 0) drawSelected(nodes[sel], t);
     }
-    ctx.setLineDash([]);
-
-    var sel = openIdx >= 0 && !ptr.on ? openIdx : (hot >= 0 ? hot : openIdx);
-    if(sel >= 0){
-      ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(255,255,255,.95)';
-      var lo = Math.max(0, sel-1), hi = Math.min(nodes.length-1, sel+1);
-      ctx.beginPath(); ctx.moveTo(nodes[lo].x, nodes[lo].y);
-      for(var q=lo+1;q<=hi;q++) ctx.lineTo(nodes[q].x, nodes[q].y);
-      ctx.stroke();
-    }
-    for(var j=0;j<nodes.length;j++){ if(j!==sel) drawNode(nodes[j], t); }
-    if(openIdx >= 0 && openIdx !== sel) drawNode(nodes[openIdx], t, true);
-    drawEraLabels();
-    if(sel >= 0) drawSelected(nodes[sel], t);
 
     if(ptr.on){
       ctx.beginPath(); ctx.arc(ptr.x, ptr.y, 5, 0, 6.2832);
@@ -518,28 +592,37 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
     }
   }
 
-  // Era labels go above the arcs, on a soft backing, so bubbles pushed up by the lens can
-  // never hide them.
-  function drawEraLabels(){
+  // Era labels sit above the arcs on a soft backing. They carry the arc count, how many
+  // match the current search (so you know which era to open), and a prompt when hovered.
+  function drawEraLabels(ek){
     ctx.textBaseline = 'top'; ctx.textAlign = 'center';
-    clusters.forEach(function(c){
-      var sub = 'episodes ' + c.first + '–' + c.last;
+    clusters.forEach(function(c, k){
+      var hits = 0;
+      if(filtering) c.idx.forEach(function(i){ if(arcs[i]._match) hits++; });
+      var sub = filtering ? hits + ' of ' + c.idx.length + ' arcs match'
+                          : c.idx.length + ' arcs · episodes ' + c.first + '–' + c.last;
+      var on = k === ek;
       ctx.font = '500 10.5px "IBM Plex Mono", monospace';
-      var w = Math.max(ctx.measureText(sub).width, 60) + 22;
-      ctx.fillStyle = 'rgba(255,250,240,.72)';
-      roundRect(c.cx - w/2, c.labelY - 5, w, 36, 10); ctx.fill();
+      var w = Math.max(ctx.measureText(sub).width, 90) + 24, h = on ? 52 : 36;
+      ctx.fillStyle = on ? 'rgba(255,255,255,.95)' : 'rgba(255,250,240,.72)';
+      roundRect(c.cx - w/2, c.labelY - 5, w, h, 10); ctx.fill();
       ctx.fillStyle = eraColor(c.era, -18);
       ctx.font = '800 13px Archivo, "Arial Narrow", sans-serif';
       ctx.fillText(c.era.toUpperCase(), c.cx, c.labelY);
-      ctx.fillStyle = 'rgba(24,35,59,.6)';
+      ctx.fillStyle = 'rgba(24,35,59,.62)';
       ctx.font = '500 10.5px "IBM Plex Mono", monospace';
       ctx.fillText(sub, c.cx, c.labelY + 16);
+      if(on){
+        ctx.fillStyle = eraColor(c.era, -18);
+        ctx.font = '600 11px "IBM Plex Sans Devanagari", sans-serif';
+        ctx.fillText('click to open this era', c.cx, c.labelY + 31);
+      }
     });
     ctx.textAlign = 'left';
   }
 
   function drawNode(n, t, marked){
-    var a = n.a, r = n.r * n.s;
+    var a = n.a, r = n.rr * n.s;
     ctx.beginPath(); ctx.arc(n.x + 1.2, n.y + 2, r, 0, 6.2832);
     ctx.fillStyle = 'rgba(18,48,90,'+(0.14*n.al).toFixed(3)+')'; ctx.fill();
     var g = ctx.createRadialGradient(n.x - r*0.35, n.y - r*0.4, r*0.1, n.x, n.y, r);
@@ -558,7 +641,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   }
 
   function drawSelected(n, t){
-    var a = n.a, r = n.r * n.s;
+    var a = n.a, r = n.rr * n.s;
     var g = ctx.createRadialGradient(n.x, n.y, r*0.5, n.x, n.y, r*3);
     g.addColorStop(0, 'rgba(255,250,225,.9)'); g.addColorStop(1, 'rgba(255,250,225,0)');
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(n.x, n.y, r*3, 0, 6.2832); ctx.fill();
@@ -610,43 +693,126 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
     ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
   }
 
-  function pick(x, y){ return L.pick(nodes, x, y); }
+  // ---- stage switching -----------------------------------------------------------
+  var nav = document.getElementById('stage-nav'), note = document.getElementById('stage-note');
+  function syncChrome(){
+    [].forEach.call(document.querySelectorAll('#eras .chip'), function(c){
+      c.setAttribute('aria-pressed', String(c.dataset.v === curEra));
+    });
+    nav.hidden = mode !== 'era';
+    if(mode === 'era'){
+      var k = D.eras.indexOf(curEra), n = arcs.filter(function(a){ return a.era === curEra; }).length;
+      note.innerHTML = '<b style="color:'+eraColor(curEra,-18)+'">'+esc(curEra)+' &middot; '+n+' arcs</b>'+
+        '<span>move through the arcs &middot; click one to see its episodes &middot; '+
+        '<kbd>&larr;</kbd> <kbd>&rarr;</kbd> step &middot; <kbd>Esc</kbd> all eras</span>';
+      var prev = document.getElementById('era-prev'), next = document.getElementById('era-next');
+      prev.disabled = k <= 0; next.disabled = k >= D.eras.length - 1;
+      prev.textContent = '‹ ' + (k > 0 ? D.eras[k-1] : '');
+      next.textContent = (k < D.eras.length - 1 ? D.eras[k+1] : '') + ' ›';
+      cv.setAttribute('aria-label', curEra + ' era: ' + n + ' story arcs. Arrow keys step through them, Enter opens one, Escape returns to all eras.');
+    } else {
+      note.innerHTML = '<b>Choose an era</b><span>hover to preview &middot; click to open &middot; '+
+        '<kbd>&larr;</kbd> <kbd>&rarr;</kbd> then <kbd>Enter</kbd></span>';
+      cv.setAttribute('aria-label', 'Five eras of the show. Arrow keys choose an era, Enter opens it.');
+    }
+    applyFilters();
+  }
+  function scrollToStage(){
+    var top = stage.getBoundingClientRect().top;
+    if(top < 0 || top > innerHeight*0.6)
+      stage.scrollIntoView({behavior: REDUCED ? 'auto' : 'smooth', block:'start'});
+  }
+  function openEra(era, push){
+    if(D.eras.indexOf(era) < 0) return;
+    mode = 'era'; curEra = era; hot = -1; hotEra = -1; focusIdx = -1; focusEra = -1;
+    if(openIdx >= 0 && arcs[openIdx].era !== era){ openIdx = -1; renderPanel(); }
+    layout(); syncChrome();
+    if(push !== false) history.pushState({era:era}, '', '#era=' + encodeURIComponent(era));
+  }
+  function backToEras(push){
+    if(mode === 'eras') return;
+    var from = curEra;
+    mode = 'eras'; curEra = null; hot = -1; focusIdx = -1;
+    focusEra = D.eras.indexOf(from); hotEra = -1;
+    layout(); syncChrome();
+    if(push !== false) history.pushState(null, '', location.pathname + location.search);
+  }
+  function eraFromHash(){
+    var m = /era=([^&]+)/.exec(location.hash);
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+  window.addEventListener('popstate', function(){
+    var e = eraFromHash();
+    if(e) openEra(e, false); else backToEras(false);
+  });
+  document.getElementById('to-eras').addEventListener('click', function(){ backToEras(); cv.focus({preventScroll:true}); });
+  document.getElementById('era-prev').addEventListener('click', function(){
+    var k = D.eras.indexOf(curEra); if(k > 0) openEra(D.eras[k-1]);
+  });
+  document.getElementById('era-next').addEventListener('click', function(){
+    var k = D.eras.indexOf(curEra); if(k < D.eras.length-1) openEra(D.eras[k+1]);
+  });
 
+  // ---- pointer -------------------------------------------------------------------
   function local(ev){ var r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+  function hoverAt(x, y){
+    if(mode === 'eras'){ hotEra = L.pickEra(clusters, x, y); hot = -1; return hotEra >= 0; }
+    hot = L.pick(pickNodes, x, y); return hot >= 0;
+  }
   var downAt = null;
   cv.addEventListener('pointermove', function(ev){
     var p = local(ev), now = performance.now();
     if(ptr.on){ var dt = Math.max(8, now - ptr.t); ptr.vx = (p[0]-ptr.x)/dt*16; ptr.vy = (p[1]-ptr.y)/dt*16; }
     ptr.x = p[0]; ptr.y = p[1]; ptr.t = now; ptr.on = true;
-    hot = pick(p[0], p[1]);
-    cv.style.cursor = hot >= 0 ? 'pointer' : 'none';
+    cv.style.cursor = hoverAt(p[0], p[1]) ? 'pointer' : 'none';
     wake();
   });
-  cv.addEventListener('pointerleave', function(){ ptr.on = false; hot = -1; wake(); });
+  cv.addEventListener('pointerleave', function(){ ptr.on = false; hot = -1; hotEra = -1; wake(); });
   cv.addEventListener('pointerdown', function(ev){
-    var p = local(ev); downAt = p; ptr.x = p[0]; ptr.y = p[1]; ptr.on = true; hot = pick(p[0], p[1]); wake();
+    var p = local(ev); downAt = p; ptr.x = p[0]; ptr.y = p[1]; ptr.on = true; hoverAt(p[0], p[1]); wake();
   });
   cv.addEventListener('pointerup', function(ev){
     var p = local(ev);
     if(downAt && Math.hypot(p[0]-downAt[0], p[1]-downAt[1]) < 10){
-      var i = pick(p[0], p[1]);
-      if(i >= 0) openArc(i, true);
+      if(mode === 'eras'){
+        var k = L.pickEra(clusters, p[0], p[1]);
+        if(k >= 0){ openEra(clusters[k].era); scrollToStage(); }
+      } else {
+        var i = L.pick(pickNodes, p[0], p[1]);
+        if(i >= 0) openArc(i, true);
+      }
     }
     downAt = null;
-    if(ev.pointerType !== 'mouse'){ ptr.on = false; hot = -1; }
+    if(ev.pointerType !== 'mouse'){ ptr.on = false; hot = -1; hotEra = -1; }
   });
 
-  // Keyboard: arrow keys step the lens through the run in broadcast order.
+  // ---- keyboard ------------------------------------------------------------------
+  // Eras: arrows choose an era, Enter opens it. Inside an era: arrows step the lens through
+  // its arcs in broadcast order, Enter opens one, Escape returns to all eras.
   function glideTo(i){ focusIdx = i; hot = -1; ptr.on = false; wake(); }
   cv.addEventListener('keydown', function(e){
-    var cur = focusIdx >= 0 ? focusIdx : (hot >= 0 ? hot : -1);
-    if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){ e.preventDefault(); glideTo(Math.min(arcs.length-1, cur+1)); }
-    else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){ e.preventDefault(); glideTo(Math.max(0, cur < 0 ? 0 : cur-1)); }
-    else if(e.key === 'Home'){ e.preventDefault(); glideTo(0); }
-    else if(e.key === 'End'){ e.preventDefault(); glideTo(arcs.length-1); }
-    else if(e.key === 'Enter' && cur >= 0){ e.preventDefault(); openArc(cur, true); }
+    var fwd = e.key === 'ArrowRight' || e.key === 'ArrowDown', back = e.key === 'ArrowLeft' || e.key === 'ArrowUp';
+    if(mode === 'eras'){
+      var n = clusters.length, cur = focusEra >= 0 ? focusEra : (hotEra >= 0 ? hotEra : -1);
+      if(fwd){ e.preventDefault(); focusEra = Math.min(n-1, cur+1); ptr.on = false; wake(); }
+      else if(back){ e.preventDefault(); focusEra = Math.max(0, cur < 0 ? 0 : cur-1); ptr.on = false; wake(); }
+      else if(e.key === 'Enter' && cur >= 0){ e.preventDefault(); openEra(clusters[cur].era); }
+      return;
+    }
+    var idx = eraCluster ? eraCluster.idx : [];
+    var pos = idx.indexOf(focusIdx >= 0 ? focusIdx : hot);
+    if(fwd){ e.preventDefault(); glideTo(idx[Math.min(idx.length-1, pos+1)]); }
+    else if(back){ e.preventDefault(); glideTo(idx[Math.max(0, pos < 0 ? 0 : pos-1)]); }
+    else if(e.key === 'Home'){ e.preventDefault(); glideTo(idx[0]); }
+    else if(e.key === 'End'){ e.preventDefault(); glideTo(idx[idx.length-1]); }
+    else if(e.key === 'Enter' && pos >= 0){ e.preventDefault(); openArc(idx[pos], true); }
+    else if(e.key === 'Escape'){ e.preventDefault(); backToEras(); }
   });
-  cv.addEventListener('blur', function(){ if(openIdx < 0){ focusIdx = -1; wake(); } });
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target && e.target.tagName) || '';
+    if(e.key === 'Escape' && mode === 'era' && tag !== 'INPUT' && e.target !== cv) backToEras();
+  });
+  cv.addEventListener('blur', function(){ if(openIdx < 0){ focusIdx = -1; focusEra = -1; wake(); } });
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) wake(); });
 
   document.getElementById('legend').innerHTML =
@@ -709,7 +875,9 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(layout, 120); });
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(wake);
 
+  var startEra = eraFromHash();
+  if(startEra && D.eras.indexOf(startEra) >= 0){ mode = 'era'; curEra = startEra; }
   layout();
-  applyFilters();
+  syncChrome();
 })();
 </script>

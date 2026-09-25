@@ -45,15 +45,16 @@ tail past the last sealed boundary is recomputed.
 
 <https://raghavujjwal.github.io/tmkoc-arcs/>
 
-All 419 arcs as bubbles on a soft, drifting wash of sky blue, sunflower and coral. Each
-era is a spiral cluster — its first arc at the centre, later arcs winding outward — and
-the five eras flow across the page in a zigzag, each spiral's outer end facing the next.
-The pointer is a magnetic lens: the arc under it swells and blooms into its episodes while
-its neighbours part to make room. Click an arc to see its episodes below; arrow keys step
-through the run; search and filters fade non-matching arcs.
+Two stages. **First, choose an era:** the five eras appear as spiral clusters on a soft
+blue–yellow–coral wash; hovering one lifts it and shows its arc count (and, while
+searching, how many of its arcs match). **Then, the era's arcs:** the chosen era springs
+out to fill the field with larger bubbles, and the pointer becomes a magnetic lens — the
+arc under it swells and blooms into its episodes while its neighbours part. Click an arc
+to see its episodes below; arrow keys step through the era; `Esc`, "← All eras" or the
+browser's back button return to the eras. Links like `#era=Classic` open an era directly.
 
-Arcs without a written summary take their name from their most telling episode title, so
-every arc reads as a story. The footer states how many arcs have written summaries.
+Arcs are named by a verified summary where one exists, otherwise by a hand-written title
+from the upstream fan project (MIT), otherwise by their most telling episode title.
 
 Layout, lens and picking live in `site/layout.js`, shared by the page and its test
 (`node scripts/check_field.js`), so the tested geometry is the drawn geometry.
