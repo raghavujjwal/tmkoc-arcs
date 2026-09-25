@@ -5,7 +5,7 @@
 <style>
 :root{
   --ground:#FFF9EE; --surface:#FFFFFF; --surface-2:#FFF3DD;
-  --ink:#18233B; --muted:#56607A; --faint:#8790A6;
+  --ink:#18233B; --muted:#4F5973; --faint:#6A7389;
   --line:#EFE3CB; --line-strong:#E1CFA9;
   --sky:#2F7FD0; --sky-soft:#E3F0FC;
   --sun:#F3B41B; --sun-soft:#FFF1CC;
@@ -20,16 +20,21 @@
 
 *{box-sizing:border-box}
 body{
-  background:var(--ground); color:var(--ink);
+  /* margin:0 explicitly: GitHub Pages serves this file raw, without the artifact viewer's
+     reset, and the default 8px margin framed the wash in a beige border. */
+  margin:0; position:relative; background:#FCEBD6; color:var(--ink);
   font-family:"IBM Plex Sans Devanagari","Segoe UI",system-ui,sans-serif;
   font-size:15px; line-height:1.55;
 }
-.wrap{max-width:1240px; margin:0 auto; padding:26px 20px 70px}
+.wrap{position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:26px 20px 70px}
+/* The wash: one soft blend of sky blue, sunflower and coral behind the whole page, running
+   blue at the top through yellow to coral at the bottom. The field sits directly on it. */
+#wash{position:absolute; left:0; top:0; width:100%; z-index:0; pointer-events:none; display:block}
 
 /* ---- masthead ---- */
 .masthead{
   display:flex; flex-wrap:wrap; align-items:flex-end; gap:18px 28px;
-  padding-bottom:16px; border-bottom:3px solid var(--sun);
+  padding-bottom:16px; border-bottom:3px solid var(--brick);
 }
 h1{
   font-family:Archivo,"Arial Narrow",sans-serif; font-weight:800;
@@ -70,12 +75,11 @@ input[type=search]:focus-visible,button:focus-visible,a:focus-visible,canvas:foc
 .count{font-size:12.5px; color:var(--faint); margin:0}
 
 /* ---- the stage ----
-   A soft, diffused wash of sky blue, sunflower and coral -- the palette of the show's
-   sunny title cards, blurred into colour rather than drawn as scenery. Painted on the
-   canvas so it can drift slowly behind the arcs. */
+   Transparent: the arcs sit straight on the page-wide wash, framed only by a faint light
+   edge so the field still reads as one surface. */
 .stage{
-  position:relative; border-radius:14px; overflow:hidden;
-  background:#FCEBD6; box-shadow:0 1px 0 rgba(255,255,255,.6) inset, var(--shadow);
+  position:relative; border-radius:16px; overflow:hidden;
+  background:rgba(255,255,255,.14); box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
 }
 .stage canvas{display:block; width:100%; touch-action:none; cursor:none}
 .stage canvas:focus-visible{outline-offset:-4px}
@@ -98,8 +102,8 @@ input[type=search]:focus-visible,button:focus-visible,a:focus-visible,canvas:foc
 /* ---- the selected arc, below the field ---- */
 .panel{margin-top:26px; scroll-margin-top:16px}
 .panel .hint{
-  margin:0; padding:18px 20px; border:2px dashed var(--line-strong); border-radius:12px;
-  color:var(--muted); font-size:14px; text-align:center;
+  margin:0; padding:18px 20px; border:2px dashed rgba(255,255,255,.8); border-radius:12px;
+  background:rgba(255,255,255,.38); color:var(--muted); font-size:14px; text-align:center;
 }
 .card{
   background:var(--surface); border-radius:12px; box-shadow:var(--shadow);
@@ -153,12 +157,13 @@ input[type=search]:focus-visible,button:focus-visible,a:focus-visible,canvas:foc
 .matches button:hover{border-color:var(--sky)}
 .matches small{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--faint)}
 
-footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
+footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14);
   font-size:12px; color:var(--faint); display:flex; gap:6px 18px; flex-wrap:wrap}
 
 @media (prefers-reduced-motion:reduce){ .panel{scroll-behavior:auto} }
 </style>
 
+<canvas id="wash" aria-hidden="true"></canvas>
 <div class="wrap">
   <header class="masthead">
     <div>
@@ -416,34 +421,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
     });
     cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
     cv.style.height = H + 'px';
-    meshT = -1e9;
     wake();
-  }
-
-  // ---- background: a soft, diffused wash of sky blue, sunflower and coral -------------
-  // Painted small and scaled up, which is what makes it genuinely soft (and cheap), then
-  // refreshed a few times a second as the colour pools drift slowly.
-  var mesh = document.createElement('canvas'), mctx = mesh.getContext('2d'), meshT = -1e9;
-  var BLOBS = [
-    {c:[110,184,242], x:0.10, y:0.12, r:0.70, ox:0.05, oy:0.04, sp:0.00011},
-    {c:[160,214,250], x:0.90, y:0.30, r:0.60, ox:0.04, oy:0.06, sp:0.00009},
-    {c:[255,214,110], x:0.55, y:0.05, r:0.55, ox:0.07, oy:0.03, sp:0.00013},
-    {c:[255,172,112], x:0.22, y:0.78, r:0.60, ox:0.05, oy:0.05, sp:0.00010},
-    {c:[255,128,104], x:0.88, y:0.92, r:0.55, ox:0.04, oy:0.05, sp:0.00012},
-    {c:[255,226,150], x:0.50, y:0.55, r:0.45, ox:0.08, oy:0.06, sp:0.00008}
-  ];
-  function paintMesh(t){
-    var mw = Math.max(40, Math.round(W/10)), mh = Math.max(40, Math.round(H/10));
-    if(mesh.width !== mw || mesh.height !== mh){ mesh.width = mw; mesh.height = mh; }
-    mctx.fillStyle = '#FCEBD6'; mctx.fillRect(0, 0, mw, mh);
-    var big = Math.max(mw, mh);
-    BLOBS.forEach(function(b, k){
-      var a = REDUCED ? 0 : t*b.sp + k*1.7;
-      var x = (b.x + Math.cos(a)*b.ox)*mw, y = (b.y + Math.sin(a*1.3)*b.oy)*mh, r = b.r*big;
-      var g = mctx.createRadialGradient(x, y, 0, x, y, r);
-      g.addColorStop(0, 'rgba('+b.c+',.85)'); g.addColorStop(1, 'rgba('+b.c+',0)');
-      mctx.fillStyle = g; mctx.fillRect(0, 0, mw, mh);
-    });
   }
 
   // ---- animation -----------------------------------------------------------------
@@ -473,7 +451,6 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
       if(Math.abs(n.vx)+Math.abs(n.vy) > 0.02 || Math.abs(ts-n.s) > 0.004 || Math.abs(ta-n.al) > 0.004) moving = true;
     }
     ptr.vx *= 0.8; ptr.vy *= 0.8;
-    if(t - meshT > 120){ paintMesh(t); meshT = t; }
     draw(t);
     if(document.hidden || !onScreen || (REDUCED && !moving && !ptr.on)){ running = false; return; }
     requestAnimationFrame(step);
@@ -486,8 +463,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
 
   function draw(t){
     ctx.setTransform(DPR,0,0,DPR,0,0);
-    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(mesh, 0, 0, W, H);
+    ctx.clearRect(0, 0, W, H);
 
     // The thread through broadcast order: solid along each spiral, a soft dashed curve
     // from one era's last arc to the next era's first.
@@ -661,6 +637,56 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
     '<span>each swirl is one era: it starts at the centre and winds outward</span>'+
     '<span>bigger bubble = longer arc</span>'+
     '<span><i style="background:transparent; box-shadow:0 0 0 2px #E1CFA9"></i>pulsing = still unfolding</span>';
+
+
+  // =========================== the wash ======================================
+  // Painted at 1/12 resolution and stretched by the browser, which is what makes it soft.
+  // Colour pools are placed down the whole page -- blue at the top, sunflower through the
+  // middle, apricot and coral at the bottom -- and drift slowly. Its height follows the
+  // content (.wrap), not scrollHeight: the wash itself contributes to scrollHeight, so
+  // measuring that would let the page grow but never shrink back.
+  var wash = document.getElementById('wash'), wctx = wash.getContext('2d'), wrap = document.querySelector('.wrap');
+  var POOLS = [
+    {c:[110,184,242], x:0.08, y:0.03, r:0.60, ox:0.05, oy:0.02, sp:0.00011},
+    {c:[160,214,250], x:0.92, y:0.12, r:0.55, ox:0.04, oy:0.03, sp:0.00009},
+    {c:[255,214,110], x:0.62, y:0.33, r:0.55, ox:0.06, oy:0.03, sp:0.00013},
+    {c:[255,226,150], x:0.22, y:0.50, r:0.50, ox:0.07, oy:0.03, sp:0.00008},
+    {c:[255,172,112], x:0.18, y:0.74, r:0.55, ox:0.05, oy:0.03, sp:0.00010},
+    {c:[255,128,104], x:0.86, y:0.86, r:0.55, ox:0.04, oy:0.03, sp:0.00012},
+    {c:[255,190,140], x:0.50, y:1.00, r:0.50, ox:0.06, oy:0.02, sp:0.00009}
+  ];
+  var washT = 0;
+  function sizeWash(){
+    var w = document.documentElement.clientWidth;
+    var h = Math.max(innerHeight, wrap.offsetTop + wrap.offsetHeight);
+    wash.style.height = h + 'px';
+    var ww = Math.max(40, Math.round(w/12)), wh = Math.max(40, Math.round(h/12));
+    if(wash.width !== ww || wash.height !== wh){ wash.width = ww; wash.height = wh; }
+    paintWash(washT);
+  }
+  function paintWash(t){
+    var ww = wash.width, wh = wash.height, big = Math.max(ww, wh*0.5);
+    wctx.fillStyle = '#FCEBD6'; wctx.fillRect(0, 0, ww, wh);
+    POOLS.forEach(function(b, k){
+      var a = REDUCED ? 0 : t*b.sp + k*1.7;
+      var x = (b.x + Math.cos(a)*b.ox)*ww, y = (b.y + Math.sin(a*1.3)*b.oy)*wh, r = b.r*big;
+      var g = wctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, 'rgba('+b.c+',.85)'); g.addColorStop(1, 'rgba('+b.c+',0)');
+      wctx.fillStyle = g; wctx.fillRect(0, 0, ww, wh);
+    });
+  }
+  (function washLoop(){
+    if(REDUCED) return;
+    var last = 0;
+    function tick(now){
+      if(!document.hidden && now - last > 150){ washT = now; paintWash(now); last = now; }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+  if('ResizeObserver' in window) new ResizeObserver(sizeWash).observe(wrap);
+  window.addEventListener('resize', sizeWash);
+  sizeWash();
 
   var rt;
   window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(layout, 120); });

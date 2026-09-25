@@ -647,3 +647,12 @@ and a layout that is more than straight rows, with more room between bubbles.
 The order criterion changed from one fixed step limit to a stated requirement: no step
 skips more than two large bubbles (catches turn-skipping), and ≥95% of steps are tight.
 The 13 looser steps all sit on outer turns next to very large arcs.
+
+
+### CP17 — Wash across the whole page  `DONE`
+The soft blue → sunflower → coral wash moved off the field onto one canvas behind the
+entire page, running top to bottom; the field is now transparent so the arcs sit on it.
+Its height tracks the content (`.wrap`), not `scrollHeight` — the wash itself adds to
+`scrollHeight`, so measuring that would let the page grow but never shrink back.
+Found in the render: the live site had carried the browser's default 8px body margin all
+along (the artifact viewer resets it, GitHub Pages does not) — now `margin:0`.
