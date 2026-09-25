@@ -33,7 +33,7 @@ body{
 
 /* ---- masthead ---- */
 .masthead{
-  display:flex; flex-wrap:wrap; align-items:flex-end; gap:18px 28px;
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px;
   padding-bottom:16px; border-bottom:3px solid var(--brick);
 }
 h1{
@@ -41,14 +41,15 @@ h1{
   font-size:clamp(28px,4.4vw,42px); letter-spacing:-.02em; line-height:1; margin:0;
   color:var(--ink); text-wrap:balance;
 }
-h1{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+h1{display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap}
 h1 .arc{color:var(--brick)}
 /* The show's logo, shown at no more than ~110px so the 223x164 source stays crisp. */
 .logo{height:clamp(70px, 9vw, 110px); width:auto; display:block; border-radius:12px;
   box-shadow:0 6px 18px rgba(24,35,59,.18)}
-.sub{color:var(--muted); font-size:13.5px; margin:7px 0 0; max-width:62ch}
+.sub{color:var(--muted); font-size:13.5px; margin:10px auto 0; max-width:62ch}
 .spacer{flex:1 1 auto}
-.stats{display:flex; gap:24px; flex-wrap:wrap}
+.stats{display:flex; gap:28px; flex-wrap:wrap; justify-content:center}
+.stat{align-items:center}
 .stat{display:flex; flex-direction:column; gap:1px}
 .stat b{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
   font-size:21px; font-weight:500; line-height:1.1; color:var(--sky)}
@@ -176,7 +177,6 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
       <p class="sub">Every aired episode of <i>Taarak Mehta Ka Ooltah Chashmah</i>, grouped into the
       story arcs that run through the society.</p>
     </div>
-    <div class="spacer"></div>
     <div class="stats">
       <div class="stat"><b id="s-arcs">—</b><span>story arcs</span></div>
       <div class="stat"><b id="s-eps">—</b><span>episodes</span></div>
