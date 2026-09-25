@@ -244,8 +244,10 @@ def _retry_delay(exc: Exception, attempt: int = 0) -> float | None:
 
 
 def summarize_arc(client, arc: dict, source: str, min_interval: float = 6.5,
-                  attempts: int = 3, models: list[str] | None = None) -> tuple[dict, str]:
-    """Returns (summary, model_used). Rotates models as each daily quota runs out."""
+                  attempts: int = 3, models: list[str] | None = None,
+                  patient: bool = False, exhausted: set | None = None) -> tuple[dict, str]:
+    """Returns (summary, model_used). Rotates models, and in patient mode waits out the
+    rolling per-day window instead of giving up on it."""
     from google.genai import types
 
     cfg = types.GenerateContentConfig(
@@ -254,9 +256,10 @@ def summarize_arc(client, arc: dict, source: str, min_interval: float = 6.5,
         temperature=0.3,
     )
     pool = models if models is not None else [GEMINI_MODEL]
-    for attempt in range(max(attempts, 6)):
+    exhausted = exhausted if exhausted is not None else set()
+    for attempt in range(max(attempts, 6) if not patient else 10_000):
         if not pool:
-            raise RuntimeError("all models exhausted their daily quota")
+            raise RuntimeError("no models configured")
         model = pool[0]
         _throttle(min_interval)
         try:
@@ -265,10 +268,22 @@ def summarize_arc(client, arc: dict, source: str, min_interval: float = 6.5,
             return json.loads(resp.text), model
         except Exception as exc:
             if is_daily_quota_error(exc):
-                # Per-day quota: no delay will clear it today, so retire this model for
-                # the whole run instead of burning retries against it.
-                print(f"    {model}: daily quota exhausted, rotating", flush=True)
-                pool.pop(0)
+                # The per-day cap is a ROLLING 24h window, not a midnight reset: the error
+                # carries a retryDelay (~50s) because yesterday's requests age out one at a
+                # time. Retiring the model outright throws away a stream that refills all
+                # day. Rotate first -- another model may have headroom right now -- and
+                # only wait once every model has reported exhaustion.
+                wait = _retry_delay(exc) or 60.0
+                if model not in exhausted:
+                    exhausted.add(model)
+                    print(f"    {model}: quota exhausted (retry in {wait:.0f}s)", flush=True)
+                pool.append(pool.pop(0))
+                if len(exhausted) >= len(pool):
+                    # Measured: waiting the advertised retryDelay does NOT free capacity
+                    # -- the delay is a minimum backoff, not a countdown, and the window
+                    # refills on a ~24h lag from the original burst. Patient mode therefore
+                    # spins without progress, so it stops and says so rather than looping.
+                    raise
                 continue
             delay = _retry_delay(exc, attempt)
             if delay is None or attempt == attempts - 1:
@@ -281,6 +296,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--arcs", default=str(DATA_DIR / "arcs.json"))
     ap.add_argument("--limit", type=int, default=20, help="0 = all (CP8)")
+    ap.add_argument("--patient", action="store_true",
+                    help="wait out the rolling per-day window instead of stopping; "
+                         "lets a long run harvest quota as it frees up")
     ap.add_argument("--min-interval", type=float, default=6.5,
                     help="seconds between API calls; free tier allows 10/min")
     ap.add_argument("--min-signal", type=float, default=0.5,
@@ -321,6 +339,7 @@ def main() -> int:
               f"{max(a['n_episodes'] for a in todo)} eps")
 
     pool = list(MODEL_POOL)
+    exhausted: set = set()
     cache = load_cache()
     results, grounded_ok, cached_hits = [], 0, 0
     start = time.time()
@@ -340,7 +359,8 @@ def main() -> int:
         else:
             try:
                 summary, used = summarize_arc(
-                    client, arc, source, args.min_interval, models=pool)
+                    client, arc, source, args.min_interval, models=pool,
+                    patient=args.patient, exhausted=exhausted)
             except Exception as exc:
                 msg = str(exc).split(chr(10))[0][:110]
                 print(f"  ep {arc['start_ep']}-{arc['end_ep']}: FAILED {type(exc).__name__}: {msg}")

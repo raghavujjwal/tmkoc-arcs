@@ -76,6 +76,43 @@ h1{
 .bar{height:5px; background:var(--line); border-radius:3px; overflow:hidden; margin-top:8px}
 .bar>i{display:block; height:100%; background:var(--verified)}
 
+/* ---- spiral ---- */
+.viz{
+  position:relative; margin:20px 0 0;
+  border:1px solid var(--line); background:var(--surface); border-radius:3px;
+  overflow:hidden;
+}
+.viz canvas{display:block; width:100%; height:auto; touch-action:none; cursor:crosshair}
+.viz-head{
+  display:flex; flex-wrap:wrap; gap:10px 20px; align-items:baseline;
+  padding:12px 14px 0;
+}
+.viz-head h2{
+  font-family:Archivo,"Arial Narrow",sans-serif; font-size:14px; font-weight:600;
+  letter-spacing:.02em; margin:0;
+}
+.viz-head p{margin:0; font-size:12.5px; color:var(--muted); max-width:62ch}
+.legend{display:flex; gap:14px; flex-wrap:wrap; padding:0 14px 10px; margin-top:8px}
+.legend span{display:flex; align-items:center; gap:5px; font-size:11px; color:var(--faint)}
+.legend i{width:16px; height:5px; border-radius:2px; display:block}
+.legend u{width:7px; height:7px; border-radius:50%; background:var(--verified); display:block}
+
+.readout{
+  position:absolute; pointer-events:none; z-index:3;
+  background:var(--surface); border:1px solid var(--line-strong);
+  border-left:3px solid var(--indigo);
+  padding:7px 10px; border-radius:2px; max-width:290px;
+  box-shadow:0 6px 22px rgba(0,0,0,.14); opacity:0; transition:opacity .09s;
+}
+.readout.on{opacity:1}
+.readout b{display:block; font-size:13px; font-weight:600; line-height:1.3}
+.readout .r-eps{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--indigo)}
+.readout .r-sub{display:block; font-size:12px; color:var(--muted); margin-top:3px;
+  overflow:hidden; text-overflow:ellipsis; display:-webkit-box;
+  -webkit-line-clamp:2; -webkit-box-orient:vertical}
+.readout .r-hint{display:block; font-size:10.5px; color:var(--faint); margin-top:5px;
+  text-transform:uppercase; letter-spacing:.07em}
+
 /* ---- controls ---- */
 .controls{display:flex; flex-direction:column; gap:12px; margin:22px 0 14px}
 .searchrow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
@@ -204,6 +241,20 @@ footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
   </header>
 
   <p class="coverage" id="coverage"></p>
+
+
+  <section class="viz">
+    <div class="viz-head">
+      <h2>Every arc, in broadcast order</h2>
+      <p>The spiral runs from episode 1 at the centre to the latest at the rim &mdash; one
+      continuous line, cut into 419 arcs. Move along it to trace the run; click an arc to
+      open it below.</p>
+    </div>
+    <div class="legend" id="legend"></div>
+    <canvas id="spiral" width="1100" height="1100" role="img"
+            aria-label="Spiral of 4,819 episodes divided into 419 story arcs; hover to inspect"></canvas>
+    <div class="readout" id="readout" aria-live="polite"></div>
+  </section>
 
   <div class="controls">
     <div class="searchrow">
@@ -414,5 +465,222 @@ footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
     paint();
   }
   render();
+
+  // ======================= spiral =======================
+  // 4,819 episodes are a linear sequence, so the geometry must preserve order while still
+  // fitting on one screen. An Archimedean spiral does both: episode 1 at the centre, the
+  // newest at the rim, every arc visible at once so nothing has to be remembered or
+  // searched for. Canvas rather than SVG -- 419 stroked paths redrawn on every pointer
+  // move is not something 419 DOM nodes handle well.
+  var cv = document.getElementById('spiral'),
+      ctx = cv.getContext('2d'),
+      readout = document.getElementById('readout');
+
+  var TURNS = 13, N = 0, pts = null, arcOf = [], base = null, hot = -1, pinned = -1;
+  arcs.forEach(function(a){ N += a.n; });
+
+  var off = 0;
+  arcs.forEach(function(a){ a._off = off; off += a.n; });
+  for (var ai = 0; ai < arcs.length; ai++)
+    for (var k = 0; k < arcs[ai].n; k++) arcOf.push(ai);
+
+  // Era to hue, walking indigo toward saffron so the ramp itself reads as time passing.
+  var ERA_HUE = {Early:247, Classic:214, Middle:186, Late:34, Current:14};
+  var VERIFIED = '#1F6B4C', INK = '#16161D', STROKE = 0;
+
+  function hueOf(era){ return ERA_HUE[era] == null ? 220 : ERA_HUE[era]; }
+
+  function arcColor(a, i, boost){
+    var l = (i % 2 ? 46 : 58) + (a.status === 'ongoing' ? 8 : 0);
+    // Saturation and alpha carry text signal: an arc with no usable episode text looks
+    // faint, which is an honest reading rather than a decorative one.
+    var sat = 12 + a.signal * 62;
+    var al = (0.30 + a.signal * 0.62) * (boost || 1);
+    return 'hsla(' + hueOf(a.era) + ',' + sat.toFixed(0) + '%,' + l + '%,' +
+           Math.min(al, 1).toFixed(3) + ')';
+  }
+
+  function layout(){
+    var W = cv.width, H = cv.height, cx = W / 2, cy = H / 2;
+    var r0 = Math.min(W, H) * 0.055, r1 = Math.min(W, H) * 0.47;
+    var thMax = TURNS * Math.PI * 2;
+    pts = new Float32Array(N * 2);
+    for (var i = 0; i < N; i++){
+      var t = N === 1 ? 0 : i / (N - 1);
+      var th = t * thMax, r = r0 + (r1 - r0) * t;
+      pts[i * 2]     = cx + Math.cos(th - Math.PI / 2) * r;
+      pts[i * 2 + 1] = cy + Math.sin(th - Math.PI / 2) * r;
+    }
+    return (r1 - r0) / TURNS * 0.62;
+  }
+
+  // Uniform grid for nearest-point lookup, so hover stays O(1) instead of scanning 4,819.
+  var GRID = 26, cells = null;
+  function buildGrid(){
+    cells = {};
+    for (var i = 0; i < N; i++){
+      var key = ((pts[i*2] / GRID) | 0) + ',' + ((pts[i*2+1] / GRID) | 0);
+      (cells[key] || (cells[key] = [])).push(i);
+    }
+  }
+  function nearest(x, y){
+    var gx = (x / GRID) | 0, gy = (y / GRID) | 0, best = -1, bd = 1e9;
+    for (var a = -1; a <= 1; a++){
+      for (var b = -1; b <= 1; b++){
+        var arr = cells[(gx + a) + ',' + (gy + b)];
+        if (!arr) continue;
+        for (var j = 0; j < arr.length; j++){
+          var i = arr[j], dx = pts[i*2] - x, dy = pts[i*2+1] - y, d = dx*dx + dy*dy;
+          if (d < bd){ bd = d; best = i; }
+        }
+      }
+    }
+    return bd < Math.pow(STROKE * 1.1, 2) ? best : -1;
+  }
+
+  function strokeArc(c, ai, width, color){
+    var a = arcs[ai], lo = a._off, hi = lo + a.n - 1;
+    c.beginPath();
+    c.moveTo(pts[lo*2], pts[lo*2+1]);
+    for (var i = lo + 1; i <= hi; i++) c.lineTo(pts[i*2], pts[i*2+1]);
+    c.lineWidth = width; c.strokeStyle = color;
+    c.lineCap = 'round'; c.lineJoin = 'round';
+    c.stroke();
+  }
+
+  function drawBase(width){
+    base = document.createElement('canvas');
+    base.width = cv.width; base.height = cv.height;
+    var c = base.getContext('2d');
+    arcs.forEach(function(a, i){
+      strokeArc(c, i, width, arcColor(a, i));
+      if (a.has_summary){
+        // A dot marks an arc carrying a written synopsis. There are 9 of 419 today, so
+        // how sparse these dots look is itself an accurate reading of coverage.
+        var m = a._off + (a.n >> 1);
+        c.beginPath();
+        c.arc(pts[m*2], pts[m*2+1], width * 0.30, 0, 6.2832);
+        c.fillStyle = VERIFIED; c.fill();
+      }
+    });
+  }
+
+  function readTokens(){
+    var cs = getComputedStyle(document.documentElement);
+    VERIFIED = (cs.getPropertyValue('--verified') || '#1F6B4C').trim();
+    INK = (cs.getPropertyValue('--ink') || '#16161D').trim();
+  }
+
+  function drawSpiral(){
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    if (base) ctx.drawImage(base, 0, 0);
+    var sel = pinned >= 0 ? pinned : hot;
+    if (sel >= 0){
+      var a = arcs[sel];
+      strokeArc(ctx, sel, STROKE * 1.9, 'hsla(0,0%,100%,.5)');
+      strokeArc(ctx, sel, STROKE * 1.35, arcColor(a, sel, 2.4));
+      [a._off, a._off + a.n - 1].forEach(function(i){
+        ctx.beginPath();
+        ctx.arc(pts[i*2], pts[i*2+1], STROKE * 0.42, 0, 6.2832);
+        ctx.fillStyle = INK; ctx.fill();
+      });
+    }
+  }
+
+  function rebuild(){
+    readTokens();
+    var dpr = window.devicePixelRatio > 1 ? 2 : 1;
+    var box = cv.parentElement.clientWidth;
+    var side = Math.max(340, Math.min(900, box));
+    cv.width = side * dpr; cv.height = side * dpr;
+    cv.style.height = side + 'px';
+    STROKE = layout();
+    buildGrid();
+    drawBase(STROKE);
+    drawSpiral();
+  }
+
+  function showReadout(ai, px, py){
+    var a = arcs[ai];
+    var name = a.has_summary && a.title ? a.title : 'Arc ' + a.start_ep + '-' + a.end_ep;
+    var sub = a.has_summary && a.logline ? a.logline
+            : ((a.episodes.find(function(e){ return e.title; }) || {}).title
+               || 'No episode titles carry story text');
+    readout.innerHTML =
+      '<span class="r-eps">eps ' + a.start_ep + '-' + a.end_ep + ' &middot; ' + a.n +
+      ' &middot; ' + a.era + (a.status === 'ongoing' ? ' &middot; open' : '') + '</span>' +
+      '<b>' + esc(name) + '</b>' +
+      '<span class="r-sub">' + esc(sub) + '</span>' +
+      '<span class="r-hint">click to open below</span>';
+    var r = cv.getBoundingClientRect();
+    var x = Math.min(Math.max(px - 145, 6), Math.max(6, r.width - 300));
+    var y = py < r.height / 2 ? py + 22 : py - readout.offsetHeight - 22;
+    readout.style.left = x + 'px';
+    readout.style.top = Math.max(6, y) + 'px';
+    readout.classList.add('on');
+  }
+
+  function toCanvas(ev){
+    var r = cv.getBoundingClientRect();
+    return [(ev.clientX - r.left) * (cv.width / r.width),
+            (ev.clientY - r.top) * (cv.height / r.height),
+            ev.clientX - r.left, ev.clientY - r.top];
+  }
+
+  cv.addEventListener('pointermove', function(ev){
+    var c = toCanvas(ev), i = nearest(c[0], c[1]);
+    var ai = i < 0 ? -1 : arcOf[i];
+    if (ai !== hot){ hot = ai; drawSpiral(); }
+    if (ai < 0) readout.classList.remove('on');
+    else showReadout(ai, c[2], c[3]);
+  });
+
+  cv.addEventListener('pointerleave', function(){
+    hot = -1; readout.classList.remove('on'); drawSpiral();
+  });
+
+  cv.addEventListener('pointerdown', function(ev){
+    var c = toCanvas(ev), i = nearest(c[0], c[1]);
+    if (i < 0) return;
+    var ai = arcOf[i];
+    pinned = pinned === ai ? -1 : ai;
+    drawSpiral();
+    if (pinned < 0) return;
+    var a = arcs[ai];
+    // Clear filters first, otherwise the clicked arc may not be in the current list and
+    // the click would appear to do nothing.
+    state.q = ''; state.era = null; state.tag = null; state.onlySum = false;
+    document.getElementById('q').value = '';
+    [].forEach.call(document.querySelectorAll('.chip'), function(ch){
+      ch.setAttribute('aria-pressed', 'false');
+    });
+    document.getElementById('only-sum').setAttribute('aria-pressed', 'false');
+    current = arcs;
+    shown = Math.max(LIMIT, Math.ceil((ai + 1) / LIMIT) * LIMIT);
+    paint();
+    var d = list.querySelector('details[data-k="' + a.start_ep + '"]');
+    if (d){
+      d.open = true;
+      d.scrollIntoView({block:'center',
+        behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth'});
+    }
+  });
+
+  document.getElementById('legend').innerHTML =
+    D.eras.map(function(e){
+      return '<span><i style="background:hsl(' + hueOf(e) + ',52%,52%)"></i>' + e + '</span>';
+    }).join('') +
+    '<span><i style="background:linear-gradient(90deg,hsla(220,12%,52%,.32),hsla(220,74%,52%,1))"></i>' +
+    'faint = little episode text</span>' +
+    '<span><u></u>has a written synopsis</span>';
+
+  rebuild();
+  var rt;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt); rt = setTimeout(rebuild, 140);
+  });
+  if (matchMedia('(prefers-color-scheme:dark)').addEventListener)
+    matchMedia('(prefers-color-scheme:dark)').addEventListener('change', rebuild);
+
 })();
 </script>

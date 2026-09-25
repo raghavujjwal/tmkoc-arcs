@@ -514,3 +514,40 @@ is no sound basis for guessing which of 3859/3860/3862 is the real one. Instead
 `build_site.py` flags every episode whose video id is claimed by more than one episode,
 and the site marks it *"same video as …"* next to the link. `check_site.py` asserts the
 flag matches the data, so the warning cannot silently disappear.
+
+---
+
+### CP13 — Spiral view  `DONE`
+An interactive view where every arc is visible and reachable without searching.
+
+**Why a spiral rather than a graph.** The data is a *linear* sequence — 4,819 episodes in
+broadcast order, partitioned into 419 arcs. A force-directed graph would imply a network
+that does not exist. An Archimedean spiral keeps the true ordering (ep 1 at the centre,
+newest at the rim) while fitting the whole 18-year run on one screen, so no arc has to be
+remembered to be found.
+
+- Canvas, not SVG: 419 stroked paths redraw on every pointer move.
+- Era sets hue (indigo → saffron, so the ramp reads as time passing); **signal sets
+  saturation and alpha**, so a text-poor arc genuinely looks faint; a dot marks an arc
+  with a verified synopsis — 9 of 419, and the sparseness is the honest reading.
+- Uniform spatial grid for hit-testing, so hover is O(1) rather than scanning 4,819 points.
+- Pointer events, so finger and cursor behave identically. Click clears filters and opens
+  that arc in the list below — without the clear, a click could silently do nothing.
+
+**Exit test:** `node scripts/check_spiral.js`
+
+| | |
+|---|---|
+| stroke 35.6px, turn gap 57.5px, hit radius 39.2px | no cross-turn grabbing |
+| arcs of ≤4 episodes | **106 / 106 hittable** |
+| **every arc reachable by pointing at it** | **419 / 419** |
+
+The short arcs were the real risk: 106 of 419 span 2–4 episodes and are a few pixels of
+stroke. Had the hit radius been tuned only against average arcs, a quarter of the
+catalogue would have been unreachable by pointer while still looking present.
+
+**One bug caught before publishing:** the spiral defined `function render()`, and so did
+the list filter. JavaScript hoisting means the second definition silently replaces the
+first, so every search and filter would have redrawn the canvas instead of filtering.
+Renamed to `drawSpiral()`, with a duplicate-name scan over the whole script to confirm
+nothing else collides.

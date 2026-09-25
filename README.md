@@ -41,6 +41,18 @@ python scripts/check_site.py         # CP12 frontend checks
 `sync.py` replaces a full re-segmentation on every run: sealed arcs are kept and only the
 tail past the last sealed boundary is recomputed.
 
+## The site
+
+<https://raghavujjwal.github.io/tmkoc-arcs/>
+
+A spiral of all 4,819 episodes in broadcast order, cut into 419 arcs — hover or drag to
+trace the run, click an arc to open it. Era sets the hue; how faint an arc looks is how
+little episode text it has. Below it, the same arcs as a searchable list with era and
+theme filters, a spoiler toggle, and every episode linked.
+
+Geometry is tested (`node scripts/check_spiral.js`): all 419 arcs are reachable by
+pointer, including the 106 that span only 2–4 episodes.
+
 ## Episode links
 
 All **4,819** episode links verified against YouTube: **100% resolve, 0 broken**, and
