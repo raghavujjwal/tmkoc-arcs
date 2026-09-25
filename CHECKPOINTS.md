@@ -656,3 +656,40 @@ Its height tracks the content (`.wrap`), not `scrollHeight` — the wash itself 
 `scrollHeight`, so measuring that would let the page grow but never shrink back.
 Found in the render: the live site had carried the browser's default 8px body margin all
 along (the artifact viewer resets it, GitHub Pages does not) — now `margin:0`.
+
+
+---
+
+### CP18 — Arc names borrowed from upstream  `DONE`
+`scripts/import_upstream_titles.py` imports the 672 hand-written arc titles from
+Daily-Dose-of-TMOCK (MIT; licence copied to `data/UPSTREAM_LICENSE.txt`, credit in the
+site footer). `build_site.py` gives one of our arcs an upstream title when that upstream
+arc covers at least half of it, numbering consecutive arcs under one long upstream arc
+as "(part 1)", "(part 2)".
+
+Name precedence on the site: verified summary title → upstream title → most telling
+episode title → episode range.
+
+| name source | arcs |
+|---|---|
+| verified summary | 9 |
+| **upstream hand-written title** | **283** |
+| episode title | 69 |
+| episode range only | 58 (was 139) |
+
+**Estimate vs result, stated plainly:** I predicted 126 of the 139 unnamed arcs would be
+fixed; 81 were. The estimate counted upstream matches before finding that **115 of the
+672 upstream titles are placeholders** ("Episodes 511–516", "Ep 1186", "Introduction").
+Those are dropped, and where one was the only upstream arc covering ours, there is nothing
+real to borrow.
+
+**Cleaning, and three bugs found on the way:**
+- The boilerplate stripper, run on *every* title, removed the year from "Diwali (2008)"
+  and cut "GPL 1" to "GPL". It now runs only on titles that look like raw YouTube titles.
+- It turned "… | FULL MOVIE | Part 2" into "… FULL MOVIE Part"; part numbers are kept now.
+- **A literal backspace character (0x08)** had been written into the raw-title regex where
+  `` belonged — a `\b` escape inside a non-raw Python string during an edit. The regex
+  then required an invisible character and never matched, which is why "Ep 1956 - Bagha
+  Bawri Ki Engagement?!" slipped through. Found because two exact-match edits failed on
+  visibly identical text; fixed, and every tracked text file scanned for control
+  characters (none elsewhere). A new CP11 check rejects any borrowed placeholder.

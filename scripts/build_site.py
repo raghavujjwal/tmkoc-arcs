@@ -8,6 +8,7 @@ it does know (titles, episode range) instead of an empty shell pretending to be 
 from __future__ import annotations
 
 import json
+import re
 import sys
 
 import pandas as pd
@@ -54,6 +55,40 @@ def load_summaries() -> dict[tuple[int, int], dict]:
             continue
         out[(rec["start_ep"], rec["end_ep"])] = rec["summary"]
     return out
+
+
+UPSTREAM_TITLES = EPISODES_PARQUET.parent / "upstream_arc_titles.json"
+# An upstream arc names ours only if it covers at least this share of our arc's episodes.
+# Boundaries differ between the two segmentations, so a slight overlap is not enough.
+MIN_COVER = 0.5
+
+
+def assign_upstream_titles(out_arcs: list[dict]) -> int:
+    """Attach hand-written upstream arc titles (see import_upstream_titles.py)."""
+    if not UPSTREAM_TITLES.exists():
+        return 0
+    up = json.loads(UPSTREAM_TITLES.read_text(encoding="utf-8"))["arcs"]
+    for arc in out_arcs:
+        a, b, n = arc["start_ep"], arc["end_ep"], arc["n"]
+        best, cover = None, 0
+        for u in up:
+            o = min(b, u["end_ep"]) - max(a, u["start_ep"]) + 1
+            if o > cover:
+                best, cover = u, o
+        arc["alt_title"] = best["title"] if best and cover / max(n, 1) >= MIN_COVER else None
+    # Several of our arcs can fall inside one long upstream arc; number them rather than
+    # showing the same name several times in a row.
+    i = 0
+    while i < len(out_arcs):
+        t = out_arcs[i]["alt_title"]
+        j = i
+        while j + 1 < len(out_arcs) and t and out_arcs[j + 1]["alt_title"] == t:
+            j += 1
+        if t and j > i and "(Part" not in t:
+            for k in range(i, j + 1):
+                out_arcs[k]["alt_title"] = f"{t} (part {k - i + 1})"
+        i = j + 1
+    return sum(1 for x in out_arcs if x["alt_title"])
 
 
 def main() -> int:
@@ -107,6 +142,7 @@ def main() -> int:
             "episodes": eps,
         })
 
+    n_alt = assign_upstream_titles(out_arcs)
     SITE_DIR.mkdir(parents=True, exist_ok=True)
     payload = {
         "generated_from": {
@@ -116,6 +152,8 @@ def main() -> int:
         },
         "n_arcs": len(out_arcs),
         "n_summarised": sum(1 for a in out_arcs if a["has_summary"]),
+        "n_upstream_titled": n_alt,
+        "upstream_credit": "Arc names from Daily-Dose-of-TMOCK (MIT, (c) 2024 CodeMasterAbhishek)",
         "shared_video_ids": {v: eps for v, eps in shared.items()},
         "eras": [e[2] for e in ERAS],
         "arcs": out_arcs,
@@ -140,6 +178,9 @@ def main() -> int:
         "episodes sharing a video are flagged, not silently wrong":
             all(("shared_with" in e) == (e["vid"] in shared)
                 for a in out_arcs for e in a["episodes"]),
+        "borrowed titles are real names, never placeholders":
+            all(not re.match(r"(?i)^(episodes?|eps?)\.?\s*\d|^introduction$|^\s*$", x["alt_title"])
+                for x in out_arcs if x.get("alt_title")),
         "file loads standalone":
             json.loads(dest.read_text(encoding="utf-8"))["n_arcs"] == len(out_arcs),
     }
@@ -148,6 +189,7 @@ def main() -> int:
     if shared:
         print(f"  {sum(len(v) for v in shared.values())} episodes share "
               f"{len(shared)} video ids -- flagged in the output")
+    print(f"  {n_alt} arcs named from upstream titles")
     print(f"  {len(out_arcs)} arcs, {total_eps} episodes, "
           f"{payload['n_summarised']} summarised "
           f"({payload['n_summarised'] / len(out_arcs) * 100:.1f}%)")

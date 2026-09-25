@@ -259,9 +259,12 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
     names.sort(function(x,y){ return (count[y]-count[x]) || (y.length-x.length); });
     return (a._best = names.length ? names[0] : null);
   }
+  // Name precedence: a verified summary title, then a hand-written arc title borrowed from
+  // the upstream fan project (MIT), then the arc's most telling episode title, and only
+  // as a last resort the episode range.
   function arcName(a){
     if(a.has_summary && a.title) return a.title;
-    return bestEpisodeTitle(a) || ('Episodes ' + a.start_ep + '–' + a.end_ep);
+    return a.alt_title || bestEpisodeTitle(a) || ('Episodes ' + a.start_ep + '–' + a.end_ep);
   }
   function arcLine(a){
     if(a.has_summary && a.logline) return a.logline;
@@ -283,7 +286,8 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   // Kept deliberately quiet, but kept: the page should never imply coverage it lacks.
   document.getElementById('coverage').textContent =
     'Written summaries so far: '+D.n_summarised+' of '+arcs.length+
-    ' arcs. The rest are named from their episode titles.';
+    ' arcs. ' + (D.upstream_credit ? D.upstream_credit + '; ' : '') +
+    'others are named from their episode titles.';
 
   // ---- filters -----------------------------------------------------------------
   var tagCounts = {};

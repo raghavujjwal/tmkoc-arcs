@@ -1,0 +1,3346 @@
+{
+ "source": "Daily-Dose-of-TMOCK data/storylines.json",
+ "license": "MIT, (c) 2024 CodeMasterAbhishek -- see UPSTREAM_LICENSE.txt",
+ "note": "titles cleaned of show-name/date boilerplate; placeholders dropped",
+ "n_upstream": 672,
+ "n_kept": 556,
+ "n_dropped": 116,
+ "arcs": [
+  {
+   "start_ep": 2,
+   "end_ep": 5,
+   "title": "Mischievous Tapu",
+   "original": "Mischievous Tapu"
+  },
+  {
+   "start_ep": 6,
+   "end_ep": 7,
+   "title": "Champaklal's Arrival",
+   "original": "Champaklal's Arrival"
+  },
+  {
+   "start_ep": 8,
+   "end_ep": 9,
+   "title": "Heavy Rains",
+   "original": "Heavy Rains"
+  },
+  {
+   "start_ep": 10,
+   "end_ep": 11,
+   "title": "Champaklal's Phone",
+   "original": "Champaklal's Phone"
+  },
+  {
+   "start_ep": 12,
+   "end_ep": 13,
+   "title": "Samuhik Rakshabandhan",
+   "original": "Samuhik Rakshabandhan"
+  },
+  {
+   "start_ep": 14,
+   "end_ep": 15,
+   "title": "Jethalal Kidnapped",
+   "original": "Jethalal Kidnapped"
+  },
+  {
+   "start_ep": 16,
+   "end_ep": 17,
+   "title": "Janmashtami (2008)",
+   "original": "Janmashtami (2008)"
+  },
+  {
+   "start_ep": 18,
+   "end_ep": 18,
+   "title": "Champaklal as Tapu's Father",
+   "original": "Champaklal as Tapu's Father"
+  },
+  {
+   "start_ep": 19,
+   "end_ep": 20,
+   "title": "Chingur Baba's Help",
+   "original": "Chingur Baba's Help"
+  },
+  {
+   "start_ep": 21,
+   "end_ep": 22,
+   "title": "Kevra Teej",
+   "original": "Kevra Teej"
+  },
+  {
+   "start_ep": 23,
+   "end_ep": 27,
+   "title": "Ganesh Utsav (2008)",
+   "original": "Ganesh Utsav (2008)"
+  },
+  {
+   "start_ep": 28,
+   "end_ep": 29,
+   "title": "Hasya Kavi Sammelan",
+   "original": "Hasya Kavi Sammelan"
+  },
+  {
+   "start_ep": 30,
+   "end_ep": 34,
+   "title": "Helpless Husbands",
+   "original": "Helpless Husbands"
+  },
+  {
+   "start_ep": 35,
+   "end_ep": 38,
+   "title": "Tapu Sena & Television",
+   "original": "Tapu Sena & Television"
+  },
+  {
+   "start_ep": 39,
+   "end_ep": 44,
+   "title": "Navratri (2008)",
+   "original": "Navratri (2008)"
+  },
+  {
+   "start_ep": 45,
+   "end_ep": 49,
+   "title": "Kidney for Shaikh",
+   "original": "Kidney for Shaikh"
+  },
+  {
+   "start_ep": 50,
+   "end_ep": 54,
+   "title": "Diwali (2008)",
+   "original": "Diwali (2008)"
+  },
+  {
+   "start_ep": 55,
+   "end_ep": 61,
+   "title": "Sundar's Scheme",
+   "original": "Sundar's Scheme"
+  },
+  {
+   "start_ep": 62,
+   "end_ep": 63,
+   "title": "Havan to end TV strike",
+   "original": "Havan to end TV strike"
+  },
+  {
+   "start_ep": 64,
+   "end_ep": 65,
+   "title": "Tapu Sena strike in school",
+   "original": "Tapu Sena strike in school"
+  },
+  {
+   "start_ep": 66,
+   "end_ep": 69,
+   "title": "Jethalal's affair with Sweety",
+   "original": "Jethalal's affair with Sweety"
+  },
+  {
+   "start_ep": 70,
+   "end_ep": 83,
+   "title": "Tapu's Wedding",
+   "original": "Tapu's Wedding"
+  },
+  {
+   "start_ep": 84,
+   "end_ep": 86,
+   "title": "Drunk Sodhi on Terrace",
+   "original": "Drunk Sodhi on Terrace"
+  },
+  {
+   "start_ep": 87,
+   "end_ep": 87,
+   "title": "Lohri Eve",
+   "original": "Lohri Eve"
+  },
+  {
+   "start_ep": 88,
+   "end_ep": 89,
+   "title": "Makar Sankranti",
+   "original": "Makar Sankranti"
+  },
+  {
+   "start_ep": 90,
+   "end_ep": 91,
+   "title": "Dr. Hathi stuck in Rickshaw",
+   "original": "Dr. Hathi stuck in Rickshaw"
+  },
+  {
+   "start_ep": 92,
+   "end_ep": 93,
+   "title": "Republic Day plans",
+   "original": "Republic Day plans"
+  },
+  {
+   "start_ep": 94,
+   "end_ep": 95,
+   "title": "Cultural Dance Program",
+   "original": "Cultural Dance Program"
+  },
+  {
+   "start_ep": 96,
+   "end_ep": 100,
+   "title": "Jethalal Fitness",
+   "original": "Jethalal Fitness"
+  },
+  {
+   "start_ep": 100,
+   "end_ep": 106,
+   "title": "Donations leads to Jail",
+   "original": "Donations leads to Jail"
+  },
+  {
+   "start_ep": 107,
+   "end_ep": 114,
+   "title": "Lovely Housemaid",
+   "original": "Lovely Housemaid"
+  },
+  {
+   "start_ep": 115,
+   "end_ep": 117,
+   "title": "Bhide swallows a whistle",
+   "original": "Bhide swallows a whistle"
+  },
+  {
+   "start_ep": 118,
+   "end_ep": 122,
+   "title": "Holi with Duplicate Shahrukh and Sachin",
+   "original": "Holi with Duplicate Shahrukh and Sachin"
+  },
+  {
+   "start_ep": 122,
+   "end_ep": 125,
+   "title": "Chaggan, Maggan and 25000 rupee",
+   "original": "Chaggan, Maggan and 25000 rupee"
+  },
+  {
+   "start_ep": 126,
+   "end_ep": 129,
+   "title": "Tapu Sena exams scam",
+   "original": "Tapu Sena exams scam"
+  },
+  {
+   "start_ep": 130,
+   "end_ep": 132,
+   "title": "Iyer and Babita fight",
+   "original": "Iyer and Babita fight"
+  },
+  {
+   "start_ep": 133,
+   "end_ep": 134,
+   "title": "Mahavir Jayanti",
+   "original": "Mahavir Jayanti"
+  },
+  {
+   "start_ep": 135,
+   "end_ep": 138,
+   "title": "Dental Camp in Gokuldham & Jethalal Toothache",
+   "original": "Dental Camp in Gokuldham & Jethalal Toothache"
+  },
+  {
+   "start_ep": 139,
+   "end_ep": 142,
+   "title": "Meenakshi Detergent",
+   "original": "Meenakshi Detergent"
+  },
+  {
+   "start_ep": 143,
+   "end_ep": 147,
+   "title": "Tiku Ji ki Wadi Trip",
+   "original": "Tiku Ji ki Wadi Trip"
+  },
+  {
+   "start_ep": 148,
+   "end_ep": 152,
+   "title": "Daya and Madhavi Fight in Kitty Party",
+   "original": "Daya and Madhavi Fight in Kitty Party"
+  },
+  {
+   "start_ep": 153,
+   "end_ep": 163,
+   "title": "Thieves",
+   "original": "Thieves"
+  },
+  {
+   "start_ep": 164,
+   "end_ep": 164,
+   "title": "Tobacco Free Mumbai",
+   "original": "Tobacco Free Mumbai"
+  },
+  {
+   "start_ep": 165,
+   "end_ep": 168,
+   "title": "Patrakar Popatlal",
+   "original": "Patrakar Popatlal"
+  },
+  {
+   "start_ep": 169,
+   "end_ep": 173,
+   "title": "Daya's Maun Vrat",
+   "original": "Daya's Maun Vrat"
+  },
+  {
+   "start_ep": 174,
+   "end_ep": 184,
+   "title": "GPL 1",
+   "original": "GPL 1"
+  },
+  {
+   "start_ep": 185,
+   "end_ep": 187,
+   "title": "Jethalal Gets Annoyed by a Kid",
+   "original": "Jethalal Gets Annoyed by a Kid"
+  },
+  {
+   "start_ep": 188,
+   "end_ep": 188,
+   "title": "Dr Hathi in tempo",
+   "original": "Dr Hathi in tempo"
+  },
+  {
+   "start_ep": 189,
+   "end_ep": 195,
+   "title": "Babita birthday",
+   "original": "Babita birthday"
+  },
+  {
+   "start_ep": 196,
+   "end_ep": 199,
+   "title": "Divaso and Jagaran",
+   "original": "Divaso and Jagaran"
+  },
+  {
+   "start_ep": 200,
+   "end_ep": 201,
+   "title": "Gokuldham Anniversary Celebration",
+   "original": "Gokuldham Anniversary Celebration"
+  },
+  {
+   "start_ep": 202,
+   "end_ep": 203,
+   "title": "Tapu's Essay",
+   "original": "Tapu's Essay"
+  },
+  {
+   "start_ep": 204,
+   "end_ep": 204,
+   "title": "Jethalal London Trip",
+   "original": "Jethalal London Trip"
+  },
+  {
+   "start_ep": 205,
+   "end_ep": 244,
+   "title": "Jethalal London Trip and Kerry in India",
+   "original": "Jethalal London Trip and Kerry in India"
+  },
+  {
+   "start_ep": 245,
+   "end_ep": 247,
+   "title": "Diwali (2009)",
+   "original": "Diwali (2009)"
+  },
+  {
+   "start_ep": 248,
+   "end_ep": 256,
+   "title": "Red Cherry Mobile",
+   "original": "Red Cherry Mobile"
+  },
+  {
+   "start_ep": 257,
+   "end_ep": 257,
+   "title": "Tapu Sena at Camp",
+   "original": "Tapu Sena at Camp"
+  },
+  {
+   "start_ep": 258,
+   "end_ep": 258,
+   "title": "Tapu Sena Chocoday Ad",
+   "original": "Tapu Sena Chocoday Ad"
+  },
+  {
+   "start_ep": 259,
+   "end_ep": 272,
+   "title": "Tapu Sena Audition",
+   "original": "Tapu Sena Audition"
+  },
+  {
+   "start_ep": 273,
+   "end_ep": 282,
+   "title": "Swimming at Silver Club",
+   "original": "Swimming at Silver Club"
+  },
+  {
+   "start_ep": 283,
+   "end_ep": 284,
+   "title": "Sundar asks money at late night",
+   "original": "Sundar asks money at late night"
+  },
+  {
+   "start_ep": 285,
+   "end_ep": 286,
+   "title": "Tapu Sena Wants a Vacation",
+   "original": "Tapu Sena Wants a Vacation"
+  },
+  {
+   "start_ep": 287,
+   "end_ep": 288,
+   "title": "Christmas (2009)",
+   "original": "Christmas (2009)"
+  },
+  {
+   "start_ep": 289,
+   "end_ep": 295,
+   "title": "Sundar's New Year's Party",
+   "original": "Sundar's New Year's Party"
+  },
+  {
+   "start_ep": 296,
+   "end_ep": 297,
+   "title": "Popat vs Bhide",
+   "original": "Popat vs Bhide"
+  },
+  {
+   "start_ep": 298,
+   "end_ep": 298,
+   "title": "Gokuldham Laughing Club",
+   "original": "Gokuldham Laughing Club"
+  },
+  {
+   "start_ep": 299,
+   "end_ep": 303,
+   "title": "Gadas in Ahmedabad & Makar Sankranti",
+   "original": "Gadas in Ahmedabad & Makar Sankranti"
+  },
+  {
+   "start_ep": 304,
+   "end_ep": 305,
+   "title": "Dr. Hathi's Laughter Attack",
+   "original": "Dr. Hathi's Laughter Attack"
+  },
+  {
+   "start_ep": 306,
+   "end_ep": 309,
+   "title": "Republic Day (2010)",
+   "original": "Republic Day (2010)"
+  },
+  {
+   "start_ep": 310,
+   "end_ep": 315,
+   "title": "Bhide's Computer",
+   "original": "Bhide's Computer"
+  },
+  {
+   "start_ep": 316,
+   "end_ep": 324,
+   "title": "Valentine's Day (2010)",
+   "original": "Valentine's Day (2010)"
+  },
+  {
+   "start_ep": 325,
+   "end_ep": 331,
+   "title": "Holi (2010)",
+   "original": "Holi (2010)"
+  },
+  {
+   "start_ep": 332,
+   "end_ep": 341,
+   "title": "Tempo Stuck in Gokuldham & Jaldevta",
+   "original": "Tempo Stuck in Gokuldham & Jaldevta"
+  },
+  {
+   "start_ep": 342,
+   "end_ep": 349,
+   "title": "Tapu Sena's Exam & Sonu Gets Lost",
+   "original": "Tapu Sena's Exam & Sonu Gets Lost"
+  },
+  {
+   "start_ep": 350,
+   "end_ep": 354,
+   "title": "Cricket Match & Aayushman Khurana",
+   "original": "Cricket Match & Aayushman Khurana"
+  },
+  {
+   "start_ep": 355,
+   "end_ep": 364,
+   "title": "Saree sale at Bhatiawadi",
+   "original": "Saree sale at Bhatiawadi"
+  },
+  {
+   "start_ep": 365,
+   "end_ep": 366,
+   "title": "Childhood Games",
+   "original": "Childhood Games"
+  },
+  {
+   "start_ep": 367,
+   "end_ep": 371,
+   "title": "Childhood Games",
+   "original": "Childhood Games"
+  },
+  {
+   "start_ep": 372,
+   "end_ep": 380,
+   "title": "Bharat Gives Black Money to Jethalal",
+   "original": "Bharat Gives Black Money to Jethalal"
+  },
+  {
+   "start_ep": 381,
+   "end_ep": 388,
+   "title": "Sai Bhakt Mandal & Water Tanker Matter",
+   "original": "Sai Bhakt Mandal & Water Tanker Matter"
+  },
+  {
+   "start_ep": 390,
+   "end_ep": 402,
+   "title": "GPL 2",
+   "original": "GPL 2"
+  },
+  {
+   "start_ep": 403,
+   "end_ep": 409,
+   "title": "Sodhi meets Irfan Pathan",
+   "original": "Sodhi meets Irfan Pathan"
+  },
+  {
+   "start_ep": 409,
+   "end_ep": 412,
+   "title": "Shampoo Massage",
+   "original": "Shampoo Massage"
+  },
+  {
+   "start_ep": 413,
+   "end_ep": 425,
+   "title": "Ghost In Gokuldham",
+   "original": "Ghost In Gokuldham"
+  },
+  {
+   "start_ep": 426,
+   "end_ep": 434,
+   "title": "Popatlal and Koyal",
+   "original": "Popatlal and Koyal"
+  },
+  {
+   "start_ep": 435,
+   "end_ep": 436,
+   "title": "Eid Celebration",
+   "original": "Eid Celebration"
+  },
+  {
+   "start_ep": 437,
+   "end_ep": 444,
+   "title": "Dahi Handi (2010)",
+   "original": "Dahi Handi (2010)"
+  },
+  {
+   "start_ep": 445,
+   "end_ep": 452,
+   "title": "Ganesh Utsav (2010)",
+   "original": "Ganesh Utsav (2010)"
+  },
+  {
+   "start_ep": 453,
+   "end_ep": 460,
+   "title": "Jetha Breaks Umbrella & Navratri (2010)",
+   "original": "Jetha Breaks Umbrella & Navratri (2010)"
+  },
+  {
+   "start_ep": 461,
+   "end_ep": 471,
+   "title": "Babita & Iyer's marriage anniversary",
+   "original": "Babita & Iyer's marriage anniversary"
+  },
+  {
+   "start_ep": 472,
+   "end_ep": 473,
+   "title": "Jetha's Order Trouble",
+   "original": "Jetha's Order Trouble"
+  },
+  {
+   "start_ep": 474,
+   "end_ep": 481,
+   "title": "Chandiramani Flat Auction",
+   "original": "Chandiramani Flat Auction"
+  },
+  {
+   "start_ep": 482,
+   "end_ep": 483,
+   "title": "Goli Misses His Father",
+   "original": "Goli Misses His Father"
+  },
+  {
+   "start_ep": 484,
+   "end_ep": 484,
+   "title": "Goli's Weight",
+   "original": "Goli's Weight"
+  },
+  {
+   "start_ep": 485,
+   "end_ep": 486,
+   "title": "Krishnaben Khakrawali",
+   "original": "Krishnaben Khakrawali"
+  },
+  {
+   "start_ep": 488,
+   "end_ep": 491,
+   "title": "Daya doesn't respond from locked home",
+   "original": "Daya doesn't respond from locked home"
+  },
+  {
+   "start_ep": 492,
+   "end_ep": 498,
+   "title": "Magic Show in Society",
+   "original": "Magic Show in Society"
+  },
+  {
+   "start_ep": 499,
+   "end_ep": 500,
+   "title": "Society Colouring",
+   "original": "Society Colouring"
+  },
+  {
+   "start_ep": 501,
+   "end_ep": 506,
+   "title": "Ladies get credit cards",
+   "original": "Ladies get credit cards"
+  },
+  {
+   "start_ep": 507,
+   "end_ep": 510,
+   "title": "Paint cans delivered to Jethalal",
+   "original": "Paint cans delivered to Jethalal"
+  },
+  {
+   "start_ep": 537,
+   "end_ep": 541,
+   "title": "Tapu goes bald",
+   "original": "Tapu goes bald"
+  },
+  {
+   "start_ep": 541,
+   "end_ep": 550,
+   "title": "Baijanti's wrong number",
+   "original": "Baijanti's wrong number"
+  },
+  {
+   "start_ep": 551,
+   "end_ep": 558,
+   "title": "Mahashivratri",
+   "original": "Mahashivratri"
+  },
+  {
+   "start_ep": 564,
+   "end_ep": 572,
+   "title": "Sundar's 30 lakh scam",
+   "original": "Sundar's 30 lakh scam"
+  },
+  {
+   "start_ep": 578,
+   "end_ep": 587,
+   "title": "Bhide's 1 Crore Email Fraud",
+   "original": "Bhide's 1 Crore Email Fraud"
+  },
+  {
+   "start_ep": 588,
+   "end_ep": 596,
+   "title": "Jetha's Dadaji's Photo",
+   "original": "Jetha's Dadaji's Photo"
+  },
+  {
+   "start_ep": 597,
+   "end_ep": 604,
+   "title": "Sodhi Swallows Glass",
+   "original": "Sodhi Swallows Glass"
+  },
+  {
+   "start_ep": 605,
+   "end_ep": 614,
+   "title": "Bhide Sells Mangoes",
+   "original": "Bhide Sells Mangoes"
+  },
+  {
+   "start_ep": 615,
+   "end_ep": 620,
+   "title": "Tapu Sena Hunger Strike",
+   "original": "Tapu Sena Hunger Strike"
+  },
+  {
+   "start_ep": 621,
+   "end_ep": 622,
+   "title": "Ready Promotion",
+   "original": "Ready Promotion"
+  },
+  {
+   "start_ep": 623,
+   "end_ep": 637,
+   "title": "Gokuldham Khel Mahotsav",
+   "original": "Gokuldham Khel Mahotsav"
+  },
+  {
+   "start_ep": 638,
+   "end_ep": 646,
+   "title": "Chaddi Gang Part 1",
+   "original": "Chaddi Gang Part 1"
+  },
+  {
+   "start_ep": 647,
+   "end_ep": 653,
+   "title": "Popatlal and his umbrella",
+   "original": "Popatlal and his umbrella"
+  },
+  {
+   "start_ep": 653,
+   "end_ep": 658,
+   "title": "Extra class",
+   "original": "Extra class"
+  },
+  {
+   "start_ep": 659,
+   "end_ep": 677,
+   "title": "Chaddi Gang Part 2",
+   "original": "Chaddi Gang Part 2"
+  },
+  {
+   "start_ep": 678,
+   "end_ep": 678,
+   "title": "Janmashtami (2011)",
+   "original": "Janmashtami (2011)"
+  },
+  {
+   "start_ep": 679,
+   "end_ep": 681,
+   "title": "Dahi handi (2011)",
+   "original": "Dahi handi (2011)"
+  },
+  {
+   "start_ep": 686,
+   "end_ep": 695,
+   "title": "Ganesh Utsav (2011)",
+   "original": "Ganesh Utsav (2011)"
+  },
+  {
+   "start_ep": 701,
+   "end_ep": 706,
+   "title": "The 80,000-horse statue",
+   "original": "The 80,000-horse statue"
+  },
+  {
+   "start_ep": 707,
+   "end_ep": 710,
+   "title": "Navratri (2011)",
+   "original": "Navratri (2011)"
+  },
+  {
+   "start_ep": 711,
+   "end_ep": 715,
+   "title": "Dusherra (2011)",
+   "original": "Dusherra (2011)"
+  },
+  {
+   "start_ep": 719,
+   "end_ep": 722,
+   "title": "Iyer's interview in the newspaper",
+   "original": "Iyer's interview in the newspaper"
+  },
+  {
+   "start_ep": 723,
+   "end_ep": 725,
+   "title": "Babita and Iyer buy a fridge",
+   "original": "Babita and Iyer buy a fridge"
+  },
+  {
+   "start_ep": 726,
+   "end_ep": 728,
+   "title": "Diwali (2011)",
+   "original": "Diwali (2011)"
+  },
+  {
+   "start_ep": 729,
+   "end_ep": 732,
+   "title": "Lottery tickets",
+   "original": "Lottery tickets"
+  },
+  {
+   "start_ep": 785,
+   "end_ep": 789,
+   "title": "Bhide's new pair of glasses",
+   "original": "Bhide's new pair of glasses"
+  },
+  {
+   "start_ep": 790,
+   "end_ep": 810,
+   "title": "Jethalal In Pakistan",
+   "original": "Jethalal In Pakistan"
+  },
+  {
+   "start_ep": 811,
+   "end_ep": 818,
+   "title": "Popatlal, Señorita & Kalavati",
+   "original": "Popatlal, Señorita & Kalavati"
+  },
+  {
+   "start_ep": 825,
+   "end_ep": 839,
+   "title": "Society Renovation by Sundarlal",
+   "original": "Society Renovation by Sundarlal"
+  },
+  {
+   "start_ep": 840,
+   "end_ep": 847,
+   "title": "Disco Dance Competition",
+   "original": "Disco Dance Competition"
+  },
+  {
+   "start_ep": 848,
+   "end_ep": 851,
+   "title": "Abdul's New Shop",
+   "original": "Abdul's New Shop"
+  },
+  {
+   "start_ep": 852,
+   "end_ep": 856,
+   "title": "Girvi Gehne",
+   "original": "Girvi Gehne"
+  },
+  {
+   "start_ep": 857,
+   "end_ep": 867,
+   "title": "Gandhi Maidaan",
+   "original": "Gandhi Maidaan"
+  },
+  {
+   "start_ep": 868,
+   "end_ep": 870,
+   "title": "Iyer forgets his briefcase",
+   "original": "Iyer forgets his briefcase"
+  },
+  {
+   "start_ep": 871,
+   "end_ep": 872,
+   "title": "Mother's Day",
+   "original": "Mother's Day"
+  },
+  {
+   "start_ep": 873,
+   "end_ep": 878,
+   "title": "Lord Ganesh Sculpture",
+   "original": "Lord Ganesh Sculpture"
+  },
+  {
+   "start_ep": 881,
+   "end_ep": 886,
+   "title": "Jethalal Gets Electric Shock",
+   "original": "Jethalal Gets Electric Shock"
+  },
+  {
+   "start_ep": 887,
+   "end_ep": 891,
+   "title": "Society Bhangaar",
+   "original": "Society Bhangaar"
+  },
+  {
+   "start_ep": 891,
+   "end_ep": 896,
+   "title": "Ferrari Ki Sawaari",
+   "original": "Ferrari Ki Sawaari"
+  },
+  {
+   "start_ep": 897,
+   "end_ep": 901,
+   "title": "Jethalal fights with everyone",
+   "original": "Jethalal fights with everyone"
+  },
+  {
+   "start_ep": 905,
+   "end_ep": 911,
+   "title": "Bol Bachchan press conference",
+   "original": "Bol Bachchan press conference"
+  },
+  {
+   "start_ep": 912,
+   "end_ep": 914,
+   "title": "Bhide's moustache",
+   "original": "Bhide's moustache"
+  },
+  {
+   "start_ep": 915,
+   "end_ep": 922,
+   "title": "Jethalal gives bribe",
+   "original": "Jethalal gives bribe"
+  },
+  {
+   "start_ep": 923,
+   "end_ep": 928,
+   "title": "Choco Moco Chocolate",
+   "original": "Choco Moco Chocolate"
+  },
+  {
+   "start_ep": 929,
+   "end_ep": 932,
+   "title": "Raksha-bandhan (2012)",
+   "original": "Raksha-bandhan (2012)"
+  },
+  {
+   "start_ep": 933,
+   "end_ep": 941,
+   "title": "Dahi Handi (2012)",
+   "original": "Dahi Handi (2012)"
+  },
+  {
+   "start_ep": 942,
+   "end_ep": 945,
+   "title": "Eid (2012)",
+   "original": "Eid (2012)"
+  },
+  {
+   "start_ep": 946,
+   "end_ep": 951,
+   "title": "Jethalal and Passport",
+   "original": "Jethalal and Passport"
+  },
+  {
+   "start_ep": 952,
+   "end_ep": 963,
+   "title": "Barfi",
+   "original": "Barfi"
+  },
+  {
+   "start_ep": 964,
+   "end_ep": 967,
+   "title": "Heroine",
+   "original": "Heroine"
+  },
+  {
+   "start_ep": 968,
+   "end_ep": 980,
+   "title": "Ganesh Utsav (2012)",
+   "original": "Ganesh Utsav (2012)"
+  },
+  {
+   "start_ep": 983,
+   "end_ep": 1000,
+   "title": "Sundar brings Chanya-Choli",
+   "original": "Sundar brings Chanya-Choli"
+  },
+  {
+   "start_ep": 1001,
+   "end_ep": 1009,
+   "title": "1000 Episodes Celebration",
+   "original": "1000 Episodes Celebration"
+  },
+  {
+   "start_ep": 1010,
+   "end_ep": 1018,
+   "title": "Blind people donation",
+   "original": "Blind people donation"
+  },
+  {
+   "start_ep": 1019,
+   "end_ep": 1024,
+   "title": "Jewellery Shopping",
+   "original": "Jewellery Shopping"
+  },
+  {
+   "start_ep": 1025,
+   "end_ep": 1056,
+   "title": "Gulabo",
+   "original": "Gulabo"
+  },
+  {
+   "start_ep": 1057,
+   "end_ep": 1060,
+   "title": "Republic Day (2013)",
+   "original": "Republic Day (2013)"
+  },
+  {
+   "start_ep": 1061,
+   "end_ep": 1080,
+   "title": "Tapu Sena's new smartphones",
+   "original": "Tapu Sena's new smartphones"
+  },
+  {
+   "start_ep": 1081,
+   "end_ep": 1088,
+   "title": "Bharti",
+   "original": "Bharti"
+  },
+  {
+   "start_ep": 1089,
+   "end_ep": 1112,
+   "title": "Sheru",
+   "original": "Sheru"
+  },
+  {
+   "start_ep": 1113,
+   "end_ep": 1119,
+   "title": "Gogi at the Gada's",
+   "original": "Gogi at the Gada's"
+  },
+  {
+   "start_ep": 1120,
+   "end_ep": 1131,
+   "title": "Sangram Singh's Mango Orchard",
+   "original": "Sangram Singh's Mango Orchard"
+  },
+  {
+   "start_ep": 1132,
+   "end_ep": 1137,
+   "title": "Babita's phone number",
+   "original": "Babita's phone number"
+  },
+  {
+   "start_ep": 1145,
+   "end_ep": 1153,
+   "title": "Trucks in Gokuldham",
+   "original": "Trucks in Gokuldham"
+  },
+  {
+   "start_ep": 1154,
+   "end_ep": 1174,
+   "title": "Khote Classes",
+   "original": "Khote Classes"
+  },
+  {
+   "start_ep": 1175,
+   "end_ep": 1185,
+   "title": "Taarak's affair with Kavita",
+   "original": "Taarak's affair with Kavita"
+  },
+  {
+   "start_ep": 1187,
+   "end_ep": 1194,
+   "title": "Gokuldham Society is Sold?",
+   "original": "Gokuldham Society is Sold?"
+  },
+  {
+   "start_ep": 1195,
+   "end_ep": 1202,
+   "title": "Tapu and Champaklal in Paris",
+   "original": "Tapu and Champaklal in Paris"
+  },
+  {
+   "start_ep": 1203,
+   "end_ep": 1206,
+   "title": "Independence Day (2013)",
+   "original": "Independence Day (2013)"
+  },
+  {
+   "start_ep": 1207,
+   "end_ep": 1212,
+   "title": "Raksha Bandhan in Ahmedabad",
+   "original": "Raksha Bandhan in Ahmedabad"
+  },
+  {
+   "start_ep": 1213,
+   "end_ep": 1218,
+   "title": "Dahihandi (2013)",
+   "original": "Dahihandi (2013)"
+  },
+  {
+   "start_ep": 1219,
+   "end_ep": 1225,
+   "title": "Jethalal is stalked",
+   "original": "Jethalal is stalked"
+  },
+  {
+   "start_ep": 1226,
+   "end_ep": 1226,
+   "title": "Ganpati Utsav (2013)",
+   "original": "Ganpati Utsav (2013)"
+  },
+  {
+   "start_ep": 1227,
+   "end_ep": 1234,
+   "title": "Ganpati Utsav (2013)",
+   "original": "Ganpati Utsav (2013)"
+  },
+  {
+   "start_ep": 1251,
+   "end_ep": 1254,
+   "title": "25000 rupees envelope",
+   "original": "25000 rupees envelope"
+  },
+  {
+   "start_ep": 1254,
+   "end_ep": 1258,
+   "title": "Champaklal's Hiccups",
+   "original": "Champaklal's Hiccups"
+  },
+  {
+   "start_ep": 1259,
+   "end_ep": 1264,
+   "title": "Bhide's antique radio",
+   "original": "Bhide's antique radio"
+  },
+  {
+   "start_ep": 1265,
+   "end_ep": 1269,
+   "title": "Sachin Tendulkar retirement",
+   "original": "Sachin Tendulkar retirement"
+  },
+  {
+   "start_ep": 1270,
+   "end_ep": 1278,
+   "title": "Necklace Fraud",
+   "original": "Necklace Fraud"
+  },
+  {
+   "start_ep": 1279,
+   "end_ep": 1284,
+   "title": "Onions at Gada Electronics",
+   "original": "Onions at Gada Electronics"
+  },
+  {
+   "start_ep": 1285,
+   "end_ep": 1308,
+   "title": "Popatlal and Bulbul",
+   "original": "Popatlal and Bulbul"
+  },
+  {
+   "start_ep": 1309,
+   "end_ep": 1309,
+   "title": "Sundar Ki Jalsa Party",
+   "original": "Sundar Ki Jalsa Party"
+  },
+  {
+   "start_ep": 1310,
+   "end_ep": 1318,
+   "title": "Jalsa Party 2014",
+   "original": "Jalsa Party 2014"
+  },
+  {
+   "start_ep": 1319,
+   "end_ep": 1326,
+   "title": "Bagha messed everything up",
+   "original": "Bagha messed everything up"
+  },
+  {
+   "start_ep": 1327,
+   "end_ep": 1341,
+   "title": "Fitness Camp",
+   "original": "Fitness Camp"
+  },
+  {
+   "start_ep": 1342,
+   "end_ep": 1346,
+   "title": "Anjali demands a surprise gift",
+   "original": "Anjali demands a surprise gift"
+  },
+  {
+   "start_ep": 1347,
+   "end_ep": 1353,
+   "title": "Tapu Sena extra classes",
+   "original": "Tapu Sena extra classes"
+  },
+  {
+   "start_ep": 1354,
+   "end_ep": 1361,
+   "title": "Bhide-Madhavi anniversary",
+   "original": "Bhide-Madhavi anniversary"
+  },
+  {
+   "start_ep": 1362,
+   "end_ep": 1364,
+   "title": "Holi (2014)",
+   "original": "Holi (2014)"
+  },
+  {
+   "start_ep": 1365,
+   "end_ep": 1369,
+   "title": "Youngistaan",
+   "original": "Youngistaan"
+  },
+  {
+   "start_ep": 1370,
+   "end_ep": 1378,
+   "title": "Sodhi is Missing",
+   "original": "Sodhi is Missing"
+  },
+  {
+   "start_ep": 1379,
+   "end_ep": 1381,
+   "title": "Ghost Mystery",
+   "original": "Ghost Mystery"
+  },
+  {
+   "start_ep": 1382,
+   "end_ep": 1387,
+   "title": "Bhoothnath Returns",
+   "original": "Bhoothnath Returns"
+  },
+  {
+   "start_ep": 1388,
+   "end_ep": 1407,
+   "title": "Daya Ki Mannat",
+   "original": "Daya Ki Mannat"
+  },
+  {
+   "start_ep": 1408,
+   "end_ep": 1419,
+   "title": "Adventure Park Surprise",
+   "original": "Adventure Park Surprise"
+  },
+  {
+   "start_ep": 1420,
+   "end_ep": 1425,
+   "title": "Iyyer's Promotion Party",
+   "original": "Iyyer's Promotion Party"
+  },
+  {
+   "start_ep": 1426,
+   "end_ep": 1445,
+   "title": "GPL 3",
+   "original": "GPL 3"
+  },
+  {
+   "start_ep": 1446,
+   "end_ep": 1446,
+   "title": "CID Special",
+   "original": "CID Special"
+  },
+  {
+   "start_ep": 1447,
+   "end_ep": 1465,
+   "title": "10 Crore Ruby",
+   "original": "10 Crore Ruby"
+  },
+  {
+   "start_ep": 1465,
+   "end_ep": 1478,
+   "title": "Hongkong-Disneyland trip",
+   "original": "Hongkong-Disneyland trip"
+  },
+  {
+   "start_ep": 1479,
+   "end_ep": 1480,
+   "title": "Hong Kong Disneyland",
+   "original": "Hong Kong Disneyland"
+  },
+  {
+   "start_ep": 1481,
+   "end_ep": 1488,
+   "title": "Taarak's Diet",
+   "original": "Taarak's Diet"
+  },
+  {
+   "start_ep": 1489,
+   "end_ep": 1499,
+   "title": "Ganesh Utsav (2014)",
+   "original": "Ganesh Utsav (2014)"
+  },
+  {
+   "start_ep": 1500,
+   "end_ep": 1507,
+   "title": "Bhide's surprise treat (1500 Episodes Celebration)",
+   "original": "Bhide's surprise treat (1500 Episodes Celebration)"
+  },
+  {
+   "start_ep": 1518,
+   "end_ep": 1524,
+   "title": "Swachh Bharat Abhiyaan",
+   "original": "Swachh Bharat Abhiyaan"
+  },
+  {
+   "start_ep": 1525,
+   "end_ep": 1532,
+   "title": "Diwali (2014)",
+   "original": "Diwali (2014)"
+  },
+  {
+   "start_ep": 1533,
+   "end_ep": 1541,
+   "title": "Popatlal purchases a new phone",
+   "original": "Popatlal purchases a new phone"
+  },
+  {
+   "start_ep": 1546,
+   "end_ep": 1557,
+   "title": "Daya's Mother",
+   "original": "Daya's Mother"
+  },
+  {
+   "start_ep": 1566,
+   "end_ep": 1572,
+   "title": "Kathiawadi food",
+   "original": "Kathiawadi food"
+  },
+  {
+   "start_ep": 1573,
+   "end_ep": 1585,
+   "title": "Champaklal is drunk?/New Year (2015)",
+   "original": "Champaklal is drunk?/New Year (2015)"
+  },
+  {
+   "start_ep": 1589,
+   "end_ep": 1595,
+   "title": "Bhide's Sakharam",
+   "original": "Bhide's Sakharam"
+  },
+  {
+   "start_ep": 1599,
+   "end_ep": 1609,
+   "title": "Winter Party",
+   "original": "Winter Party"
+  },
+  {
+   "start_ep": 1624,
+   "end_ep": 1629,
+   "title": "Bawri brings luck to Gada Electronics",
+   "original": "Bawri brings luck to Gada Electronics"
+  },
+  {
+   "start_ep": 1630,
+   "end_ep": 1636,
+   "title": "Bhide's Scooter Chori",
+   "original": "Bhide's Scooter Chori"
+  },
+  {
+   "start_ep": 1637,
+   "end_ep": 1639,
+   "title": "Daya Ki Beti",
+   "original": "Daya Ki Beti"
+  },
+  {
+   "start_ep": 1640,
+   "end_ep": 1663,
+   "title": "Daya brings a baby girl to Gokuldham",
+   "original": "Daya brings a baby girl to Gokuldham"
+  },
+  {
+   "start_ep": 1664,
+   "end_ep": 1667,
+   "title": "Daya Ki Beti",
+   "original": "Daya Ki Beti"
+  },
+  {
+   "start_ep": 1668,
+   "end_ep": 1669,
+   "title": "Newspaper Chor",
+   "original": "Newspaper Chor"
+  },
+  {
+   "start_ep": 1670,
+   "end_ep": 1685,
+   "title": "Popatlal's Marriage Prospects",
+   "original": "Popatlal's Marriage Prospects"
+  },
+  {
+   "start_ep": 1686,
+   "end_ep": 1723,
+   "title": "Tapu Sena's SSC result and college admission",
+   "original": "Tapu Sena's SSC result and college admission"
+  },
+  {
+   "start_ep": 1724,
+   "end_ep": 1729,
+   "title": "Tapu Sena Goes To College",
+   "original": "Tapu Sena Goes To College"
+  },
+  {
+   "start_ep": 1730,
+   "end_ep": 1741,
+   "title": "Bagha Bawri's Engagement",
+   "original": "Bagha Bawri's Engagement"
+  },
+  {
+   "start_ep": 1742,
+   "end_ep": 1746,
+   "title": "Bhide vs Popat",
+   "original": "Bhide vs Popat"
+  },
+  {
+   "start_ep": 1747,
+   "end_ep": 1753,
+   "title": "Raksha Bandhan (2015)",
+   "original": "Raksha Bandhan (2015)"
+  },
+  {
+   "start_ep": 1754,
+   "end_ep": 1757,
+   "title": "Janmashtami (2015)",
+   "original": "Janmashtami (2015)"
+  },
+  {
+   "start_ep": 1758,
+   "end_ep": 1808,
+   "title": "Interior renovation",
+   "original": "Interior renovation"
+  },
+  {
+   "start_ep": 1809,
+   "end_ep": 1821,
+   "title": "Flats Renovation & Theft",
+   "original": "Flats Renovation & Theft"
+  },
+  {
+   "start_ep": 1822,
+   "end_ep": 1824,
+   "title": "Conspiracy against Tapu",
+   "original": "Conspiracy against Tapu"
+  },
+  {
+   "start_ep": 1824,
+   "end_ep": 1826,
+   "title": "Prof. Nalini's Rishta with Popatlal",
+   "original": "Prof. Nalini's Rishta with Popatlal"
+  },
+  {
+   "start_ep": 1827,
+   "end_ep": 1829,
+   "title": "Promotion of Dilwale",
+   "original": "Promotion of Dilwale"
+  },
+  {
+   "start_ep": 1830,
+   "end_ep": 1830,
+   "title": "Babitaji Model",
+   "original": "Babitaji Model"
+  },
+  {
+   "start_ep": 1831,
+   "end_ep": 1842,
+   "title": "Babita's image on the Tobacco hoarding",
+   "original": "Babita's image on the Tobacco hoarding"
+  },
+  {
+   "start_ep": 1843,
+   "end_ep": 1850,
+   "title": "Bhide Ki Istri",
+   "original": "Bhide Ki Istri"
+  },
+  {
+   "start_ep": 1851,
+   "end_ep": 1867,
+   "title": "Bhide's Irregular Student",
+   "original": "Bhide's Irregular Student"
+  },
+  {
+   "start_ep": 1868,
+   "end_ep": 1888,
+   "title": "The gold biscuit briefcase",
+   "original": "The gold biscuit briefcase"
+  },
+  {
+   "start_ep": 1909,
+   "end_ep": 1934,
+   "title": "Iyer-Babita Divorce",
+   "original": "Iyer-Babita Divorce"
+  },
+  {
+   "start_ep": 1935,
+   "end_ep": 1936,
+   "title": "Iyer and Babita Divorce?",
+   "original": "Iyer and Babita Divorce?"
+  },
+  {
+   "start_ep": 1937,
+   "end_ep": 1943,
+   "title": "Madhavi's Mango Business",
+   "original": "Madhavi's Mango Business"
+  },
+  {
+   "start_ep": 1949,
+   "end_ep": 1956,
+   "title": "Bagha Bawri Ki Engagement?",
+   "original": "Ep 1956 - Bagha Bawri Ki Engagement?!"
+  },
+  {
+   "start_ep": 1957,
+   "end_ep": 1967,
+   "title": "Bagha Bawri Ki Engagement?",
+   "original": "Ep 1962 - Bagha Bawri Ki Engagement?!"
+  },
+  {
+   "start_ep": 1968,
+   "end_ep": 1972,
+   "title": "Popatlal & Miss Tring Tring",
+   "original": "Ep 1972 - Popatlal & Miss Tring Tring!"
+  },
+  {
+   "start_ep": 1973,
+   "end_ep": 1977,
+   "title": "Popatlal & Miss Tring Tring",
+   "original": "Ep 1974 - Popatlal & Miss Tring Tring!"
+  },
+  {
+   "start_ep": 1978,
+   "end_ep": 1985,
+   "title": "Jethalal Ke Haath Mein Lota",
+   "original": "Ep 1984 - Jethalal Ke Haath Mein Lota!"
+  },
+  {
+   "start_ep": 1986,
+   "end_ep": 1994,
+   "title": "Bhide Pressure Cooker Blast",
+   "original": "Bhide Pressure Cooker Blast"
+  },
+  {
+   "start_ep": 1995,
+   "end_ep": 2000,
+   "title": "Gokuldham Men Teach Street Thugs a Lesson",
+   "original": "Gokuldham Men Teach Street Thugs a Lesson"
+  },
+  {
+   "start_ep": 2001,
+   "end_ep": 2003,
+   "title": "Independence Day (2016)",
+   "original": "Independence Day (2016)"
+  },
+  {
+   "start_ep": 2004,
+   "end_ep": 2006,
+   "title": "Raksha Bandhan (2016)",
+   "original": "Raksha Bandhan (2016)"
+  },
+  {
+   "start_ep": 2007,
+   "end_ep": 2022,
+   "title": "10 crore saree",
+   "original": "10 crore saree"
+  },
+  {
+   "start_ep": 2023,
+   "end_ep": 2030,
+   "title": "Ganesh Utsav (2016)",
+   "original": "Ganesh Utsav (2016)"
+  },
+  {
+   "start_ep": 2031,
+   "end_ep": 2038,
+   "title": "Mission Patni Pariksha",
+   "original": "Mission Patni Pariksha"
+  },
+  {
+   "start_ep": 2039,
+   "end_ep": 2047,
+   "title": "Navratri (2016)",
+   "original": "Navratri (2016)"
+  },
+  {
+   "start_ep": 2048,
+   "end_ep": 2055,
+   "title": "Popatlal Ka Screw Dhila?",
+   "original": "Ep 2055 - Popatlal Ka Screw Dhila?!"
+  },
+  {
+   "start_ep": 2056,
+   "end_ep": 2060,
+   "title": "Sonu's Chocolate Business",
+   "original": "Sonu's Chocolate Business"
+  },
+  {
+   "start_ep": 2061,
+   "end_ep": 2062,
+   "title": "Shivaay Film Promotion",
+   "original": "Shivaay Film Promotion"
+  },
+  {
+   "start_ep": 2067,
+   "end_ep": 2072,
+   "title": "Natu Kaka & Bagha Pay Rise",
+   "original": "Natu Kaka & Bagha Pay Rise"
+  },
+  {
+   "start_ep": 2073,
+   "end_ep": 2082,
+   "title": "Goddess Lakshmi in Jethalal's Dream",
+   "original": "Goddess Lakshmi in Jethalal's Dream"
+  },
+  {
+   "start_ep": 2083,
+   "end_ep": 2094,
+   "title": "Party Sharty with French Bottle",
+   "original": "Party Sharty with French Bottle"
+  },
+  {
+   "start_ep": 2095,
+   "end_ep": 2102,
+   "title": "Ghanchakkar In Shop",
+   "original": "Ghanchakkar In Shop"
+  },
+  {
+   "start_ep": 2103,
+   "end_ep": 2104,
+   "title": "Popatlal Meets Ashit",
+   "original": "Popatlal Meets Ashit"
+  },
+  {
+   "start_ep": 2105,
+   "end_ep": 2110,
+   "title": "New Year (2017)",
+   "original": "New Year (2017)"
+  },
+  {
+   "start_ep": 2111,
+   "end_ep": 2124,
+   "title": "Don Badal Steals Bhide's Scooter",
+   "original": "Don Badal Steals Bhide's Scooter"
+  },
+  {
+   "start_ep": 2125,
+   "end_ep": 2126,
+   "title": "Republic Day (2017)",
+   "original": "Republic Day (2017)"
+  },
+  {
+   "start_ep": 2128,
+   "end_ep": 2137,
+   "title": "Mission Admission",
+   "original": "Mission Admission"
+  },
+  {
+   "start_ep": 2138,
+   "end_ep": 2146,
+   "title": "Problem with Garbage Disposal",
+   "original": "Problem with Garbage Disposal"
+  },
+  {
+   "start_ep": 2147,
+   "end_ep": 2154,
+   "title": "Tapu's Birthday",
+   "original": "Tapu's Birthday"
+  },
+  {
+   "start_ep": 2155,
+   "end_ep": 2166,
+   "title": "Holi (2017) and Popatlal's Marriage",
+   "original": "Holi (2017) and Popatlal's Marriage"
+  },
+  {
+   "start_ep": 2167,
+   "end_ep": 2168,
+   "title": "Gudi Padwa (2017)",
+   "original": "Gudi Padwa (2017)"
+  },
+  {
+   "start_ep": 2169,
+   "end_ep": 2181,
+   "title": "Ratnavali's Gemstones",
+   "original": "Ratnavali's Gemstones"
+  },
+  {
+   "start_ep": 2182,
+   "end_ep": 2188,
+   "title": "Gokuldham Men Steal a Policeman's Car",
+   "original": "Gokuldham Men Steal a Policeman's Car"
+  },
+  {
+   "start_ep": 2189,
+   "end_ep": 2199,
+   "title": "Tapu Sena as Daily Wage Labourers",
+   "original": "Tapu Sena as Daily Wage Labourers"
+  },
+  {
+   "start_ep": 2217,
+   "end_ep": 2228,
+   "title": "Bhide’s Student Fails SSC! (Part 2)",
+   "original": "Bhide’s Student Fails SSC! | FULL MOVIE | Part 2"
+  },
+  {
+   "start_ep": 2235,
+   "end_ep": 2246,
+   "title": "Goa trip",
+   "original": "Goa trip"
+  },
+  {
+   "start_ep": 2247,
+   "end_ep": 2247,
+   "title": "Mubarakan Team in Gokuldham",
+   "original": "Mubarakan Team in Gokuldham"
+  },
+  {
+   "start_ep": 2259,
+   "end_ep": 2270,
+   "title": "Independence Day Special",
+   "original": "Taarak Mehta Ka Ooltah Chashmah - तारक मेहता - Ep 2270 - Independence Day Special-16th August, 2017"
+  },
+  {
+   "start_ep": 2283,
+   "end_ep": 2290,
+   "title": "Ganesh Utsav (2017)",
+   "original": "Ganesh Utsav (2017)"
+  },
+  {
+   "start_ep": 2297,
+   "end_ep": 2297,
+   "title": "Chai Gang",
+   "original": "Chai Gang"
+  },
+  {
+   "start_ep": 2299,
+   "end_ep": 2299,
+   "title": "Navratri (2017)",
+   "original": "Navratri (2017)"
+  },
+  {
+   "start_ep": 2300,
+   "end_ep": 2304,
+   "title": "Navratri Special",
+   "original": "Taarak Mehta Ka Ooltah Chashmah - तारक मेहता - Navratri Special - Ep 2304 - 2nd October, 2017"
+  },
+  {
+   "start_ep": 2384,
+   "end_ep": 2415,
+   "title": "Pinku's Parents",
+   "original": "Pinku's Parents"
+  },
+  {
+   "start_ep": 2478,
+   "end_ep": 2484,
+   "title": "क्यों Jetha है Tapu से Angry?",
+   "original": "क्यों Jetha है Tapu से Angry?"
+  },
+  {
+   "start_ep": 2493,
+   "end_ep": 2511,
+   "title": "Señorika Island",
+   "original": "Señorika Island"
+  },
+  {
+   "start_ep": 2566,
+   "end_ep": 2573,
+   "title": "Jetha's Dilemma",
+   "original": "Jetha's Dilemma"
+  },
+  {
+   "start_ep": 2574,
+   "end_ep": 2584,
+   "title": "Navratri Special",
+   "original": "Taarak Mehta Ka Ooltah Chashmah - Ep 2584 - Full Episode - 24th October, 2018 | Navratri Special"
+  },
+  {
+   "start_ep": 2605,
+   "end_ep": 2632,
+   "title": "Gada Electronics on sale",
+   "original": "Gada Electronics on sale"
+  },
+  {
+   "start_ep": 2644,
+   "end_ep": 2649,
+   "title": "Statue of Unity trip",
+   "original": "Statue of Unity trip"
+  },
+  {
+   "start_ep": 2693,
+   "end_ep": 2708,
+   "title": "Singapore trip",
+   "original": "Singapore trip"
+  },
+  {
+   "start_ep": 2804,
+   "end_ep": 2811,
+   "title": "A Goon In The Society",
+   "original": "A Goon In The Society"
+  },
+  {
+   "start_ep": 2812,
+   "end_ep": 2824,
+   "title": "Ganesh Utsav (2019)",
+   "original": "Ganesh Utsav (2019)"
+  },
+  {
+   "start_ep": 2884,
+   "end_ep": 2895,
+   "title": "Jethalal Bana Cook (Part 1)",
+   "original": "Jethalal Bana Cook | FULL MOVIE | Part 1"
+  },
+  {
+   "start_ep": 2916,
+   "end_ep": 2927,
+   "title": "Chaos in Gokuldham?!",
+   "original": "Chaos in Gokuldham?!"
+  },
+  {
+   "start_ep": 2939,
+   "end_ep": 2946,
+   "title": "Popatlal की वजह से गिरा Society वालों पर Besan",
+   "original": "Popatlal की वजह से गिरा Society वालों पर Besan"
+  },
+  {
+   "start_ep": 2982,
+   "end_ep": 2996,
+   "title": "Ganesh Utsav (2020)",
+   "original": "Ganesh Utsav (2020)"
+  },
+  {
+   "start_ep": 3004,
+   "end_ep": 3008,
+   "title": "Abdul has corona?",
+   "original": "Abdul has corona?"
+  },
+  {
+   "start_ep": 3009,
+   "end_ep": 3013,
+   "title": "Lockdown Special",
+   "original": "Lockdown Special"
+  },
+  {
+   "start_ep": 3014,
+   "end_ep": 3017,
+   "title": "Life in lockdown",
+   "original": "Life in lockdown"
+  },
+  {
+   "start_ep": 3018,
+   "end_ep": 3019,
+   "title": "Navratri during Lockdown",
+   "original": "Navratri during Lockdown"
+  },
+  {
+   "start_ep": 3020,
+   "end_ep": 3026,
+   "title": "Navratri 2020",
+   "original": "Navratri 2020"
+  },
+  {
+   "start_ep": 3027,
+   "end_ep": 3034,
+   "title": "Lockdown Special",
+   "original": "Lockdown Special"
+  },
+  {
+   "start_ep": 3035,
+   "end_ep": 3050,
+   "title": "Popatlal loses job",
+   "original": "Popatlal loses job"
+  },
+  {
+   "start_ep": 3051,
+   "end_ep": 3062,
+   "title": "Tapu Sena's Pizza Party",
+   "original": "Tapu Sena's Pizza Party"
+  },
+  {
+   "start_ep": 3063,
+   "end_ep": 3071,
+   "title": "New Year Party 2021",
+   "original": "New Year Party 2021"
+  },
+  {
+   "start_ep": 3074,
+   "end_ep": 3083,
+   "title": "Popatlal's shaadi",
+   "original": "Popatlal's shaadi"
+  },
+  {
+   "start_ep": 3092,
+   "end_ep": 3099,
+   "title": "Love Letter",
+   "original": "NEW! Ep 3092 - Love Letter!"
+  },
+  {
+   "start_ep": 3100,
+   "end_ep": 3111,
+   "title": "Bhogilal",
+   "original": "NEW! Ep 3100 - Bhogilal!"
+  },
+  {
+   "start_ep": 3140,
+   "end_ep": 3147,
+   "title": "Popatlal And Pooja",
+   "original": "Popatlal And Pooja"
+  },
+  {
+   "start_ep": 3158,
+   "end_ep": 3193,
+   "title": "Popatlal on Mission Kala Kauva",
+   "original": "Popatlal on Mission Kala Kauva"
+  },
+  {
+   "start_ep": 3194,
+   "end_ep": 3221,
+   "title": "Gokuldham in Rang Tarang Resort",
+   "original": "Gokuldham in Rang Tarang Resort"
+  },
+  {
+   "start_ep": 3222,
+   "end_ep": 3267,
+   "title": "Gokuldham at Rang Tarang Resort",
+   "original": "Gokuldham at Rang Tarang Resort"
+  },
+  {
+   "start_ep": 3268,
+   "end_ep": 3277,
+   "title": "Bhide's cheque",
+   "original": "Bhide's cheque"
+  },
+  {
+   "start_ep": 3278,
+   "end_ep": 3286,
+   "title": "Jethalal Calls Iyer For Help",
+   "original": "Taarak Mehta Ka Ooltah Chashmah - Jethalal Calls Iyer For Help - Ep 3286-Full Episode-26th Oct 2021"
+  },
+  {
+   "start_ep": 3287,
+   "end_ep": 3298,
+   "title": "Iyer Blames Jethalal",
+   "original": "Taarak Mehta Ka Ooltah Chashmah - Iyer Blames Jethalal - Ep 3288 - Full Episode - 28th October 2021"
+  },
+  {
+   "start_ep": 3299,
+   "end_ep": 3304,
+   "title": "Bhide's Duty As A Teacher",
+   "original": "Taarak Mehta Ka Ooltah Chashma- Bhide's Duty As A Teacher - Ep 3302- Full Episode- 13 November 2021"
+  },
+  {
+   "start_ep": 3305,
+   "end_ep": 3315,
+   "title": "How Will Sodhi Help Jetha?",
+   "original": "Taarak Mehta Ka Ooltah Chashmah- How Will Sodhi Help Jetha?- Ep 3310-Full Episode- 23 November 2021"
+  },
+  {
+   "start_ep": 3316,
+   "end_ep": 3322,
+   "title": "Madhavi's burnt saree",
+   "original": "Madhavi's burnt saree"
+  },
+  {
+   "start_ep": 3323,
+   "end_ep": 3326,
+   "title": "Gokuldham in Kaun Banega Crorepati",
+   "original": "Gokuldham in Kaun Banega Crorepati"
+  },
+  {
+   "start_ep": 3327,
+   "end_ep": 3332,
+   "title": "Marriage Proposals for Popatlal",
+   "original": "Marriage Proposals for Popatlal"
+  },
+  {
+   "start_ep": 3333,
+   "end_ep": 3333,
+   "title": "NEW RELEASE",
+   "original": "NEW RELEASE"
+  },
+  {
+   "start_ep": 3334,
+   "end_ep": 3337,
+   "title": "Popatlal Sherwani Curse",
+   "original": "Popatlal Sherwani Curse"
+  },
+  {
+   "start_ep": 3338,
+   "end_ep": 3360,
+   "title": "Karela Bhoot in Taarak",
+   "original": "Karela Bhoot in Taarak"
+  },
+  {
+   "start_ep": 3361,
+   "end_ep": 3368,
+   "title": "Network problem",
+   "original": "Network problem"
+  },
+  {
+   "start_ep": 3369,
+   "end_ep": 3373,
+   "title": "The Second Deal",
+   "original": "The Second Deal"
+  },
+  {
+   "start_ep": 3373,
+   "end_ep": 3384,
+   "title": "Party Sharty",
+   "original": "Party Sharty"
+  },
+  {
+   "start_ep": 3385,
+   "end_ep": 3387,
+   "title": "Popatlal vs Bhide",
+   "original": "Popatlal vs Bhide"
+  },
+  {
+   "start_ep": 3388,
+   "end_ep": 3410,
+   "title": "Cat in Gokuldham",
+   "original": "Cat in Gokuldham"
+  },
+  {
+   "start_ep": 3411,
+   "end_ep": 3432,
+   "title": "Champaklal's party sharty",
+   "original": "Champaklal's party sharty"
+  },
+  {
+   "start_ep": 3433,
+   "end_ep": 3441,
+   "title": "Bhide's Sargam Orchestra",
+   "original": "Bhide's Sargam Orchestra"
+  },
+  {
+   "start_ep": 3442,
+   "end_ep": 3450,
+   "title": "Lemon Price Hike of 2022",
+   "original": "Lemon Price Hike of 2022"
+  },
+  {
+   "start_ep": 3451,
+   "end_ep": 3454,
+   "title": "Confusion",
+   "original": "Confusion"
+  },
+  {
+   "start_ep": 3455,
+   "end_ep": 3470,
+   "title": "A prospective bride for Popatlal",
+   "original": "A prospective bride for Popatlal"
+  },
+  {
+   "start_ep": 3471,
+   "end_ep": 3476,
+   "title": "Bhide Wants Jetha To Read His 'Suvichaar'",
+   "original": "Bhide Wants Jetha To Read His 'Suvichaar'"
+  },
+  {
+   "start_ep": 3477,
+   "end_ep": 3481,
+   "title": "Jetha Recalls Memories With Nattu Kaka",
+   "original": "Jetha Recalls Memories With Nattu Kaka"
+  },
+  {
+   "start_ep": 3482,
+   "end_ep": 3486,
+   "title": "What Is Sundar Hiding From Jetha?",
+   "original": "What Is Sundar Hiding From Jetha?"
+  },
+  {
+   "start_ep": 3487,
+   "end_ep": 3491,
+   "title": "Will Jethalal Get Arrested?",
+   "original": "Will Jethalal Get Arrested?"
+  },
+  {
+   "start_ep": 3492,
+   "end_ep": 3496,
+   "title": "How Will Jethalal Arrange The Money?",
+   "original": "How Will Jethalal Arrange The Money?"
+  },
+  {
+   "start_ep": 3497,
+   "end_ep": 3501,
+   "title": "Jethalal Is Impressed By Nattu Kaka",
+   "original": "Jethalal Is Impressed By Nattu Kaka"
+  },
+  {
+   "start_ep": 3502,
+   "end_ep": 3506,
+   "title": "Why Is Sodhi Hesitating To Meet Bhide?",
+   "original": "Why Is Sodhi Hesitating To Meet Bhide?"
+  },
+  {
+   "start_ep": 3507,
+   "end_ep": 3511,
+   "title": "Why Is Bapuji Angry With Jethalal?",
+   "original": "Why Is Bapuji Angry With Jethalal?"
+  },
+  {
+   "start_ep": 3512,
+   "end_ep": 3516,
+   "title": "Jethalal's Special Treatment For Babita Ji",
+   "original": "Jethalal's Special Treatment For Babita Ji"
+  },
+  {
+   "start_ep": 3517,
+   "end_ep": 3522,
+   "title": "Battle Of Bhide And Popatlal",
+   "original": "Battle Of Bhide And Popatlal"
+  },
+  {
+   "start_ep": 3523,
+   "end_ep": 3527,
+   "title": "Is Popatlal Becoming A Fool?",
+   "original": "Is Popatlal Becoming A Fool?"
+  },
+  {
+   "start_ep": 3528,
+   "end_ep": 3532,
+   "title": "Bhide Planning For A Long Drive At Home",
+   "original": "Bhide Planning For A Long Drive At Home"
+  },
+  {
+   "start_ep": 3533,
+   "end_ep": 3537,
+   "title": "Bhide's Surprise For Madhavi",
+   "original": "Bhide's Surprise For Madhavi"
+  },
+  {
+   "start_ep": 3538,
+   "end_ep": 3542,
+   "title": "Quarrel Between Sodhi And Roshan",
+   "original": "Quarrel Between Sodhi And Roshan"
+  },
+  {
+   "start_ep": 3543,
+   "end_ep": 3550,
+   "title": "Will Popatlal Get Married Soon?",
+   "original": "Will Popatlal Get Married Soon?"
+  },
+  {
+   "start_ep": 3551,
+   "end_ep": 3558,
+   "title": "Who Will Take Bapuji's Responsibility?",
+   "original": "Who Will Take Bapuji's Responsibility?Taarak Mehta Ka Ooltah Chashmah- Ep 3552 - FE - 1 Sep 2022"
+  },
+  {
+   "start_ep": 3559,
+   "end_ep": 3563,
+   "title": "Taarak Returns",
+   "original": "Taarak Returns"
+  },
+  {
+   "start_ep": 3564,
+   "end_ep": 3573,
+   "title": "Rangarang Karyakaram Ki Charam Seema",
+   "original": "Rangarang Karyakaram Ki Charam Seema"
+  },
+  {
+   "start_ep": 3574,
+   "end_ep": 3581,
+   "title": "Jethalal Ki Ghar Wapsi",
+   "original": "Jethalal Ki Ghar Wapsi"
+  },
+  {
+   "start_ep": 3582,
+   "end_ep": 3586,
+   "title": "Jethalal Matlab Musibat",
+   "original": "Jethalal Matlab Musibat"
+  },
+  {
+   "start_ep": 3587,
+   "end_ep": 3592,
+   "title": "Divine Visits At Gokuldham",
+   "original": "Divine Visits At Gokuldham"
+  },
+  {
+   "start_ep": 3593,
+   "end_ep": 3599,
+   "title": "Gokuldham Mein Bhookamp",
+   "original": "Gokuldham Mein Bhookamp"
+  },
+  {
+   "start_ep": 3600,
+   "end_ep": 3610,
+   "title": "Bhide Ka Sabse Bada Darr",
+   "original": "Bhide Ka Sabse Bada Darr"
+  },
+  {
+   "start_ep": 3611,
+   "end_ep": 3615,
+   "title": "'Bhajia' Party At Bhide's House",
+   "original": "'Bhajia' Party At Bhide's House"
+  },
+  {
+   "start_ep": 3616,
+   "end_ep": 3624,
+   "title": "Taarak's Boss Waits At Abdul's Shop",
+   "original": "Taarak's Boss Waits At Abdul's Shop"
+  },
+  {
+   "start_ep": 3625,
+   "end_ep": 3629,
+   "title": "Will Jetha And Taraak Get An Auto?",
+   "original": "Will Jetha And Taraak Get An Auto?"
+  },
+  {
+   "start_ep": 3630,
+   "end_ep": 3638,
+   "title": "How Will Popat Face Bhide's Rage?",
+   "original": "How Will Popat Face Bhide's Rage?"
+  },
+  {
+   "start_ep": 3639,
+   "end_ep": 3643,
+   "title": "Gogi And Goli Feel Guilty",
+   "original": "Gogi And Goli Feel Guilty"
+  },
+  {
+   "start_ep": 3644,
+   "end_ep": 3648,
+   "title": "Chaalu Pandey Reaches Gokuldham Society",
+   "original": "Chaalu Pandey Reaches Gokuldham Society"
+  },
+  {
+   "start_ep": 3649,
+   "end_ep": 3653,
+   "title": "Popatlal Is Dragged To The Police Station",
+   "original": "Popatlal Is Dragged To The Police Station"
+  },
+  {
+   "start_ep": 3654,
+   "end_ep": 3658,
+   "title": "Sonu Ke Special Guests",
+   "original": "Sonu Ke Special Guests"
+  },
+  {
+   "start_ep": 3659,
+   "end_ep": 3663,
+   "title": "Bagha Has Good News For Jetha",
+   "original": "Bagha Has Good News For Jetha"
+  },
+  {
+   "start_ep": 3664,
+   "end_ep": 3668,
+   "title": "Bagha Ho Gaya Seedha",
+   "original": "Bagha Ho Gaya Seedha"
+  },
+  {
+   "start_ep": 3669,
+   "end_ep": 3680,
+   "title": "Taarak's Boss Gives A Surprise",
+   "original": "Taarak's Boss Gives A Surprise"
+  },
+  {
+   "start_ep": 3681,
+   "end_ep": 3685,
+   "title": "Surprise Gift For Taarak",
+   "original": "Surprise Gift For Taarak"
+  },
+  {
+   "start_ep": 3686,
+   "end_ep": 3690,
+   "title": "Tapu Sena's Request",
+   "original": "Tapu Sena's Request"
+  },
+  {
+   "start_ep": 3691,
+   "end_ep": 3695,
+   "title": "Mystery Box In Gokuldham",
+   "original": "Mystery Box In Gokuldham"
+  },
+  {
+   "start_ep": 3696,
+   "end_ep": 3701,
+   "title": "Tapu Ka Dhamakedaar Surprise",
+   "original": "Tapu Ka Dhamakedaar Surprise"
+  },
+  {
+   "start_ep": 3702,
+   "end_ep": 3706,
+   "title": "Tapu Aur Champaklal Ka Dance",
+   "original": "Tapu Aur Champaklal Ka Dance"
+  },
+  {
+   "start_ep": 3707,
+   "end_ep": 3711,
+   "title": "Jethalal Ke Baal Khatre Mein Hai",
+   "original": "Jethalal Ke Baal Khatre Mein Hai"
+  },
+  {
+   "start_ep": 3712,
+   "end_ep": 3716,
+   "title": "Tapu Sena Ke Holi Plans",
+   "original": "Tapu Sena Ke Holi Plans"
+  },
+  {
+   "start_ep": 3717,
+   "end_ep": 3721,
+   "title": "Tapu Sena's New Mission",
+   "original": "Tapu Sena's New Mission"
+  },
+  {
+   "start_ep": 3722,
+   "end_ep": 3726,
+   "title": "Tapu Sena Ki Safalta",
+   "original": "Tapu Sena Ki Safalta"
+  },
+  {
+   "start_ep": 3727,
+   "end_ep": 3731,
+   "title": "Popatlal Calls Out On The Scheme",
+   "original": "Popatlal Calls Out On The Scheme"
+  },
+  {
+   "start_ep": 3732,
+   "end_ep": 3736,
+   "title": "Tapu Sena Ka Marketing Plan",
+   "original": "Tapu Sena Ka Marketing Plan"
+  },
+  {
+   "start_ep": 3737,
+   "end_ep": 3741,
+   "title": "Chaalu Pandey Arrives At Gada Electronics",
+   "original": "Chaalu Pandey Arrives At Gada Electronics"
+  },
+  {
+   "start_ep": 3742,
+   "end_ep": 3746,
+   "title": "Taarak Warns Jethalal",
+   "original": "Taarak Warns Jethalal"
+  },
+  {
+   "start_ep": 3747,
+   "end_ep": 3752,
+   "title": "Taarak Ka Tedha Idea",
+   "original": "Taarak Ka Tedha Idea"
+  },
+  {
+   "start_ep": 3753,
+   "end_ep": 3757,
+   "title": "Taarak And Jethalal Are Stressed",
+   "original": "Taarak And Jethalal Are Stressed"
+  },
+  {
+   "start_ep": 3758,
+   "end_ep": 3762,
+   "title": "Babita Ke Car Ka Sapna Hua Poora",
+   "original": "Babita Ke Car Ka Sapna Hua Poora"
+  },
+  {
+   "start_ep": 3763,
+   "end_ep": 3767,
+   "title": "Bhide Gets Protective",
+   "original": "Bhide Gets Protective"
+  },
+  {
+   "start_ep": 3768,
+   "end_ep": 3772,
+   "title": "Popatlal Ki Shaadi Ki Charcha",
+   "original": "Popatlal Ki Shaadi Ki Charcha"
+  },
+  {
+   "start_ep": 3773,
+   "end_ep": 3777,
+   "title": "Kuch Pao Aur Kuch Kho",
+   "original": "Kuch Pao Aur Kuch Kho"
+  },
+  {
+   "start_ep": 3778,
+   "end_ep": 3782,
+   "title": "Alvida Popatlal",
+   "original": "Alvida Popatlal"
+  },
+  {
+   "start_ep": 3783,
+   "end_ep": 3787,
+   "title": "Hum Dono Ki Haan Hai",
+   "original": "Hum Dono Ki Haan Hai"
+  },
+  {
+   "start_ep": 3788,
+   "end_ep": 3792,
+   "title": "1 Popatlal -2 Shaadi Ke Rishte",
+   "original": "1 Popatlal -2 Shaadi Ke Rishte"
+  },
+  {
+   "start_ep": 3793,
+   "end_ep": 3797,
+   "title": "Pyaarelal Ke Khushi Ka Din",
+   "original": "Pyaarelal Ke Khushi Ka Din"
+  },
+  {
+   "start_ep": 3798,
+   "end_ep": 3802,
+   "title": "Tapu Sena Ki Outstation Trip",
+   "original": "Tapu Sena Ki Outstation Trip"
+  },
+  {
+   "start_ep": 3803,
+   "end_ep": 3808,
+   "title": "Jethalal Ke Priya Mitra",
+   "original": "Jethalal Ke Priya Mitra"
+  },
+  {
+   "start_ep": 3809,
+   "end_ep": 3813,
+   "title": "Bagha Bana Vakeel",
+   "original": "Bagha Bana Vakeel"
+  },
+  {
+   "start_ep": 3814,
+   "end_ep": 3818,
+   "title": "Jethalal Ko Mila Bhoot",
+   "original": "Jethalal Ko Mila Bhoot"
+  },
+  {
+   "start_ep": 3819,
+   "end_ep": 3826,
+   "title": "Jethalal Ki Doosri Shaadi",
+   "original": "Jethalal Ki Doosri Shaadi"
+  },
+  {
+   "start_ep": 3827,
+   "end_ep": 3831,
+   "title": "Jethalal Bribes Goli",
+   "original": "Jethalal Bribes Goli"
+  },
+  {
+   "start_ep": 3832,
+   "end_ep": 3836,
+   "title": "Bhagwan Krishna Ki Gokul Nagri",
+   "original": "Bhagwan Krishna Ki Gokul Nagri"
+  },
+  {
+   "start_ep": 3837,
+   "end_ep": 3844,
+   "title": "Champaklal Plays Pool",
+   "original": "Champaklal Plays Pool"
+  },
+  {
+   "start_ep": 3845,
+   "end_ep": 3849,
+   "title": "Time Par Order Ready",
+   "original": "Time Par Order Ready"
+  },
+  {
+   "start_ep": 3850,
+   "end_ep": 3854,
+   "title": "Bhide VS Tapu Sena",
+   "original": "Bhide VS Tapu Sena"
+  },
+  {
+   "start_ep": 3855,
+   "end_ep": 3860,
+   "title": "Danger Bhai से लड़ने के लिए Bapuji और Bhide लाए घर से बर्तन",
+   "original": "Danger Bhai से लड़ने के लिए Bapuji और Bhide लाए घर से बर्तन"
+  },
+  {
+   "start_ep": 3861,
+   "end_ep": 3865,
+   "title": "Danger Bhai से लड़ने के लिए Bapuji और Bhide लाए घर से बर्तन",
+   "original": "Danger Bhai से लड़ने के लिए Bapuji और Bhide लाए घर से बर्तन"
+  },
+  {
+   "start_ep": 3866,
+   "end_ep": 3870,
+   "title": "Jetha Ke Peeth Piche Hua Drama",
+   "original": "Jetha Ke Peeth Piche Hua Drama"
+  },
+  {
+   "start_ep": 3871,
+   "end_ep": 3875,
+   "title": "Gokuldham Janmashtami Mahotsav",
+   "original": "Gokuldham Janmashtami Mahotsav"
+  },
+  {
+   "start_ep": 3876,
+   "end_ep": 3880,
+   "title": "Workload Se Pareshaan",
+   "original": "Workload Se Pareshaan"
+  },
+  {
+   "start_ep": 3881,
+   "end_ep": 3885,
+   "title": "Bawri Ki Pariksha",
+   "original": "Bawri Ki Pariksha"
+  },
+  {
+   "start_ep": 3886,
+   "end_ep": 3890,
+   "title": "Sonu Ki Surprise Performance",
+   "original": "Sonu Ki Surprise Performance"
+  },
+  {
+   "start_ep": 3891,
+   "end_ep": 3895,
+   "title": "Anjali And Babita's Dance",
+   "original": "Anjali And Babita's Dance"
+  },
+  {
+   "start_ep": 3896,
+   "end_ep": 3900,
+   "title": "Goli Ka Naya Roop",
+   "original": "Goli Ka Naya Roop"
+  },
+  {
+   "start_ep": 3901,
+   "end_ep": 3905,
+   "title": "Babita Bani Mediator",
+   "original": "Babita Bani Mediator"
+  },
+  {
+   "start_ep": 3906,
+   "end_ep": 3910,
+   "title": "Sabse Pehele Aya Jethalal",
+   "original": "Sabse Pehele Aya Jethalal"
+  },
+  {
+   "start_ep": 3911,
+   "end_ep": 3917,
+   "title": "Babita Ka Mushkil Gift",
+   "original": "Babita Ka Mushkil Gift"
+  },
+  {
+   "start_ep": 3918,
+   "end_ep": 3922,
+   "title": "Jetha Ka Zabardast Surprise",
+   "original": "Jetha Ka Zabardast Surprise"
+  },
+  {
+   "start_ep": 3923,
+   "end_ep": 3928,
+   "title": "Jethalal's Surprise Gift",
+   "original": "Jethalal's Surprise Gift"
+  },
+  {
+   "start_ep": 3929,
+   "end_ep": 3935,
+   "title": "Jethalal Ne Kara Kya Hai?",
+   "original": "Jethalal Ne Kara Kya Hai?"
+  },
+  {
+   "start_ep": 3936,
+   "end_ep": 3940,
+   "title": "Jethalal Ke Khilaaf Complaint",
+   "original": "Jethalal Ke Khilaaf Complaint"
+  },
+  {
+   "start_ep": 3941,
+   "end_ep": 3947,
+   "title": "Daya Bhabhi Kaha Hai?",
+   "original": "Daya Bhabhi Kaha Hai?"
+  },
+  {
+   "start_ep": 3948,
+   "end_ep": 3952,
+   "title": "Sodhi Parties With His Friends",
+   "original": "Sodhi Parties With His Friends"
+  },
+  {
+   "start_ep": 3953,
+   "end_ep": 3959,
+   "title": "Jethalal Bhi Hai Gayab",
+   "original": "Jethalal Bhi Hai Gayab"
+  },
+  {
+   "start_ep": 3960,
+   "end_ep": 3964,
+   "title": "Roshan Ghar Chor Kar Mat Jao",
+   "original": "Roshan Ghar Chor Kar Mat Jao"
+  },
+  {
+   "start_ep": 3965,
+   "end_ep": 3969,
+   "title": "Fine Dena Hoga",
+   "original": "Fine Dena Hoga"
+  },
+  {
+   "start_ep": 3970,
+   "end_ep": 3974,
+   "title": "Acche Aur Bure Gifts",
+   "original": "Acche Aur Bure Gifts"
+  },
+  {
+   "start_ep": 3975,
+   "end_ep": 3979,
+   "title": "Popatlal Maan Gaya",
+   "original": "Popatlal Maan Gaya"
+  },
+  {
+   "start_ep": 3980,
+   "end_ep": 3984,
+   "title": "Bhide Gets His Things Back",
+   "original": "Bhide Gets His Things Back"
+  },
+  {
+   "start_ep": 3985,
+   "end_ep": 3990,
+   "title": "Tapu Sena Helps Popatlal",
+   "original": "Tapu Sena Helps Popatlal"
+  },
+  {
+   "start_ep": 3991,
+   "end_ep": 3995,
+   "title": "Inspector Pandey Looks For Sodhi's Car",
+   "original": "Inspector Pandey Looks For Sodhi's Car"
+  },
+  {
+   "start_ep": 3996,
+   "end_ep": 4001,
+   "title": "Sodhi Ke Naye Number",
+   "original": "Sodhi Ke Naye Number"
+  },
+  {
+   "start_ep": 4002,
+   "end_ep": 4011,
+   "title": "Cyber Crime Unit Helps Madhavi",
+   "original": "Cyber Crime Unit Helps Madhavi"
+  },
+  {
+   "start_ep": 4012,
+   "end_ep": 4016,
+   "title": "Jethalal And Iyer Banne Police",
+   "original": "Jethalal And Iyer Banne Police"
+  },
+  {
+   "start_ep": 4017,
+   "end_ep": 4021,
+   "title": "Jethalal And Iyer In Danger",
+   "original": "Jethalal And Iyer In Danger"
+  },
+  {
+   "start_ep": 4022,
+   "end_ep": 4026,
+   "title": "Popatlal Akela Rahega",
+   "original": "Popatlal Akela Rahega"
+  },
+  {
+   "start_ep": 4027,
+   "end_ep": 4032,
+   "title": "Surprise Party For Popatlal",
+   "original": "Surprise Party For Popatlal"
+  },
+  {
+   "start_ep": 4033,
+   "end_ep": 4037,
+   "title": "Tapu Sena Ne Sikhaya Sabak",
+   "original": "Tapu Sena Ne Sikhaya Sabak"
+  },
+  {
+   "start_ep": 4038,
+   "end_ep": 4042,
+   "title": "Gokuldham Wasiyo Ki Kavita",
+   "original": "Gokuldham Wasiyo Ki Kavita"
+  },
+  {
+   "start_ep": 4043,
+   "end_ep": 4047,
+   "title": "Popatlal Ne Kari Complain",
+   "original": "Popatlal Ne Kari Complain"
+  },
+  {
+   "start_ep": 4048,
+   "end_ep": 4053,
+   "title": "Jethalal Calls Bagha For Help",
+   "original": "Jethalal Calls Bagha For Help"
+  },
+  {
+   "start_ep": 4054,
+   "end_ep": 4060,
+   "title": "Jethalal Ki Important Meeting",
+   "original": "Jethalal Ki Important Meeting"
+  },
+  {
+   "start_ep": 4061,
+   "end_ep": 4065,
+   "title": "Gokuldham Mein Hai Pooja",
+   "original": "Gokuldham Mein Hai Pooja"
+  },
+  {
+   "start_ep": 4066,
+   "end_ep": 4073,
+   "title": "Taarak Ko Chhutti Nahi Mil Rahi",
+   "original": "Taarak Ko Chhutti Nahi Mil Rahi"
+  },
+  {
+   "start_ep": 4074,
+   "end_ep": 4078,
+   "title": "Jethalal's Political Stance",
+   "original": "Jethalal's Political Stance"
+  },
+  {
+   "start_ep": 4079,
+   "end_ep": 4083,
+   "title": "Bhide Is Worried For Tapu Sena",
+   "original": "Bhide Is Worried For Tapu Sena"
+  },
+  {
+   "start_ep": 4084,
+   "end_ep": 4088,
+   "title": "Kurmura Kumar Ki Pyaar Wali Dhamki",
+   "original": "Kurmura Kumar Ki Pyaar Wali Dhamki"
+  },
+  {
+   "start_ep": 4089,
+   "end_ep": 4093,
+   "title": "Gokuldham Ho Gaya Hai Divide",
+   "original": "Gokuldham Ho Gaya Hai Divide"
+  },
+  {
+   "start_ep": 4094,
+   "end_ep": 4098,
+   "title": "Kumura Aur Chana Fass Gaye",
+   "original": "Kumura Aur Chana Fass Gaye"
+  },
+  {
+   "start_ep": 4099,
+   "end_ep": 4104,
+   "title": "Jethalal Scolds Abdul",
+   "original": "Jethalal Scolds Abdul"
+  },
+  {
+   "start_ep": 4105,
+   "end_ep": 4112,
+   "title": "Bawri Misplaces Jetha’s Cheque",
+   "original": "Bawri Misplaces Jetha’s Cheque"
+  },
+  {
+   "start_ep": 4113,
+   "end_ep": 4117,
+   "title": "Tapu Sena Leaves For Pune",
+   "original": "Tapu Sena Leaves For Pune"
+  },
+  {
+   "start_ep": 4118,
+   "end_ep": 4126,
+   "title": "Ek Aur Rishta For Popatlal",
+   "original": "Ek Aur Rishta For Popatlal"
+  },
+  {
+   "start_ep": 4127,
+   "end_ep": 4132,
+   "title": "Last Chance For Popatlal",
+   "original": "Last Chance For Popatlal"
+  },
+  {
+   "start_ep": 4133,
+   "end_ep": 4137,
+   "title": "Kya Hua Popatlal Ke Engagement Me?",
+   "original": "Kya Hua Popatlal Ke Engagement Me?"
+  },
+  {
+   "start_ep": 4138,
+   "end_ep": 4142,
+   "title": "Jethalal Ka Meetha Sapna",
+   "original": "Jethalal Ka Meetha Sapna"
+  },
+  {
+   "start_ep": 4143,
+   "end_ep": 4147,
+   "title": "Bhide Looks For Popatlal",
+   "original": "Bhide Looks For Popatlal"
+  },
+  {
+   "start_ep": 4148,
+   "end_ep": 4152,
+   "title": "Bhide Ne Rakhi Shart",
+   "original": "Bhide Ne Rakhi Shart"
+  },
+  {
+   "start_ep": 4153,
+   "end_ep": 4157,
+   "title": "Jethalal Misses His Flight",
+   "original": "Jethalal Misses His Flight"
+  },
+  {
+   "start_ep": 4158,
+   "end_ep": 4163,
+   "title": "Tala Nahi Todne Denge",
+   "original": "Tala Nahi Todne Denge"
+  },
+  {
+   "start_ep": 4164,
+   "end_ep": 4171,
+   "title": "The Search Of Abdul",
+   "original": "The Search Of Abdul"
+  },
+  {
+   "start_ep": 4172,
+   "end_ep": 4177,
+   "title": "Tapu Sena Investigates",
+   "original": "Tapu Sena Investigates"
+  },
+  {
+   "start_ep": 4178,
+   "end_ep": 4183,
+   "title": "Tapu Sena Find A Loophole",
+   "original": "Tapu Sena Find A Loophole"
+  },
+  {
+   "start_ep": 4184,
+   "end_ep": 4189,
+   "title": "Decoration Ka Theme Kya Hai?",
+   "original": "Decoration Ka Theme Kya Hai?"
+  },
+  {
+   "start_ep": 4190,
+   "end_ep": 4194,
+   "title": "Devotion Towards Bappa",
+   "original": "Devotion Towards Bappa"
+  },
+  {
+   "start_ep": 4195,
+   "end_ep": 4199,
+   "title": "Ganpati Celebrations Ka Cheque",
+   "original": "Ganpati Celebrations Ka Cheque"
+  },
+  {
+   "start_ep": 4200,
+   "end_ep": 4204,
+   "title": "A Big Shock For Gokuldham",
+   "original": "A Big Shock For Gokuldham"
+  },
+  {
+   "start_ep": 4205,
+   "end_ep": 4209,
+   "title": "Gada Electronics Ki Nayi Scheme",
+   "original": "Gada Electronics Ki Nayi Scheme"
+  },
+  {
+   "start_ep": 4210,
+   "end_ep": 4214,
+   "title": "Bhide Falls Sick",
+   "original": "Bhide Falls Sick"
+  },
+  {
+   "start_ep": 4215,
+   "end_ep": 4221,
+   "title": "Taarak's Day Off",
+   "original": "Taarak's Day Off"
+  },
+  {
+   "start_ep": 4222,
+   "end_ep": 4226,
+   "title": "Taarak Ko Ho Rahi Tension",
+   "original": "Taarak Ko Ho Rahi Tension"
+  },
+  {
+   "start_ep": 4227,
+   "end_ep": 4231,
+   "title": "Bade Guruji Ke Saath Mulaqat",
+   "original": "Bade Guruji Ke Saath Mulaqat"
+  },
+  {
+   "start_ep": 4232,
+   "end_ep": 4236,
+   "title": "Allrounder Patakha's Final Test",
+   "original": "Allrounder Patakha's Final Test"
+  },
+  {
+   "start_ep": 4237,
+   "end_ep": 4241,
+   "title": "Jethalal Ki Exercise",
+   "original": "Jethalal Ki Exercise"
+  },
+  {
+   "start_ep": 4242,
+   "end_ep": 4246,
+   "title": "Jethalal Ke Liye Sunahara Mauka",
+   "original": "Jethalal Ke Liye Sunahara Mauka"
+  },
+  {
+   "start_ep": 4247,
+   "end_ep": 4251,
+   "title": "Jethalal Ki Duvidha",
+   "original": "Jethalal Ki Duvidha"
+  },
+  {
+   "start_ep": 4252,
+   "end_ep": 4256,
+   "title": "Jethalal Ke Saath Fraud",
+   "original": "Jethalal Ke Saath Fraud"
+  },
+  {
+   "start_ep": 4257,
+   "end_ep": 4261,
+   "title": "Purush Mandali's Party Plan",
+   "original": "Purush Mandali's Party Plan"
+  },
+  {
+   "start_ep": 4262,
+   "end_ep": 4266,
+   "title": "Bhide Seeks Jethalal's Help",
+   "original": "Bhide Seeks Jethalal's Help"
+  },
+  {
+   "start_ep": 4273,
+   "end_ep": 4277,
+   "title": "Tapu And Sonu Hire An Actor",
+   "original": "Tapu And Sonu Hire An Actor"
+  },
+  {
+   "start_ep": 4278,
+   "end_ep": 4282,
+   "title": "Popatlal's Huge Announcement",
+   "original": "Popatlal's Huge Announcement"
+  },
+  {
+   "start_ep": 4283,
+   "end_ep": 4287,
+   "title": "Gokuldham New Year Celebration",
+   "original": "Gokuldham New Year Celebration"
+  },
+  {
+   "start_ep": 4288,
+   "end_ep": 4292,
+   "title": "Bapuji's Balloon Adventure",
+   "original": "Bapuji's Balloon Adventure"
+  },
+  {
+   "start_ep": 4293,
+   "end_ep": 4297,
+   "title": "Bapuji Pakde Gaye",
+   "original": "Bapuji Pakde Gaye"
+  },
+  {
+   "start_ep": 4298,
+   "end_ep": 4302,
+   "title": "Jethalal Ko Aaya Sapna",
+   "original": "Jethalal Ko Aaya Sapna"
+  },
+  {
+   "start_ep": 4303,
+   "end_ep": 4307,
+   "title": "Venu Kutti's Arrival",
+   "original": "Venu Kutti's Arrival"
+  },
+  {
+   "start_ep": 4308,
+   "end_ep": 4312,
+   "title": "Venukutti Questions Jethalal",
+   "original": "Venukutti Questions Jethalal"
+  },
+  {
+   "start_ep": 4313,
+   "end_ep": 4317,
+   "title": "Lunch Invitation For Jethalal",
+   "original": "Lunch Invitation For Jethalal"
+  },
+  {
+   "start_ep": 4318,
+   "end_ep": 4323,
+   "title": "Sakharam Par Kabootar Ke Daane",
+   "original": "Sakharam Par Kabootar Ke Daane"
+  },
+  {
+   "start_ep": 4324,
+   "end_ep": 4328,
+   "title": "Tapu Aur Sonu Ki Majboori",
+   "original": "Tapu Aur Sonu Ki Majboori"
+  },
+  {
+   "start_ep": 4329,
+   "end_ep": 4333,
+   "title": "Tapu And Sonu Get Reprimanded",
+   "original": "Tapu And Sonu Get Reprimanded"
+  },
+  {
+   "start_ep": 4340,
+   "end_ep": 4345,
+   "title": "Tapu Aur Sonu Ka Interrogation",
+   "original": "Tapu Aur Sonu Ka Interrogation"
+  },
+  {
+   "start_ep": 4346,
+   "end_ep": 4350,
+   "title": "Popatlal Creates A Scene",
+   "original": "Popatlal Creates A Scene"
+  },
+  {
+   "start_ep": 4351,
+   "end_ep": 4355,
+   "title": "Jethalal Gets Stuck In The Car",
+   "original": "Jethalal Gets Stuck In The Car"
+  },
+  {
+   "start_ep": 4356,
+   "end_ep": 4360,
+   "title": "Kya Deal Hogi Pakki?",
+   "original": "Kya Deal Hogi Pakki?"
+  },
+  {
+   "start_ep": 4361,
+   "end_ep": 4365,
+   "title": "Champaklal Has Tears In His Eyes",
+   "original": "Champaklal Has Tears In His Eyes"
+  },
+  {
+   "start_ep": 4366,
+   "end_ep": 4370,
+   "title": "Champaklal Meets His Friend",
+   "original": "Champaklal Meets His Friend"
+  },
+  {
+   "start_ep": 4371,
+   "end_ep": 4375,
+   "title": "Jethalal Throws A Party",
+   "original": "Jethalal Throws A Party"
+  },
+  {
+   "start_ep": 4376,
+   "end_ep": 4387,
+   "title": "Gogi Opens A Bank Account",
+   "original": "Gogi Opens A Bank Account"
+  },
+  {
+   "start_ep": 4388,
+   "end_ep": 4392,
+   "title": "Bhide Ke Khilaaf Saboot",
+   "original": "Bhide Ke Khilaaf Saboot"
+  },
+  {
+   "start_ep": 4393,
+   "end_ep": 4397,
+   "title": "Gokuldham Members Ko Laga Shock",
+   "original": "Gokuldham Members Ko Laga Shock"
+  },
+  {
+   "start_ep": 4405,
+   "end_ep": 4409,
+   "title": "Gokuldham Colony Invests Money",
+   "original": "Gokuldham Colony Invests Money"
+  },
+  {
+   "start_ep": 4410,
+   "end_ep": 4414,
+   "title": "Paiso Ki Baarish Group Mein Error",
+   "original": "Paiso Ki Baarish Group Mein Error"
+  },
+  {
+   "start_ep": 4415,
+   "end_ep": 4419,
+   "title": "Popatlal Ko Mila Award",
+   "original": "Popatlal Ko Mila Award"
+  },
+  {
+   "start_ep": 4420,
+   "end_ep": 4424,
+   "title": "Taarak's Leave Application",
+   "original": "Taarak's Leave Application"
+  },
+  {
+   "start_ep": 4425,
+   "end_ep": 4430,
+   "title": "Bhoot Bangle Mein Picnic",
+   "original": "Bhoot Bangle Mein Picnic"
+  },
+  {
+   "start_ep": 4431,
+   "end_ep": 4435,
+   "title": "Popatlal And Chakori's Friendship",
+   "original": "Popatlal And Chakori's Friendship"
+  },
+  {
+   "start_ep": 4436,
+   "end_ep": 4440,
+   "title": "Popatlal's Plan To Meet Chakori",
+   "original": "Popatlal's Plan To Meet Chakori"
+  },
+  {
+   "start_ep": 4441,
+   "end_ep": 4447,
+   "title": "Will Popatlal Marry Chakori?",
+   "original": "Will Popatlal Marry Chakori?"
+  },
+  {
+   "start_ep": 4448,
+   "end_ep": 4452,
+   "title": "Jethalal Returns From His Trip",
+   "original": "Jethalal Returns From His Trip"
+  },
+  {
+   "start_ep": 4453,
+   "end_ep": 4457,
+   "title": "Jethalal Ke Atke Hue Payments",
+   "original": "Jethalal Ke Atke Hue Payments"
+  },
+  {
+   "start_ep": 4458,
+   "end_ep": 4462,
+   "title": "Jethalal Wants His Money Back",
+   "original": "Jethalal Wants His Money Back"
+  },
+  {
+   "start_ep": 4463,
+   "end_ep": 4467,
+   "title": "Musibat Mein Jethalal And Friends",
+   "original": "Musibat Mein Jethalal And Friends"
+  },
+  {
+   "start_ep": 4468,
+   "end_ep": 4474,
+   "title": "Popatlal Bana Pyarelal",
+   "original": "Popatlal Bana Pyarelal"
+  },
+  {
+   "start_ep": 4475,
+   "end_ep": 4479,
+   "title": "Kab Aayenge Naye Padosi?",
+   "original": "Kab Aayenge Naye Padosi?"
+  },
+  {
+   "start_ep": 4480,
+   "end_ep": 4485,
+   "title": "New Family Arrives At Gokuldham",
+   "original": "New Family Arrives At Gokuldham"
+  },
+  {
+   "start_ep": 4486,
+   "end_ep": 4491,
+   "title": "Sodhi Ka Smart Mechanic",
+   "original": "Sodhi Ka Smart Mechanic"
+  },
+  {
+   "start_ep": 4497,
+   "end_ep": 4502,
+   "title": "Tapu Sena Ke Niyam",
+   "original": "Tapu Sena Ke Niyam"
+  },
+  {
+   "start_ep": 4503,
+   "end_ep": 4507,
+   "title": "Bappa Meets The Kids",
+   "original": "Bappa Meets The Kids"
+  },
+  {
+   "start_ep": 4508,
+   "end_ep": 4512,
+   "title": "Surprise Birthday Plan For Pinku",
+   "original": "Surprise Birthday Plan For Pinku"
+  },
+  {
+   "start_ep": 4513,
+   "end_ep": 4518,
+   "title": "Bhide Seeks Jethalal's Help",
+   "original": "Bhide Seeks Jethalal's Help"
+  },
+  {
+   "start_ep": 4519,
+   "end_ep": 4526,
+   "title": "Gada Electronics Ki Nayi Scheme",
+   "original": "Gada Electronics Ki Nayi Scheme"
+  },
+  {
+   "start_ep": 4527,
+   "end_ep": 4531,
+   "title": "Sunday Funday For Taarak",
+   "original": "Sunday Funday For Taarak"
+  },
+  {
+   "start_ep": 4532,
+   "end_ep": 4536,
+   "title": "Anjali Catches Hold Of Taarak",
+   "original": "Anjali Catches Hold Of Taarak"
+  },
+  {
+   "start_ep": 4537,
+   "end_ep": 4541,
+   "title": "One Box Across The Society",
+   "original": "One Box Across The Society"
+  },
+  {
+   "start_ep": 4542,
+   "end_ep": 4546,
+   "title": "Struggle To Get A Cheque",
+   "original": "Struggle To Get A Cheque"
+  },
+  {
+   "start_ep": 4547,
+   "end_ep": 4551,
+   "title": "Jethalal Aur Taarak Ka Struggle",
+   "original": "Jethalal Aur Taarak Ka Struggle"
+  },
+  {
+   "start_ep": 4552,
+   "end_ep": 4558,
+   "title": "Bhide And Jethalal's Story",
+   "original": "Bhide And Jethalal's Story"
+  },
+  {
+   "start_ep": 4559,
+   "end_ep": 4566,
+   "title": "Gadhe Ke Nishaan Waali Cycle",
+   "original": "Gadhe Ke Nishaan Waali Cycle"
+  },
+  {
+   "start_ep": 4567,
+   "end_ep": 4574,
+   "title": "Tapu Sena Ki Smartness",
+   "original": "Tapu Sena Ki Smartness"
+  },
+  {
+   "start_ep": 4575,
+   "end_ep": 4579,
+   "title": "Abdul Gets Kidnapped",
+   "original": "Abdul Gets Kidnapped"
+  },
+  {
+   "start_ep": 4580,
+   "end_ep": 4584,
+   "title": "Abdul Aur Cycle Ki Adla Badli",
+   "original": "Abdul Aur Cycle Ki Adla Badli"
+  },
+  {
+   "start_ep": 4585,
+   "end_ep": 4589,
+   "title": "Zumba Session For Champaklal",
+   "original": "Zumba Session For Champaklal"
+  },
+  {
+   "start_ep": 4590,
+   "end_ep": 4600,
+   "title": "Bapuji Ko Neeche Laane Ki Koshish",
+   "original": "Bapuji Ko Neeche Laane Ki Koshish"
+  },
+  {
+   "start_ep": 4601,
+   "end_ep": 4602,
+   "title": "Dharam Ji Fever & Yaadon Ki Baraat",
+   "original": "Dharam Ji Fever & Yaadon Ki Baraat"
+  },
+  {
+   "start_ep": 4603,
+   "end_ep": 4605,
+   "title": "New Year and Gada Electronics",
+   "original": "New Year and Gada Electronics"
+  },
+  {
+   "start_ep": 4606,
+   "end_ep": 4613,
+   "title": "Topo Mobile Scheme",
+   "original": "Topo Mobile Scheme"
+  },
+  {
+   "start_ep": 4614,
+   "end_ep": 4619,
+   "title": "Popatlal's Jaipur Patang Trip",
+   "original": "Popatlal's Jaipur Patang Trip"
+  },
+  {
+   "start_ep": 4620,
+   "end_ep": 4620,
+   "title": "Babli vs Popatlal",
+   "original": "Babli vs Popatlal"
+  },
+  {
+   "start_ep": 4621,
+   "end_ep": 4627,
+   "title": "Republic Day (2026)",
+   "original": "Republic Day (2026)"
+  },
+  {
+   "start_ep": 4628,
+   "end_ep": 4628,
+   "title": "Suvichaar Ki Chinta",
+   "original": "Suvichaar Ki Chinta"
+  },
+  {
+   "start_ep": 4629,
+   "end_ep": 4631,
+   "title": "Topo Company Dealership",
+   "original": "Topo Company Dealership"
+  },
+  {
+   "start_ep": 4632,
+   "end_ep": 4643,
+   "title": "Bawri's Laddoo & Party Sharty",
+   "original": "Bawri's Laddoo & Party Sharty"
+  },
+  {
+   "start_ep": 4644,
+   "end_ep": 4646,
+   "title": "Gokuldham Sleep & Taarak's Poem",
+   "original": "Gokuldham Sleep & Taarak's Poem"
+  },
+  {
+   "start_ep": 4647,
+   "end_ep": 4650,
+   "title": "Chutki Baba",
+   "original": "Chutki Baba"
+  },
+  {
+   "start_ep": 4651,
+   "end_ep": 4656,
+   "title": "Holi Ka Mahayudh",
+   "original": "Holi Ka Mahayudh"
+  },
+  {
+   "start_ep": 4657,
+   "end_ep": 4666,
+   "title": "Bhide's Jewellery Mystery",
+   "original": "Bhide's Jewellery Mystery"
+  },
+  {
+   "start_ep": 4667,
+   "end_ep": 4671,
+   "title": "Ram Navami (2026)",
+   "original": "Ram Navami (2026)"
+  },
+  {
+   "start_ep": 4672,
+   "end_ep": 4680,
+   "title": "Bhide and Popatlal Conflict",
+   "original": "Bhide and Popatlal Conflict"
+  },
+  {
+   "start_ep": 4681,
+   "end_ep": 4699,
+   "title": "Rupa and Ratan's Shop",
+   "original": "Rupa and Ratan's Shop"
+  },
+  {
+   "start_ep": 4700,
+   "end_ep": 4711,
+   "title": "Jethalal's Cheque Challenge",
+   "original": "Jethalal's Cheque Challenge"
+  },
+  {
+   "start_ep": 4712,
+   "end_ep": 4717,
+   "title": "Roshan's Money Mystery",
+   "original": "Roshan's Money Mystery"
+  },
+  {
+   "start_ep": 4718,
+   "end_ep": 4724,
+   "title": "Watermelon Mystery",
+   "original": "Watermelon Mystery"
+  },
+  {
+   "start_ep": 4725,
+   "end_ep": 4731,
+   "title": "Taarak's Envelope & Mahurat",
+   "original": "Taarak's Envelope & Mahurat"
+  },
+  {
+   "start_ep": 4732,
+   "end_ep": 4757,
+   "title": "Bagha and Bawri's Love Story",
+   "original": "Bagha and Bawri's Love Story"
+  },
+  {
+   "start_ep": 4758,
+   "end_ep": 4758,
+   "title": "Bapuji's Aarti for Jethalal",
+   "original": "Bapuji's Aarti for Jethalal"
+  },
+  {
+   "start_ep": 4759,
+   "end_ep": 4768,
+   "title": "Jethalal's Shop Gets Sealed",
+   "original": "Jethalal's Shop Gets Sealed"
+  },
+  {
+   "start_ep": 4769,
+   "end_ep": 4775,
+   "title": "Bhide and Popatlal's Family Mystery",
+   "original": "Bhide and Popatlal's Family Mystery"
+  },
+  {
+   "start_ep": 4776,
+   "end_ep": 4779,
+   "title": "Spider-Man in Gokuldham",
+   "original": "Spider-Man in Gokuldham"
+  },
+  {
+   "start_ep": 4780,
+   "end_ep": 4782,
+   "title": "Bhide's Surprise Gifts",
+   "original": "Bhide's Surprise Gifts"
+  },
+  {
+   "start_ep": 4783,
+   "end_ep": 4783,
+   "title": "Balam Re-enters Bagha's Life",
+   "original": "Balam Re-enters Bagha's Life"
+  },
+  {
+   "start_ep": 4784,
+   "end_ep": 4790,
+   "title": "Bhide Family Pickle Case",
+   "original": "Bhide Family Pickle Case"
+  },
+  {
+   "start_ep": 4791,
+   "end_ep": 4793,
+   "title": "Popatlal's Bride",
+   "original": "Popatlal's Bride"
+  },
+  {
+   "start_ep": 4794,
+   "end_ep": 4809,
+   "title": "Gokuldham Theft & Popatlal's Arrest",
+   "original": "Gokuldham Theft & Popatlal's Arrest"
+  },
+  {
+   "start_ep": 4810,
+   "end_ep": 4824,
+   "title": "Mannequin Mystery",
+   "original": "Mannequin Mystery"
+  }
+ ]
+}
