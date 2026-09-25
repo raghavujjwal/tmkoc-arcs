@@ -1,0 +1,697 @@
+{
+  "source": "upstream storylines.json, tagline contains 'Wikipedia'",
+  "convention": "inclusive [start_ep, end_ep], non-overlapping after reconciliation",
+  "min_run_arcs": 5,
+  "n_regions": 13,
+  "n_arcs": 95,
+  "n_episodes": 804,
+  "regions": [
+    {
+      "start_ep": 30,
+      "end_ep": 61,
+      "n_arcs": 6,
+      "n_episodes": 32,
+      "boundaries": [
+        35,
+        39,
+        45,
+        50,
+        55
+      ],
+      "arcs": [
+        {
+          "title": "Helpless Husbands",
+          "start_ep": 30,
+          "end_ep": 34
+        },
+        {
+          "title": "Tapu Sena & Television",
+          "start_ep": 35,
+          "end_ep": 38
+        },
+        {
+          "title": "Navratri (2008)",
+          "start_ep": 39,
+          "end_ep": 44
+        },
+        {
+          "title": "Kidney for Shaikh",
+          "start_ep": 45,
+          "end_ep": 49
+        },
+        {
+          "title": "Diwali (2008)",
+          "start_ep": 50,
+          "end_ep": 54
+        },
+        {
+          "title": "Sundar's Scheme",
+          "start_ep": 55,
+          "end_ep": 61
+        }
+      ]
+    },
+    {
+      "start_ep": 96,
+      "end_ep": 132,
+      "n_arcs": 8,
+      "n_episodes": 37,
+      "boundaries": [
+        100,
+        107,
+        115,
+        118,
+        122,
+        126,
+        130
+      ],
+      "arcs": [
+        {
+          "title": "Jethalal Fitness",
+          "start_ep": 96,
+          "end_ep": 99
+        },
+        {
+          "title": "Donations leads to Jail",
+          "start_ep": 100,
+          "end_ep": 106
+        },
+        {
+          "title": "Lovely Housemaid",
+          "start_ep": 107,
+          "end_ep": 114
+        },
+        {
+          "title": "Bhide swallows a whistle",
+          "start_ep": 115,
+          "end_ep": 117
+        },
+        {
+          "title": "Holi with Duplicate Shahrukh and Sachin",
+          "start_ep": 118,
+          "end_ep": 121
+        },
+        {
+          "title": "Chaggan, Maggan and 25000 rupee",
+          "start_ep": 122,
+          "end_ep": 125
+        },
+        {
+          "title": "Tapu Sena exams scam",
+          "start_ep": 126,
+          "end_ep": 129
+        },
+        {
+          "title": "Iyer and Babita fight",
+          "start_ep": 130,
+          "end_ep": 132
+        }
+      ]
+    },
+    {
+      "start_ep": 135,
+      "end_ep": 163,
+      "n_arcs": 5,
+      "n_episodes": 29,
+      "boundaries": [
+        139,
+        143,
+        148,
+        153
+      ],
+      "arcs": [
+        {
+          "title": "Dental Camp in Gokuldham & Jethalal Toothache",
+          "start_ep": 135,
+          "end_ep": 138
+        },
+        {
+          "title": "Meenakshi Detergent",
+          "start_ep": 139,
+          "end_ep": 142
+        },
+        {
+          "title": "Tiku Ji ki Wadi Trip",
+          "start_ep": 143,
+          "end_ep": 147
+        },
+        {
+          "title": "Daya and Madhavi Fight in Kitty Party",
+          "start_ep": 148,
+          "end_ep": 152
+        },
+        {
+          "title": "Thieves",
+          "start_ep": 153,
+          "end_ep": 163
+        }
+      ]
+    },
+    {
+      "start_ep": 390,
+      "end_ep": 434,
+      "n_arcs": 5,
+      "n_episodes": 45,
+      "boundaries": [
+        403,
+        409,
+        413,
+        426
+      ],
+      "arcs": [
+        {
+          "title": "GPL 2",
+          "start_ep": 390,
+          "end_ep": 402
+        },
+        {
+          "title": "Sodhi meets Irfan Pathan",
+          "start_ep": 403,
+          "end_ep": 408
+        },
+        {
+          "title": "Shampoo Massage",
+          "start_ep": 409,
+          "end_ep": 412
+        },
+        {
+          "title": "Ghost In Gokuldham",
+          "start_ep": 413,
+          "end_ep": 425
+        },
+        {
+          "title": "Popatlal and Koyal",
+          "start_ep": 426,
+          "end_ep": 434
+        }
+      ]
+    },
+    {
+      "start_ep": 578,
+      "end_ep": 620,
+      "n_arcs": 5,
+      "n_episodes": 43,
+      "boundaries": [
+        588,
+        597,
+        605,
+        615
+      ],
+      "arcs": [
+        {
+          "title": "Bhide's 1 Crore Email Fraud",
+          "start_ep": 578,
+          "end_ep": 587
+        },
+        {
+          "title": "Jetha's Dadaji's Photo",
+          "start_ep": 588,
+          "end_ep": 596
+        },
+        {
+          "title": "Sodhi Swallows Glass",
+          "start_ep": 597,
+          "end_ep": 604
+        },
+        {
+          "title": "Bhide Sells Mangoes",
+          "start_ep": 605,
+          "end_ep": 614
+        },
+        {
+          "title": "Tapu Sena Hunger Strike",
+          "start_ep": 615,
+          "end_ep": 620
+        }
+      ]
+    },
+    {
+      "start_ep": 623,
+      "end_ep": 677,
+      "n_arcs": 5,
+      "n_episodes": 55,
+      "boundaries": [
+        638,
+        647,
+        653,
+        659
+      ],
+      "arcs": [
+        {
+          "title": "Gokuldham Khel Mahotsav",
+          "start_ep": 623,
+          "end_ep": 637
+        },
+        {
+          "title": "Chaddi Gang Part 1",
+          "start_ep": 638,
+          "end_ep": 646
+        },
+        {
+          "title": "Popatlal and his umbrella",
+          "start_ep": 647,
+          "end_ep": 652
+        },
+        {
+          "title": "Extra class",
+          "start_ep": 653,
+          "end_ep": 658
+        },
+        {
+          "title": "Chaddi Gang Part 2",
+          "start_ep": 659,
+          "end_ep": 677
+        }
+      ]
+    },
+    {
+      "start_ep": 825,
+      "end_ep": 870,
+      "n_arcs": 6,
+      "n_episodes": 46,
+      "boundaries": [
+        840,
+        848,
+        852,
+        857,
+        868
+      ],
+      "arcs": [
+        {
+          "title": "Society Renovation by Sundarlal",
+          "start_ep": 825,
+          "end_ep": 839
+        },
+        {
+          "title": "Disco Dance Competition",
+          "start_ep": 840,
+          "end_ep": 847
+        },
+        {
+          "title": "Abdul's New Shop",
+          "start_ep": 848,
+          "end_ep": 851
+        },
+        {
+          "title": "Girvi Gehne",
+          "start_ep": 852,
+          "end_ep": 856
+        },
+        {
+          "title": "Gandhi Maidaan",
+          "start_ep": 857,
+          "end_ep": 867
+        },
+        {
+          "title": "Iyer forgets his briefcase",
+          "start_ep": 868,
+          "end_ep": 870
+        }
+      ]
+    },
+    {
+      "start_ep": 905,
+      "end_ep": 963,
+      "n_arcs": 9,
+      "n_episodes": 59,
+      "boundaries": [
+        912,
+        915,
+        923,
+        929,
+        933,
+        942,
+        946,
+        952
+      ],
+      "arcs": [
+        {
+          "title": "Bol Bachchan press conference",
+          "start_ep": 905,
+          "end_ep": 911
+        },
+        {
+          "title": "Bhide's moustache",
+          "start_ep": 912,
+          "end_ep": 914
+        },
+        {
+          "title": "Jethalal gives bribe",
+          "start_ep": 915,
+          "end_ep": 922
+        },
+        {
+          "title": "Choco Moco Chocolate",
+          "start_ep": 923,
+          "end_ep": 928
+        },
+        {
+          "title": "Raksha-bandhan (2012)",
+          "start_ep": 929,
+          "end_ep": 932
+        },
+        {
+          "title": "Dahi Handi (2012)",
+          "start_ep": 933,
+          "end_ep": 941
+        },
+        {
+          "title": "Eid (2012)",
+          "start_ep": 942,
+          "end_ep": 945
+        },
+        {
+          "title": "Jethalal and Passport",
+          "start_ep": 946,
+          "end_ep": 951
+        },
+        {
+          "title": "Barfi",
+          "start_ep": 952,
+          "end_ep": 963
+        }
+      ]
+    },
+    {
+      "start_ep": 983,
+      "end_ep": 1137,
+      "n_arcs": 12,
+      "n_episodes": 155,
+      "boundaries": [
+        1001,
+        1010,
+        1019,
+        1025,
+        1057,
+        1061,
+        1081,
+        1089,
+        1113,
+        1120,
+        1132
+      ],
+      "arcs": [
+        {
+          "title": "Sundar brings Chanya-Choli",
+          "start_ep": 983,
+          "end_ep": 1000
+        },
+        {
+          "title": "1000 Episodes Celebration",
+          "start_ep": 1001,
+          "end_ep": 1009
+        },
+        {
+          "title": "Blind people donation",
+          "start_ep": 1010,
+          "end_ep": 1018
+        },
+        {
+          "title": "Jewellery Shopping",
+          "start_ep": 1019,
+          "end_ep": 1024
+        },
+        {
+          "title": "Gulabo",
+          "start_ep": 1025,
+          "end_ep": 1056
+        },
+        {
+          "title": "Republic Day (2013)",
+          "start_ep": 1057,
+          "end_ep": 1060
+        },
+        {
+          "title": "Tapu Sena's new smartphones",
+          "start_ep": 1061,
+          "end_ep": 1080
+        },
+        {
+          "title": "Bharti",
+          "start_ep": 1081,
+          "end_ep": 1088
+        },
+        {
+          "title": "Sheru",
+          "start_ep": 1089,
+          "end_ep": 1112
+        },
+        {
+          "title": "Gogi at the Gada's",
+          "start_ep": 1113,
+          "end_ep": 1119
+        },
+        {
+          "title": "Sangram Singh's Mango Orchard",
+          "start_ep": 1120,
+          "end_ep": 1131
+        },
+        {
+          "title": "Babita's phone number",
+          "start_ep": 1132,
+          "end_ep": 1137
+        }
+      ]
+    },
+    {
+      "start_ep": 1187,
+      "end_ep": 1225,
+      "n_arcs": 6,
+      "n_episodes": 39,
+      "boundaries": [
+        1195,
+        1203,
+        1207,
+        1213,
+        1219
+      ],
+      "arcs": [
+        {
+          "title": "Gokuldham Society is Sold?",
+          "start_ep": 1187,
+          "end_ep": 1194
+        },
+        {
+          "title": "Tapu and Champaklal in Paris",
+          "start_ep": 1195,
+          "end_ep": 1202
+        },
+        {
+          "title": "Independence Day (2013)",
+          "start_ep": 1203,
+          "end_ep": 1206
+        },
+        {
+          "title": "Raksha Bandhan in Ahmedabad",
+          "start_ep": 1207,
+          "end_ep": 1212
+        },
+        {
+          "title": "Dahihandi (2013)",
+          "start_ep": 1213,
+          "end_ep": 1218
+        },
+        {
+          "title": "Jethalal is stalked",
+          "start_ep": 1219,
+          "end_ep": 1225
+        }
+      ]
+    },
+    {
+      "start_ep": 1251,
+      "end_ep": 1308,
+      "n_arcs": 7,
+      "n_episodes": 58,
+      "boundaries": [
+        1254,
+        1259,
+        1265,
+        1270,
+        1279,
+        1285
+      ],
+      "arcs": [
+        {
+          "title": "25000 rupees envelope",
+          "start_ep": 1251,
+          "end_ep": 1253
+        },
+        {
+          "title": "Champaklal's Hiccups",
+          "start_ep": 1254,
+          "end_ep": 1258
+        },
+        {
+          "title": "Bhide's antique radio",
+          "start_ep": 1259,
+          "end_ep": 1264
+        },
+        {
+          "title": "Sachin Tendulkar retirement",
+          "start_ep": 1265,
+          "end_ep": 1269
+        },
+        {
+          "title": "Necklace Fraud",
+          "start_ep": 1270,
+          "end_ep": 1278
+        },
+        {
+          "title": "Onions at Gada Electronics",
+          "start_ep": 1279,
+          "end_ep": 1284
+        },
+        {
+          "title": "Popatlal and Bulbul",
+          "start_ep": 1285,
+          "end_ep": 1308
+        }
+      ]
+    },
+    {
+      "start_ep": 1310,
+      "end_ep": 1378,
+      "n_arcs": 9,
+      "n_episodes": 69,
+      "boundaries": [
+        1319,
+        1327,
+        1342,
+        1347,
+        1354,
+        1362,
+        1365,
+        1370
+      ],
+      "arcs": [
+        {
+          "title": "Jalsa Party 2014",
+          "start_ep": 1310,
+          "end_ep": 1318
+        },
+        {
+          "title": "Bagha messed everything up",
+          "start_ep": 1319,
+          "end_ep": 1326
+        },
+        {
+          "title": "Fitness Camp",
+          "start_ep": 1327,
+          "end_ep": 1341
+        },
+        {
+          "title": "Anjali demands a surprise gift",
+          "start_ep": 1342,
+          "end_ep": 1346
+        },
+        {
+          "title": "Tapu Sena extra classes",
+          "start_ep": 1347,
+          "end_ep": 1353
+        },
+        {
+          "title": "Bhide-Madhavi anniversary",
+          "start_ep": 1354,
+          "end_ep": 1361
+        },
+        {
+          "title": "Holi (2014)",
+          "start_ep": 1362,
+          "end_ep": 1364
+        },
+        {
+          "title": "Youngistaan",
+          "start_ep": 1365,
+          "end_ep": 1369
+        },
+        {
+          "title": "Sodhi is Missing",
+          "start_ep": 1370,
+          "end_ep": 1378
+        }
+      ]
+    },
+    {
+      "start_ep": 3334,
+      "end_ep": 3470,
+      "n_arcs": 12,
+      "n_episodes": 137,
+      "boundaries": [
+        3338,
+        3361,
+        3369,
+        3373,
+        3385,
+        3388,
+        3411,
+        3433,
+        3442,
+        3451,
+        3455
+      ],
+      "arcs": [
+        {
+          "title": "Popatlal Sherwani Curse",
+          "start_ep": 3334,
+          "end_ep": 3337
+        },
+        {
+          "title": "Karela Bhoot in Taarak",
+          "start_ep": 3338,
+          "end_ep": 3360
+        },
+        {
+          "title": "Network problem",
+          "start_ep": 3361,
+          "end_ep": 3368
+        },
+        {
+          "title": "The Second Deal",
+          "start_ep": 3369,
+          "end_ep": 3372
+        },
+        {
+          "title": "Party Sharty",
+          "start_ep": 3373,
+          "end_ep": 3384
+        },
+        {
+          "title": "Popatlal vs Bhide",
+          "start_ep": 3385,
+          "end_ep": 3387
+        },
+        {
+          "title": "Cat in Gokuldham",
+          "start_ep": 3388,
+          "end_ep": 3410
+        },
+        {
+          "title": "Champaklal's party sharty",
+          "start_ep": 3411,
+          "end_ep": 3432
+        },
+        {
+          "title": "Bhide's Sargam Orchestra",
+          "start_ep": 3433,
+          "end_ep": 3441
+        },
+        {
+          "title": "Lemon Price Hike of 2022",
+          "start_ep": 3442,
+          "end_ep": 3450
+        },
+        {
+          "title": "Confusion",
+          "start_ep": 3451,
+          "end_ep": 3454
+        },
+        {
+          "title": "A prospective bride for Popatlal",
+          "start_ep": 3455,
+          "end_ep": 3470
+        }
+      ]
+    }
+  ]
+}

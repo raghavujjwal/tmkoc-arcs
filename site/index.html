@@ -1,0 +1,418 @@
+<title>Gokuldham Arc Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Devanagari:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#FBFBFD; --surface:#FFFFFF; --surface-2:#F4F5F9;
+  --ink:#16161D; --muted:#5B5F6E; --faint:#8A8EA0;
+  --line:#E3E4EC; --line-strong:#CFD1DE;
+  --indigo:#2D3A8C; --indigo-soft:#E7E9F7;
+  --saffron:#B4650E; --saffron-soft:#FBEEDD;
+  --verified:#1F6B4C; --verified-soft:#E2F1EA;
+  --on-indigo:#FFFFFF;
+  --focus:#2D3A8C;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F1016; --surface:#171923; --surface-2:#1E2130;
+    --ink:#E8E9F0; --muted:#9BA0B2; --faint:#767B8E;
+    --line:#262937; --line-strong:#353A4D;
+    --indigo:#9AA6F0; --indigo-soft:#20243C;
+    --saffron:#E8A860; --saffron-soft:#2E2417;
+    --verified:#63C79A; --verified-soft:#16291F;
+    --on-indigo:#0F1016;
+    --focus:#9AA6F0;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F1016; --surface:#171923; --surface-2:#1E2130;
+  --ink:#E8E9F0; --muted:#9BA0B2; --faint:#767B8E;
+  --line:#262937; --line-strong:#353A4D;
+  --indigo:#9AA6F0; --indigo-soft:#20243C;
+  --saffron:#E8A860; --saffron-soft:#2E2417;
+  --verified:#63C79A; --verified-soft:#16291F;
+  --on-indigo:#0F1016;
+  --focus:#9AA6F0;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:"IBM Plex Sans Devanagari","Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.55;
+}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+
+.wrap{max-width:1180px; margin:0 auto; padding:28px 20px 80px}
+
+/* ---- masthead ---- */
+.masthead{
+  display:flex; flex-wrap:wrap; align-items:flex-end; gap:18px 28px;
+  padding-bottom:18px; border-bottom:2px solid var(--ink);
+}
+h1{
+  font-family:Archivo,"Arial Narrow",sans-serif; font-weight:700;
+  font-size:clamp(27px,4.2vw,40px); letter-spacing:-.02em; line-height:1;
+  margin:0; text-wrap:balance;
+}
+.sub{color:var(--muted); font-size:13.5px; margin:6px 0 0; max-width:60ch}
+.spacer{flex:1 1 auto}
+
+.stats{display:flex; gap:22px; flex-wrap:wrap}
+.stat{display:flex; flex-direction:column; gap:1px}
+.stat b{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  font-size:21px; font-weight:500; line-height:1.1}
+.stat span{font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint)}
+
+/* ---- coverage note ---- */
+.coverage{
+  display:flex; gap:12px; align-items:flex-start;
+  margin:18px 0 0; padding:12px 14px;
+  background:var(--saffron-soft); border-left:3px solid var(--saffron);
+  font-size:13.5px; color:var(--ink);
+}
+.coverage b{font-weight:600}
+.bar{height:5px; background:var(--line); border-radius:3px; overflow:hidden; margin-top:8px}
+.bar>i{display:block; height:100%; background:var(--verified)}
+
+/* ---- controls ---- */
+.controls{display:flex; flex-direction:column; gap:12px; margin:22px 0 14px}
+.searchrow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+input[type=search]{
+  flex:1 1 320px; min-width:0;
+  font:inherit; color:var(--ink); background:var(--surface);
+  border:1px solid var(--line-strong); border-radius:2px; padding:9px 12px;
+}
+input[type=search]:focus-visible,button:focus-visible,summary:focus-visible,a:focus-visible{
+  outline:2px solid var(--focus); outline-offset:2px;
+}
+.chips{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+.chiplabel{font-size:10.5px; text-transform:uppercase; letter-spacing:.09em;
+  color:var(--faint); margin-right:2px}
+.chip{
+  font:inherit; font-size:12.5px; cursor:pointer;
+  background:var(--surface); color:var(--muted);
+  border:1px solid var(--line-strong); border-radius:999px; padding:3px 11px;
+}
+.chip:hover{border-color:var(--indigo); color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--indigo); border-color:var(--indigo); color:var(--on-indigo); font-weight:500}
+.toggle{
+  font:inherit; font-size:12.5px; cursor:pointer; padding:3px 11px;
+  background:var(--surface-2); color:var(--muted);
+  border:1px solid var(--line-strong); border-radius:2px;
+}
+.toggle[aria-pressed=true]{background:var(--indigo-soft); color:var(--indigo); border-color:var(--indigo); font-weight:500}
+
+.count{font-size:12.5px; color:var(--faint)}
+
+/* ---- listing ---- */
+.listhead{
+  display:grid; grid-template-columns:118px 1fr 74px 96px 108px;
+  gap:14px; padding:0 12px 6px; border-bottom:1px solid var(--line-strong);
+  font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint);
+}
+.listhead span:nth-child(3),.listhead span:nth-child(4){text-align:right}
+.arcs{list-style:none; margin:0; padding:0}
+.arc{border-bottom:1px solid var(--line)}
+.arc>summary{
+  display:grid; grid-template-columns:118px 1fr 74px 96px 108px;
+  gap:14px; align-items:center; padding:10px 12px; cursor:pointer;
+  list-style:none;
+}
+.arc>summary::-webkit-details-marker{display:none}
+.arc>summary:hover{background:var(--surface-2)}
+.arc[open]>summary{background:var(--surface-2)}
+.range{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  font-size:13px; color:var(--indigo); font-weight:500}
+.name{min-width:0}
+.name b{font-weight:600; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.name .untitled{font-weight:400; color:var(--faint); font-style:italic}
+.name small{display:block; color:var(--muted); font-size:12.5px;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  font-size:13px; color:var(--muted); text-align:right}
+.meter{display:flex; align-items:center; gap:7px; justify-content:flex-end}
+.meter i{display:block; width:42px; height:4px; background:var(--line); border-radius:2px; overflow:hidden}
+.meter i>u{display:block; height:100%; background:var(--indigo)}
+.meter span{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--faint); width:30px; text-align:right}
+.pill{
+  font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; font-weight:600;
+  padding:2px 8px; border-radius:2px; justify-self:start; white-space:nowrap;
+}
+.pill.summary{background:var(--verified-soft); color:var(--verified)}
+.pill.titles{background:var(--surface-2); color:var(--faint); border:1px solid var(--line)}
+.pill.open{background:var(--saffron-soft); color:var(--saffron)}
+
+/* ---- expanded ---- */
+.body{padding:4px 12px 20px; display:flex; flex-direction:column; gap:14px}
+.synopsis{max-width:66ch; margin:0}
+.synopsis.hidden{filter:blur(5px); user-select:none}
+.meta{display:flex; gap:7px; flex-wrap:wrap; align-items:center}
+.tag{font-size:11.5px; padding:2px 9px; border-radius:999px;
+  background:var(--indigo-soft); color:var(--indigo); font-weight:500}
+.char{font-size:11.5px; padding:2px 9px; border-radius:999px;
+  border:1px solid var(--line-strong); color:var(--muted)}
+.nosum{
+  max-width:66ch; margin:0; padding:10px 12px; font-size:13.5px; color:var(--muted);
+  background:var(--surface-2); border-left:3px solid var(--line-strong);
+}
+.eps{list-style:none; margin:0; padding:0; display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:2px 18px;
+  max-height:340px; overflow-y:auto}
+.eps li{display:flex; gap:9px; align-items:baseline; padding:2px 0; min-width:0}
+.eps .n{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  font-size:12px; color:var(--faint); flex:0 0 auto}
+.eps a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line-strong);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.eps a:hover{color:var(--indigo); border-color:var(--indigo)}
+.eps .blank{color:var(--faint); font-style:italic; font-size:13px}
+.dupe{font-size:10px; text-transform:uppercase; letter-spacing:.06em; font-weight:600;
+  color:var(--saffron); border:1px solid var(--saffron); border-radius:2px;
+  padding:0 4px; margin-left:6px; flex:0 0 auto; cursor:help}
+
+.empty{padding:40px 12px; color:var(--muted); text-align:center}
+footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
+  font-size:12.5px; color:var(--faint); display:flex; gap:18px; flex-wrap:wrap}
+
+@media (max-width:760px){
+  .listhead{display:none}
+  .arc>summary{grid-template-columns:1fr auto; gap:6px 12px}
+  .range{grid-column:1}
+  .name{grid-column:1/-1; order:3}
+  .num{display:none}
+  .meter{grid-column:2; order:2}
+  .pill{grid-column:1/-1; order:4; justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <h1>Gokuldham Arc Index</h1>
+      <p class="sub">Story arcs detected across every aired episode of <i>Taarak Mehta Ka Ooltah
+      Chashmah</i>, segmented from episode titles and synopses.</p>
+    </div>
+    <div class="spacer"></div>
+    <div class="stats">
+      <div class="stat"><b id="s-arcs">—</b><span>arcs</span></div>
+      <div class="stat"><b id="s-eps">—</b><span>episodes</span></div>
+      <div class="stat"><b id="s-sum">—</b><span>with synopsis</span></div>
+      <div class="stat"><b id="s-open">—</b><span>still open</span></div>
+    </div>
+  </header>
+
+  <p class="coverage" id="coverage"></p>
+
+  <div class="controls">
+    <div class="searchrow">
+      <input type="search" id="q" placeholder="Search synopses, arc names, episode titles, characters…"
+             aria-label="Search arcs">
+      <button class="toggle" id="only-sum" aria-pressed="false">Only with synopsis</button>
+      <button class="toggle" id="spoiler" aria-pressed="false">Hide spoilers</button>
+    </div>
+    <div class="chips" id="eras"><span class="chiplabel">Era</span></div>
+    <div class="chips" id="tags"><span class="chiplabel">Theme</span></div>
+    <p class="count" id="count"></p>
+  </div>
+
+  <div class="listhead">
+    <span>Episodes</span><span>Arc</span><span>Count</span><span>Text signal</span><span>Status</span>
+  </div>
+  <ul class="arcs" id="list"></ul>
+  <p class="empty" id="empty" hidden>No arcs match those filters.</p>
+
+  <footer>
+    <span id="prov"></span>
+    <span>Arcs without a synopsis show their episode titles instead — never an empty entry.</span>
+  </footer>
+</div>
+
+<script src="arcs.js"></script>
+<script>
+(function(){
+  var D = window.ARC_DATA;
+  if(!D){ document.getElementById('list').innerHTML =
+    '<li class="empty">Arc data failed to load.</li>'; return; }
+
+  var arcs = D.arcs, list = document.getElementById('list');
+  var state = {q:'', era:null, tag:null, onlySum:false, spoiler:false};
+
+  var totalEps = arcs.reduce(function(s,a){return s+a.n;},0);
+  var nOpen = arcs.filter(function(a){return a.status==='ongoing';}).length;
+  document.getElementById('s-arcs').textContent = arcs.length;
+  document.getElementById('s-eps').textContent = totalEps.toLocaleString('en-IN');
+  document.getElementById('s-sum').textContent = D.n_summarised;
+  document.getElementById('s-open').textContent = nOpen;
+
+  var pct = (D.n_summarised/arcs.length*100);
+  document.getElementById('coverage').innerHTML =
+    '<span><b>'+D.n_summarised+' of '+arcs.length+' arcs ('+pct.toFixed(1)+
+    '%) have a written synopsis.</b> Summary generation is rate-limited to 20 requests per '+
+    'day per model, so the rest are listed with their episode titles until the run completes. '+
+    'Only summaries whose named characters were verified against the source text are shown.'+
+    '<span class="bar"><i style="width:'+Math.max(pct,0.6).toFixed(2)+'%"></i></span></span>';
+
+  document.getElementById('prov').textContent =
+    'Segmented with ' + (D.generated_from.method||'pelt') +
+    ' through episode ' + (D.generated_from.corpus_end||'—') +
+    '; arcs within ' + (D.generated_from.edge_margin||0) +
+    ' episodes of the end stay open and are recomputed each run.';
+
+  // --- filter chips -------------------------------------------------------
+  var tagCounts = {};
+  arcs.forEach(function(a){ a.tags.forEach(function(t){ tagCounts[t]=(tagCounts[t]||0)+1; }); });
+  var tagNames = Object.keys(tagCounts).sort(function(x,y){return tagCounts[y]-tagCounts[x];});
+
+  function chip(container, label, value, key){
+    var b = document.createElement('button');
+    b.className='chip'; b.type='button'; b.textContent=label;
+    b.setAttribute('aria-pressed','false');
+    b.addEventListener('click', function(){
+      state[key] = state[key]===value ? null : value;
+      [].forEach.call(container.querySelectorAll('.chip'), function(c){
+        c.setAttribute('aria-pressed', String(c.dataset.v===state[key]));
+      });
+      render();
+    });
+    b.dataset.v = value;
+    container.appendChild(b);
+  }
+  var eraBox = document.getElementById('eras');
+  D.eras.forEach(function(e){ chip(eraBox, e, e, 'era'); });
+  var tagBox = document.getElementById('tags');
+  if(tagNames.length){
+    tagNames.forEach(function(t){ chip(tagBox, t+' ('+tagCounts[t]+')', t, 'tag'); });
+  } else {
+    tagBox.insertAdjacentHTML('beforeend',
+      '<span class="count">no themes yet — they arrive with the summaries</span>');
+  }
+
+  document.getElementById('q').addEventListener('input', function(e){
+    state.q = e.target.value.toLowerCase().trim(); render();
+  });
+  function toggle(id, key, fn){
+    var el = document.getElementById(id);
+    el.addEventListener('click', function(){
+      state[key] = !state[key];
+      el.setAttribute('aria-pressed', String(state[key]));
+      (fn||render)();
+    });
+  }
+  toggle('only-sum','onlySum');
+  toggle('spoiler','spoiler', function(){
+    [].forEach.call(document.querySelectorAll('.synopsis'), function(p){
+      p.classList.toggle('hidden', state.spoiler);
+    });
+  });
+
+  // --- matching -----------------------------------------------------------
+  function haystack(a){
+    if(a._h) return a._h;
+    var parts = [a.title||'', a.logline||'', a.synopsis||'',
+                 a.characters.join(' '), a.tags.join(' ')];
+    for(var i=0;i<a.episodes.length;i++) parts.push(a.episodes[i].title);
+    a._h = parts.join(' ').toLowerCase();
+    return a._h;
+  }
+  function matches(a){
+    if(state.era && a.era!==state.era) return false;
+    if(state.tag && a.tags.indexOf(state.tag)===-1) return false;
+    if(state.onlySum && !a.has_summary) return false;
+    if(state.q){
+      if(/^\d+$/.test(state.q)){
+        var n=parseInt(state.q,10);
+        if(n>=a.start_ep && n<=a.end_ep) return true;
+      }
+      if(haystack(a).indexOf(state.q)===-1) return false;
+    }
+    return true;
+  }
+
+  function esc(s){ return String(s==null?'':s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function rowHTML(a){
+    var sig = Math.round(a.signal*100);
+    var pill = a.status==='ongoing'
+      ? '<span class="pill open">Open arc</span>'
+      : (a.has_summary ? '<span class="pill summary">Synopsis</span>'
+                       : '<span class="pill titles">Titles only</span>');
+    var named = a.has_summary && a.title
+      ? '<b>'+esc(a.title)+'</b>'
+      : '<b class="untitled">Arc '+a.start_ep+'–'+a.end_ep+'</b>';
+    var second = a.has_summary && a.logline ? esc(a.logline)
+      : esc((a.episodes.find(function(e){return e.title;})||{}).title || 'No episode titles carry story text');
+    return '<summary>'+
+      '<span class="range">'+a.start_ep+'–'+a.end_ep+'</span>'+
+      '<span class="name">'+named+'<small>'+second+'</small></span>'+
+      '<span class="num">'+a.n+' ep'+(a.n===1?'':'s')+'</span>'+
+      '<span class="meter"><i><u style="width:'+sig+'%"></u></i><span>'+sig+'%</span></span>'+
+      pill+'</summary>';
+  }
+
+  function bodyHTML(a){
+    var out = '<div class="body">';
+    if(a.has_summary){
+      out += '<p class="synopsis'+(state.spoiler?' hidden':'')+'">'+esc(a.synopsis)+'</p>';
+      if(a.tags.length || a.characters.length){
+        out += '<div class="meta">'+
+          a.tags.map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('')+
+          a.characters.map(function(c){return '<span class="char">'+esc(c)+'</span>';}).join('')+
+          '</div>';
+      }
+    } else {
+      out += '<p class="nosum">No synopsis generated yet for this arc. '+
+             'Its episode titles are listed below.</p>';
+    }
+    out += '<ul class="eps">' + a.episodes.map(function(e){
+      var label = e.title
+        ? '<a href="https://www.youtube.com/watch?v='+esc(e.vid)+'" target="_blank" rel="noopener">'+esc(e.title)+'</a>'
+        : '<a class="blank" href="https://www.youtube.com/watch?v='+esc(e.vid)+'" target="_blank" rel="noopener">untitled episode</a>';
+      // Upstream maps a few episodes onto another episode's video. The link works but
+      // plays the wrong episode, so say so rather than let it look healthy.
+      var warn = e.shared_with
+        ? '<span class="dupe" title="This video id is also used by episode '+
+          e.shared_with.join(', ')+'. One of them is mis-mapped upstream.">same video as '+
+          e.shared_with.join(', ')+'</span>'
+        : '';
+      return '<li><span class="n">'+e.ep+'</span>'+label+warn+'</li>';
+    }).join('') + '</ul></div>';
+    return out;
+  }
+
+  var LIMIT = 80, shown = LIMIT, current = arcs;
+
+  function paint(){
+    var slice = current.slice(0, shown);
+    list.innerHTML = slice.map(function(a){
+      return '<li><details class="arc" data-k="'+a.start_ep+'">'+rowHTML(a)+'</details></li>';
+    }).join('') + (current.length>shown
+      ? '<li style="padding:14px 12px"><button class="toggle" id="more">Show '+
+        Math.min(LIMIT, current.length-shown)+' more of '+(current.length-shown)+'</button></li>'
+      : '');
+    var more = document.getElementById('more');
+    if(more) more.addEventListener('click', function(){ shown+=LIMIT; paint(); });
+  }
+
+  list.addEventListener('toggle', function(e){
+    var d = e.target;
+    if(d.tagName!=='DETAILS' || !d.open || d.dataset.filled) return;
+    var a = arcs.find(function(x){ return String(x.start_ep)===d.dataset.k; });
+    if(a){ d.insertAdjacentHTML('beforeend', bodyHTML(a)); d.dataset.filled='1'; }
+  }, true);
+
+  function render(){
+    current = arcs.filter(matches);
+    shown = LIMIT;
+    document.getElementById('count').textContent =
+      current.length===arcs.length
+        ? arcs.length+' arcs'
+        : current.length+' of '+arcs.length+' arcs';
+    document.getElementById('empty').hidden = current.length>0;
+    paint();
+  }
+  render();
+})();
+</script>

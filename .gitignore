@@ -1,0 +1,13 @@
+# Virtualenv lives on D: and is machine-specific
+.venv/
+__pycache__/
+*.pyc
+
+# Regenerable from cache/descriptions.jsonl by scripts/embed.py (~70 min on CPU).
+# Excluded for size, not because it is unimportant.
+data/embeddings.npy
+data/episodes_enriched.parquet
+
+# Scratch
+.tmp/
+*.log
