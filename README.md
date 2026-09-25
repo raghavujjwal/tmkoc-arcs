@@ -45,13 +45,16 @@ tail past the last sealed boundary is recomputed.
 
 <https://raghavujjwal.github.io/tmkoc-arcs/>
 
-A spiral of all 4,819 episodes in broadcast order, cut into 419 arcs — hover or drag to
-trace the run, click an arc to open it. Era sets the hue; how faint an arc looks is how
-little episode text it has. Below it, the same arcs as a searchable list with era and
-theme filters, a spoiler toggle, and every episode linked.
+A live field of all 419 arcs in broadcast order — one band per era, one soft body per arc
+(size = episodes), a thread running through them in sequence. The pointer is a magnetic
+lens: the arc under it swells and blooms into its episodes while its neighbours part to
+make room, then spring back as you move on. Arrow keys step the lens through the run;
+clicking opens a drawer with the synopsis, every episode link, and previous/next arc.
+Search and filters dim non-matching arcs live. Below it, the same arcs as a list.
 
-Geometry is tested (`node scripts/check_spiral.js`): all 419 arcs are reachable by
-pointer, including the 106 that span only 2–4 episodes.
+Geometry is tested at phone, tablet and desktop widths (`node scripts/check_field.js`):
+no arcs overlap, every arc is pickable including the 106 spanning 2–4 episodes, the
+hovered arc stays under the pointer, and broadcast order runs continuously.
 
 ## Episode links
 

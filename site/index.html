@@ -12,6 +12,7 @@
   --verified:#1F6B4C; --verified-soft:#E2F1EA;
   --on-indigo:#FFFFFF;
   --focus:#2D3A8C;
+  --shadow:0 18px 50px rgba(20,22,40,.22);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
@@ -23,6 +24,7 @@
     --verified:#63C79A; --verified-soft:#16291F;
     --on-indigo:#0F1016;
     --focus:#9AA6F0;
+    --shadow:0 18px 50px rgba(0,0,0,.55);
   }
 }
 :root[data-theme="dark"]{
@@ -34,6 +36,7 @@
   --verified:#63C79A; --verified-soft:#16291F;
   --on-indigo:#0F1016;
   --focus:#9AA6F0;
+  --shadow:0 18px 50px rgba(0,0,0,.55);
 }
 
 *{box-sizing:border-box}
@@ -42,91 +45,40 @@ body{
   font-family:"IBM Plex Sans Devanagari","Segoe UI",system-ui,sans-serif;
   font-size:15px; line-height:1.55;
 }
-.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
-
-.wrap{max-width:1180px; margin:0 auto; padding:28px 20px 80px}
+.wrap{max-width:1240px; margin:0 auto; padding:26px 20px 80px}
 
 /* ---- masthead ---- */
 .masthead{
   display:flex; flex-wrap:wrap; align-items:flex-end; gap:18px 28px;
-  padding-bottom:18px; border-bottom:2px solid var(--ink);
+  padding-bottom:16px; border-bottom:2px solid var(--ink);
 }
 h1{
   font-family:Archivo,"Arial Narrow",sans-serif; font-weight:700;
   font-size:clamp(27px,4.2vw,40px); letter-spacing:-.02em; line-height:1;
   margin:0; text-wrap:balance;
 }
-.sub{color:var(--muted); font-size:13.5px; margin:6px 0 0; max-width:60ch}
+.sub{color:var(--muted); font-size:13.5px; margin:6px 0 0; max-width:62ch}
 .spacer{flex:1 1 auto}
-
 .stats{display:flex; gap:22px; flex-wrap:wrap}
 .stat{display:flex; flex-direction:column; gap:1px}
 .stat b{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
   font-size:21px; font-weight:500; line-height:1.1}
 .stat span{font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint)}
 
-/* ---- coverage note ---- */
-.coverage{
-  display:flex; gap:12px; align-items:flex-start;
-  margin:18px 0 0; padding:12px 14px;
-  background:var(--saffron-soft); border-left:3px solid var(--saffron);
-  font-size:13.5px; color:var(--ink);
-}
-.coverage b{font-weight:600}
-.bar{height:5px; background:var(--line); border-radius:3px; overflow:hidden; margin-top:8px}
-.bar>i{display:block; height:100%; background:var(--verified)}
-
-/* ---- spiral ---- */
-.viz{
-  position:relative; margin:20px 0 0;
-  border:1px solid var(--line); background:var(--surface); border-radius:3px;
-  overflow:hidden;
-}
-.viz canvas{display:block; width:100%; height:auto; touch-action:none; cursor:crosshair}
-.viz-head{
-  display:flex; flex-wrap:wrap; gap:10px 20px; align-items:baseline;
-  padding:12px 14px 0;
-}
-.viz-head h2{
-  font-family:Archivo,"Arial Narrow",sans-serif; font-size:14px; font-weight:600;
-  letter-spacing:.02em; margin:0;
-}
-.viz-head p{margin:0; font-size:12.5px; color:var(--muted); max-width:62ch}
-.legend{display:flex; gap:14px; flex-wrap:wrap; padding:0 14px 10px; margin-top:8px}
-.legend span{display:flex; align-items:center; gap:5px; font-size:11px; color:var(--faint)}
-.legend i{width:16px; height:5px; border-radius:2px; display:block}
-.legend u{width:7px; height:7px; border-radius:50%; background:var(--verified); display:block}
-
-.readout{
-  position:absolute; pointer-events:none; z-index:3;
-  background:var(--surface); border:1px solid var(--line-strong);
-  border-left:3px solid var(--indigo);
-  padding:7px 10px; border-radius:2px; max-width:290px;
-  box-shadow:0 6px 22px rgba(0,0,0,.14); opacity:0; transition:opacity .09s;
-}
-.readout.on{opacity:1}
-.readout b{display:block; font-size:13px; font-weight:600; line-height:1.3}
-.readout .r-eps{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--indigo)}
-.readout .r-sub{display:block; font-size:12px; color:var(--muted); margin-top:3px;
-  overflow:hidden; text-overflow:ellipsis; display:-webkit-box;
-  -webkit-line-clamp:2; -webkit-box-orient:vertical}
-.readout .r-hint{display:block; font-size:10.5px; color:var(--faint); margin-top:5px;
-  text-transform:uppercase; letter-spacing:.07em}
-
 /* ---- controls ---- */
-.controls{display:flex; flex-direction:column; gap:12px; margin:22px 0 14px}
+.controls{display:flex; flex-direction:column; gap:10px; margin:18px 0 12px}
 .searchrow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
 input[type=search]{
   flex:1 1 320px; min-width:0;
   font:inherit; color:var(--ink); background:var(--surface);
   border:1px solid var(--line-strong); border-radius:2px; padding:9px 12px;
 }
-input[type=search]:focus-visible,button:focus-visible,summary:focus-visible,a:focus-visible{
+input[type=search]:focus-visible,button:focus-visible,summary:focus-visible,a:focus-visible,canvas:focus-visible{
   outline:2px solid var(--focus); outline-offset:2px;
 }
 .chips{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
 .chiplabel{font-size:10.5px; text-transform:uppercase; letter-spacing:.09em;
-  color:var(--faint); margin-right:2px}
+  color:var(--faint); margin-right:2px; min-width:44px}
 .chip{
   font:inherit; font-size:12.5px; cursor:pointer;
   background:var(--surface); color:var(--muted);
@@ -134,55 +86,76 @@ input[type=search]:focus-visible,button:focus-visible,summary:focus-visible,a:fo
 }
 .chip:hover{border-color:var(--indigo); color:var(--ink)}
 .chip[aria-pressed=true]{background:var(--indigo); border-color:var(--indigo); color:var(--on-indigo); font-weight:500}
+.chip .sw{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:1px}
 .toggle{
   font:inherit; font-size:12.5px; cursor:pointer; padding:3px 11px;
   background:var(--surface-2); color:var(--muted);
   border:1px solid var(--line-strong); border-radius:2px;
 }
 .toggle[aria-pressed=true]{background:var(--indigo-soft); color:var(--indigo); border-color:var(--indigo); font-weight:500}
+.count{font-size:12.5px; color:var(--faint); margin:0}
 
-.count{font-size:12.5px; color:var(--faint)}
+/* ---- the stage ----
+   Deliberately a single look: a dark broadcast screen in both themes, because the field
+   is lit from within -- glows and additive blending only read against a dark ground. */
+.stage{
+  position:relative; background:#0A0C13; border-radius:4px; overflow:hidden;
+  box-shadow:inset 0 0 0 1px #1C2030;
+}
+.stage canvas{display:block; width:100%; touch-action:none; cursor:none}
+.stage canvas:focus-visible{outline-offset:-3px}
+.stage-note{
+  position:absolute; left:16px; top:12px; right:16px; pointer-events:none;
+  display:flex; flex-wrap:wrap; gap:4px 18px; align-items:baseline;
+  font-size:11.5px; color:#8A90AB; letter-spacing:.02em;
+}
+.stage-note b{font-family:Archivo,sans-serif; font-weight:600; color:#DDE0F0;
+  font-size:12.5px; letter-spacing:.04em; text-transform:uppercase}
+.stage-note kbd{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:#C6CAE0;
+  border:1px solid #2F3450; border-radius:3px; padding:0 4px}
+.stage-legend{
+  display:flex; flex-wrap:wrap; gap:6px 18px; padding:10px 2px 0;
+  font-size:11.5px; color:var(--faint);
+}
+.stage-legend span{display:flex; align-items:center; gap:6px}
+.stage-legend i{display:block; width:10px; height:10px; border-radius:50%}
 
-/* ---- listing ---- */
-.listhead{
-  display:grid; grid-template-columns:118px 1fr 74px 96px 108px;
-  gap:14px; padding:0 12px 6px; border-bottom:1px solid var(--line-strong);
-  font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint);
+/* ---- drawer ---- */
+.drawer{
+  position:fixed; top:0; right:0; bottom:0; z-index:20; width:min(430px,100vw);
+  background:var(--surface); color:var(--ink); box-shadow:var(--shadow);
+  border-left:1px solid var(--line);
+  display:flex; flex-direction:column;
+  transform:translateX(104%); transition:transform .26s cubic-bezier(.2,.8,.2,1);
 }
-.listhead span:nth-child(3),.listhead span:nth-child(4){text-align:right}
-.arcs{list-style:none; margin:0; padding:0}
-.arc{border-bottom:1px solid var(--line)}
-.arc>summary{
-  display:grid; grid-template-columns:118px 1fr 74px 96px 108px;
-  gap:14px; align-items:center; padding:10px 12px; cursor:pointer;
-  list-style:none;
+.drawer.open{transform:none}
+.drawer header{
+  padding:16px 18px 12px; border-bottom:1px solid var(--line);
+  display:flex; flex-direction:column; gap:6px;
 }
-.arc>summary::-webkit-details-marker{display:none}
-.arc>summary:hover{background:var(--surface-2)}
-.arc[open]>summary{background:var(--surface-2)}
-.range{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
-  font-size:13px; color:var(--indigo); font-weight:500}
-.name{min-width:0}
-.name b{font-weight:600; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.name .untitled{font-weight:400; color:var(--faint); font-style:italic}
-.name small{display:block; color:var(--muted); font-size:12.5px;
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
-  font-size:13px; color:var(--muted); text-align:right}
-.meter{display:flex; align-items:center; gap:7px; justify-content:flex-end}
-.meter i{display:block; width:42px; height:4px; background:var(--line); border-radius:2px; overflow:hidden}
-.meter i>u{display:block; height:100%; background:var(--indigo)}
-.meter span{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--faint); width:30px; text-align:right}
-.pill{
-  font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; font-weight:600;
-  padding:2px 8px; border-radius:2px; justify-self:start; white-space:nowrap;
+.d-meta{display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--indigo)}
+.d-era{font-family:"IBM Plex Sans Devanagari",sans-serif; font-size:10.5px; font-weight:600;
+  text-transform:uppercase; letter-spacing:.08em; padding:1px 7px; border-radius:2px; color:#fff}
+.drawer h3{font-family:Archivo,"Arial Narrow",sans-serif; font-size:22px; line-height:1.15;
+  margin:0; letter-spacing:-.01em; text-wrap:balance}
+.d-nav{display:flex; gap:6px; margin-top:4px}
+.d-nav button, .d-close{
+  font:inherit; font-size:12.5px; cursor:pointer; padding:4px 10px;
+  background:var(--surface-2); color:var(--ink);
+  border:1px solid var(--line-strong); border-radius:2px;
 }
-.pill.summary{background:var(--verified-soft); color:var(--verified)}
-.pill.titles{background:var(--surface-2); color:var(--faint); border:1px solid var(--line)}
-.pill.open{background:var(--saffron-soft); color:var(--saffron)}
+.d-nav button:hover, .d-close:hover{border-color:var(--indigo)}
+.d-nav button:disabled{opacity:.4; cursor:default}
+.d-close{position:absolute; top:12px; right:12px; padding:2px 9px}
+.d-body{overflow-y:auto; padding:14px 18px 28px; display:flex; flex-direction:column; gap:14px}
+.d-body h4{margin:0; font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint); font-weight:600}
+.scrim{position:fixed; inset:0; z-index:19; background:rgba(8,9,16,.35); opacity:0;
+  pointer-events:none; transition:opacity .2s}
+.scrim.on{opacity:1; pointer-events:auto}
+@media (min-width:980px){ .scrim{display:none} }
 
-/* ---- expanded ---- */
-.body{padding:4px 12px 20px; display:flex; flex-direction:column; gap:14px}
+/* ---- shared detail pieces (drawer + list) ---- */
 .synopsis{max-width:66ch; margin:0}
 .synopsis.hidden{filter:blur(5px); user-select:none}
 .meta{display:flex; gap:7px; flex-wrap:wrap; align-items:center}
@@ -194,42 +167,82 @@ input[type=search]:focus-visible,button:focus-visible,summary:focus-visible,a:fo
   max-width:66ch; margin:0; padding:10px 12px; font-size:13.5px; color:var(--muted);
   background:var(--surface-2); border-left:3px solid var(--line-strong);
 }
-.eps{list-style:none; margin:0; padding:0; display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:2px 18px;
-  max-height:340px; overflow-y:auto}
-.eps li{display:flex; gap:9px; align-items:baseline; padding:2px 0; min-width:0}
+.eps{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+.eps li{display:flex; gap:9px; align-items:baseline; padding:3px 0; min-width:0;
+  border-bottom:1px solid var(--line)}
 .eps .n{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
-  font-size:12px; color:var(--faint); flex:0 0 auto}
-.eps a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line-strong);
+  font-size:12px; color:var(--faint); flex:0 0 38px}
+.eps a{color:var(--ink); text-decoration:none; min-width:0;
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.eps a:hover{color:var(--indigo); border-color:var(--indigo)}
+.eps a:hover{color:var(--indigo); text-decoration:underline}
 .eps .blank{color:var(--faint); font-style:italic; font-size:13px}
 .dupe{font-size:10px; text-transform:uppercase; letter-spacing:.06em; font-weight:600;
   color:var(--saffron); border:1px solid var(--saffron); border-radius:2px;
-  padding:0 4px; margin-left:6px; flex:0 0 auto; cursor:help}
+  padding:0 4px; flex:0 0 auto; cursor:help}
 
+/* ---- list ---- */
+.listwrap{margin-top:40px}
+.listwrap h2{font-family:Archivo,"Arial Narrow",sans-serif; font-size:18px; margin:0 0 4px}
+.listwrap > p{margin:0 0 12px; color:var(--muted); font-size:13px}
+.listhead{
+  display:grid; grid-template-columns:118px 1fr 74px 108px;
+  gap:14px; padding:0 12px 6px; border-bottom:1px solid var(--line-strong);
+  font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint);
+}
+.listhead span:nth-child(3){text-align:right}
+.arcs{list-style:none; margin:0; padding:0}
+.arc{border-bottom:1px solid var(--line)}
+.arc>summary{
+  display:grid; grid-template-columns:118px 1fr 74px 108px;
+  gap:14px; align-items:center; padding:9px 12px; cursor:pointer; list-style:none;
+}
+.arc>summary::-webkit-details-marker{display:none}
+.arc>summary:hover,.arc[open]>summary{background:var(--surface-2)}
+.range{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  font-size:13px; color:var(--indigo); font-weight:500}
+.name{min-width:0}
+.name b{font-weight:600; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.name .untitled{font-weight:400; color:var(--faint); font-style:italic}
+.name small{display:block; color:var(--muted); font-size:12.5px;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  font-size:13px; color:var(--muted); text-align:right}
+.pill{font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; font-weight:600;
+  padding:2px 8px; border-radius:2px; justify-self:start; white-space:nowrap}
+.pill.summary{background:var(--verified-soft); color:var(--verified)}
+.pill.titles{background:var(--surface-2); color:var(--faint); border:1px solid var(--line)}
+.pill.open{background:var(--saffron-soft); color:var(--saffron)}
+.body{padding:4px 12px 18px; display:flex; flex-direction:column; gap:12px}
+.body .eps{display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+  gap:0 18px; max-height:320px; overflow-y:auto}
+.more{padding:14px 12px}
 .empty{padding:40px 12px; color:var(--muted); text-align:center}
-footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
-  font-size:12.5px; color:var(--faint); display:flex; gap:18px; flex-wrap:wrap}
+
+.coverage{
+  margin:34px 0 0; padding:12px 14px; font-size:13px; color:var(--muted);
+  background:var(--surface-2); border-left:3px solid var(--saffron); max-width:90ch;
+}
+.coverage b{color:var(--ink); font-weight:600}
+footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
+  font-size:12px; color:var(--faint); display:flex; gap:18px; flex-wrap:wrap}
 
 @media (max-width:760px){
   .listhead{display:none}
-  .arc>summary{grid-template-columns:1fr auto; gap:6px 12px}
-  .range{grid-column:1}
+  .arc>summary{grid-template-columns:1fr auto; gap:4px 12px}
   .name{grid-column:1/-1; order:3}
   .num{display:none}
-  .meter{grid-column:2; order:2}
-  .pill{grid-column:1/-1; order:4; justify-self:start}
+  .drawer{top:auto; height:78vh; width:100vw; border-left:0; border-top:1px solid var(--line);
+    border-radius:10px 10px 0 0; transform:translateY(104%)}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+@media (prefers-reduced-motion:reduce){ .drawer,.scrim{transition:none} }
 </style>
 
 <div class="wrap">
   <header class="masthead">
     <div>
       <h1>Gokuldham Arc Index</h1>
-      <p class="sub">Story arcs detected across every aired episode of <i>Taarak Mehta Ka Ooltah
-      Chashmah</i>, segmented from episode titles and synopses.</p>
+      <p class="sub">Every aired episode of <i>Taarak Mehta Ka Ooltah Chashmah</i>, grouped into the
+      story arcs detected from their titles and synopses.</p>
     </div>
     <div class="spacer"></div>
     <div class="stats">
@@ -240,25 +253,9 @@ footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
     </div>
   </header>
 
-  <p class="coverage" id="coverage"></p>
-
-
-  <section class="viz">
-    <div class="viz-head">
-      <h2>Every arc, in broadcast order</h2>
-      <p>The spiral runs from episode 1 at the centre to the latest at the rim &mdash; one
-      continuous line, cut into 419 arcs. Move along it to trace the run; click an arc to
-      open it below.</p>
-    </div>
-    <div class="legend" id="legend"></div>
-    <canvas id="spiral" width="1100" height="1100" role="img"
-            aria-label="Spiral of 4,819 episodes divided into 419 story arcs; hover to inspect"></canvas>
-    <div class="readout" id="readout" aria-live="polite"></div>
-  </section>
-
   <div class="controls">
     <div class="searchrow">
-      <input type="search" id="q" placeholder="Search synopses, arc names, episode titles, characters…"
+      <input type="search" id="q" placeholder="Search arc names, synopses, episode titles, characters — or an episode number"
              aria-label="Search arcs">
       <button class="toggle" id="only-sum" aria-pressed="false">Only with synopsis</button>
       <button class="toggle" id="spoiler" aria-pressed="false">Hide spoilers</button>
@@ -268,17 +265,45 @@ footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
     <p class="count" id="count"></p>
   </div>
 
-  <div class="listhead">
-    <span>Episodes</span><span>Arc</span><span>Count</span><span>Text signal</span><span>Status</span>
-  </div>
-  <ul class="arcs" id="list"></ul>
-  <p class="empty" id="empty" hidden>No arcs match those filters.</p>
+  <section class="stage" id="stage">
+    <canvas id="field" tabindex="0" role="application"
+      aria-label="Field of all story arcs in broadcast order. Use left and right arrow keys to step through arcs, Enter to open one."></canvas>
+    <div class="stage-note">
+      <b>419 arcs, in order</b>
+      <span>move through the field &middot; click an arc to open it &middot;
+        <kbd>&larr;</kbd> <kbd>&rarr;</kbd> step through the run</span>
+    </div>
+  </section>
+  <div class="stage-legend" id="legend"></div>
 
+  <section class="listwrap">
+    <h2>All arcs, as a list</h2>
+    <p>The same arcs, filtered by the controls above.</p>
+    <div class="listhead"><span>Episodes</span><span>Arc</span><span>Count</span><span>Status</span></div>
+    <ul class="arcs" id="list"></ul>
+    <p class="empty" id="empty" hidden>No arcs match those filters.</p>
+  </section>
+
+  <p class="coverage" id="coverage"></p>
   <footer>
     <span id="prov"></span>
     <span>Arcs without a synopsis show their episode titles instead — never an empty entry.</span>
   </footer>
 </div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="d-title">
+  <button class="d-close" id="d-close" aria-label="Close">Close</button>
+  <header>
+    <div class="d-meta" id="d-meta"></div>
+    <h3 id="d-title"></h3>
+    <div class="d-nav">
+      <button id="d-prev">&larr; Previous arc</button>
+      <button id="d-next">Next arc &rarr;</button>
+    </div>
+  </header>
+  <div class="d-body" id="d-body"></div>
+</aside>
 
 <script src="arcs.js"></script>
 <script>
@@ -289,7 +314,13 @@ footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
 
   var arcs = D.arcs, list = document.getElementById('list');
   var state = {q:'', era:null, tag:null, onlySum:false, spoiler:false};
+  var REDUCED = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
+  // Era to hue, walking indigo toward saffron so the ramp itself reads as time passing.
+  var ERA_HUE = {Early:250, Classic:212, Middle:178, Late:38, Current:12};
+  function hueOf(e){ return ERA_HUE[e] == null ? 220 : ERA_HUE[e]; }
+
+  // ---- header numbers --------------------------------------------------------
   var totalEps = arcs.reduce(function(s,a){return s+a.n;},0);
   var nOpen = arcs.filter(function(a){return a.status==='ongoing';}).length;
   document.getElementById('s-arcs').textContent = arcs.length;
@@ -297,75 +328,70 @@ footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
   document.getElementById('s-sum').textContent = D.n_summarised;
   document.getElementById('s-open').textContent = nOpen;
 
-  var pct = (D.n_summarised/arcs.length*100);
+  var pct = D.n_summarised/arcs.length*100;
   document.getElementById('coverage').innerHTML =
-    '<span><b>'+D.n_summarised+' of '+arcs.length+' arcs ('+pct.toFixed(1)+
-    '%) have a written synopsis.</b> Summary generation is rate-limited to 20 requests per '+
-    'day per model, so the rest are listed with their episode titles until the run completes. '+
-    'Only summaries whose named characters were verified against the source text are shown.'+
-    '<span class="bar"><i style="width:'+Math.max(pct,0.6).toFixed(2)+'%"></i></span></span>';
-
+    '<b>'+D.n_summarised+' of '+arcs.length+' arcs ('+pct.toFixed(1)+'%) have a written synopsis.</b> '+
+    'Summaries are generated under a free-tier limit of 20 requests a day per model, so the rest '+
+    'show their episode titles until the run completes. Only summaries whose named characters '+
+    'were verified against the source text are shown.';
   document.getElementById('prov').textContent =
-    'Segmented with ' + (D.generated_from.method||'pelt') +
-    ' through episode ' + (D.generated_from.corpus_end||'—') +
-    '; arcs within ' + (D.generated_from.edge_margin||0) +
+    'Segmented with '+(D.generated_from.method||'pelt')+' through episode '+
+    (D.generated_from.corpus_end||'—')+'; arcs within '+(D.generated_from.edge_margin||0)+
     ' episodes of the end stay open and are recomputed each run.';
 
-  // --- filter chips -------------------------------------------------------
+  function esc(s){ return String(s==null?'':s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function firstTitle(a){
+    return (a.episodes.find(function(e){return e.title;})||{}).title || '';
+  }
+  function arcName(a){ return a.has_summary && a.title ? a.title : 'Arc '+a.start_ep+'–'+a.end_ep; }
+
+  // ---- filters ---------------------------------------------------------------
   var tagCounts = {};
   arcs.forEach(function(a){ a.tags.forEach(function(t){ tagCounts[t]=(tagCounts[t]||0)+1; }); });
   var tagNames = Object.keys(tagCounts).sort(function(x,y){return tagCounts[y]-tagCounts[x];});
 
-  function chip(container, label, value, key){
+  function chip(box, label, value, key, swatch){
     var b = document.createElement('button');
-    b.className='chip'; b.type='button'; b.textContent=label;
+    b.className='chip'; b.type='button'; b.dataset.v=value;
+    b.innerHTML = (swatch ? '<span class="sw" style="background:'+swatch+'"></span>' : '') + esc(label);
     b.setAttribute('aria-pressed','false');
     b.addEventListener('click', function(){
       state[key] = state[key]===value ? null : value;
-      [].forEach.call(container.querySelectorAll('.chip'), function(c){
+      [].forEach.call(box.querySelectorAll('.chip'), function(c){
         c.setAttribute('aria-pressed', String(c.dataset.v===state[key]));
       });
-      render();
+      applyFilters();
     });
-    b.dataset.v = value;
-    container.appendChild(b);
+    box.appendChild(b);
   }
   var eraBox = document.getElementById('eras');
-  D.eras.forEach(function(e){ chip(eraBox, e, e, 'era'); });
+  D.eras.forEach(function(e){ chip(eraBox, e, e, 'era', 'hsl('+hueOf(e)+',60%,55%)'); });
   var tagBox = document.getElementById('tags');
-  if(tagNames.length){
-    tagNames.forEach(function(t){ chip(tagBox, t+' ('+tagCounts[t]+')', t, 'tag'); });
-  } else {
-    tagBox.insertAdjacentHTML('beforeend',
-      '<span class="count">no themes yet — they arrive with the summaries</span>');
-  }
+  if(tagNames.length) tagNames.forEach(function(t){ chip(tagBox, t+' ('+tagCounts[t]+')', t, 'tag'); });
+  else tagBox.insertAdjacentHTML('beforeend','<span class="count">themes arrive with the summaries</span>');
 
   document.getElementById('q').addEventListener('input', function(e){
-    state.q = e.target.value.toLowerCase().trim(); render();
+    state.q = e.target.value.toLowerCase().trim(); applyFilters();
   });
   function toggle(id, key, fn){
     var el = document.getElementById(id);
     el.addEventListener('click', function(){
-      state[key] = !state[key];
-      el.setAttribute('aria-pressed', String(state[key]));
-      (fn||render)();
+      state[key] = !state[key]; el.setAttribute('aria-pressed', String(state[key])); fn();
     });
   }
-  toggle('only-sum','onlySum');
+  toggle('only-sum','onlySum', applyFilters);
   toggle('spoiler','spoiler', function(){
     [].forEach.call(document.querySelectorAll('.synopsis'), function(p){
       p.classList.toggle('hidden', state.spoiler);
     });
   });
 
-  // --- matching -----------------------------------------------------------
   function haystack(a){
     if(a._h) return a._h;
-    var parts = [a.title||'', a.logline||'', a.synopsis||'',
-                 a.characters.join(' '), a.tags.join(' ')];
+    var parts=[a.title||'',a.logline||'',a.synopsis||'',a.characters.join(' '),a.tags.join(' ')];
     for(var i=0;i<a.episodes.length;i++) parts.push(a.episodes[i].title);
-    a._h = parts.join(' ').toLowerCase();
-    return a._h;
+    return (a._h = parts.join(' ').toLowerCase());
   }
   function matches(a){
     if(state.era && a.era!==state.era) return false;
@@ -374,313 +400,456 @@ footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
     if(state.q){
       if(/^\d+$/.test(state.q)){
         var n=parseInt(state.q,10);
-        if(n>=a.start_ep && n<=a.end_ep) return true;
+        return n>=a.start_ep && n<=a.end_ep;
       }
       if(haystack(a).indexOf(state.q)===-1) return false;
     }
     return true;
   }
-
-  function esc(s){ return String(s==null?'':s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-  function rowHTML(a){
-    var sig = Math.round(a.signal*100);
-    var pill = a.status==='ongoing'
-      ? '<span class="pill open">Open arc</span>'
-      : (a.has_summary ? '<span class="pill summary">Synopsis</span>'
-                       : '<span class="pill titles">Titles only</span>');
-    var named = a.has_summary && a.title
-      ? '<b>'+esc(a.title)+'</b>'
-      : '<b class="untitled">Arc '+a.start_ep+'–'+a.end_ep+'</b>';
-    var second = a.has_summary && a.logline ? esc(a.logline)
-      : esc((a.episodes.find(function(e){return e.title;})||{}).title || 'No episode titles carry story text');
-    return '<summary>'+
-      '<span class="range">'+a.start_ep+'–'+a.end_ep+'</span>'+
-      '<span class="name">'+named+'<small>'+second+'</small></span>'+
-      '<span class="num">'+a.n+' ep'+(a.n===1?'':'s')+'</span>'+
-      '<span class="meter"><i><u style="width:'+sig+'%"></u></i><span>'+sig+'%</span></span>'+
-      pill+'</summary>';
+  var filtering = false;
+  function applyFilters(){
+    filtering = !!(state.q || state.era || state.tag || state.onlySum);
+    var hits = 0;
+    arcs.forEach(function(a){ a._match = matches(a); if(a._match) hits++; });
+    document.getElementById('count').textContent = filtering
+      ? hits+' of '+arcs.length+' arcs match — the rest dim in the field'
+      : arcs.length+' arcs';
+    renderList();
+    wake();
   }
 
-  function bodyHTML(a){
-    var out = '<div class="body">';
-    if(a.has_summary){
-      out += '<p class="synopsis'+(state.spoiler?' hidden':'')+'">'+esc(a.synopsis)+'</p>';
-      if(a.tags.length || a.characters.length){
-        out += '<div class="meta">'+
-          a.tags.map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('')+
-          a.characters.map(function(c){return '<span class="char">'+esc(c)+'</span>';}).join('')+
-          '</div>';
-      }
-    } else {
-      out += '<p class="nosum">No synopsis generated yet for this arc. '+
-             'Its episode titles are listed below.</p>';
-    }
-    out += '<ul class="eps">' + a.episodes.map(function(e){
+  // ---- shared detail rendering ------------------------------------------------
+  function episodesHTML(a){
+    return '<ul class="eps">' + a.episodes.map(function(e){
+      var url = 'https://www.youtube.com/watch?v='+esc(e.vid);
       var label = e.title
-        ? '<a href="https://www.youtube.com/watch?v='+esc(e.vid)+'" target="_blank" rel="noopener">'+esc(e.title)+'</a>'
-        : '<a class="blank" href="https://www.youtube.com/watch?v='+esc(e.vid)+'" target="_blank" rel="noopener">untitled episode</a>';
-      // Upstream maps a few episodes onto another episode's video. The link works but
-      // plays the wrong episode, so say so rather than let it look healthy.
+        ? '<a href="'+url+'" target="_blank" rel="noopener">'+esc(e.title)+'</a>'
+        : '<a class="blank" href="'+url+'" target="_blank" rel="noopener">untitled episode</a>';
+      // Upstream maps a few episodes onto another episode's video: the link works but plays
+      // the wrong episode, so it is labelled rather than left looking healthy.
       var warn = e.shared_with
-        ? '<span class="dupe" title="This video id is also used by episode '+
-          e.shared_with.join(', ')+'. One of them is mis-mapped upstream.">same video as '+
-          e.shared_with.join(', ')+'</span>'
+        ? '<span class="dupe" title="This video id is also used by episode '+e.shared_with.join(', ')+
+          '. One of them is mis-mapped upstream.">same video as '+e.shared_with.join(', ')+'</span>'
         : '';
       return '<li><span class="n">'+e.ep+'</span>'+label+warn+'</li>';
-    }).join('') + '</ul></div>';
+    }).join('') + '</ul>';
+  }
+  function summaryHTML(a){
+    if(!a.has_summary)
+      return '<p class="nosum">No synopsis generated for this arc yet. Its episode titles are listed below.</p>';
+    var out = '<p class="synopsis'+(state.spoiler?' hidden':'')+'">'+esc(a.synopsis)+'</p>';
+    if(a.tags.length || a.characters.length)
+      out += '<div class="meta">'+
+        a.tags.map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('')+
+        a.characters.map(function(c){return '<span class="char">'+esc(c)+'</span>';}).join('')+'</div>';
     return out;
   }
 
-  var LIMIT = 80, shown = LIMIT, current = arcs;
-
+  // ---- list ------------------------------------------------------------------
+  var LIMIT = 60, shown = LIMIT, current = arcs;
+  function rowHTML(a){
+    var pill = a.status==='ongoing' ? '<span class="pill open">Open arc</span>'
+      : (a.has_summary ? '<span class="pill summary">Synopsis</span>' : '<span class="pill titles">Titles only</span>');
+    var named = a.has_summary && a.title ? '<b>'+esc(a.title)+'</b>'
+      : '<b class="untitled">Arc '+a.start_ep+'–'+a.end_ep+'</b>';
+    var second = a.has_summary && a.logline ? a.logline : (firstTitle(a) || 'No episode titles carry story text');
+    return '<summary><span class="range">'+a.start_ep+'–'+a.end_ep+'</span>'+
+      '<span class="name">'+named+'<small>'+esc(second)+'</small></span>'+
+      '<span class="num">'+a.n+' ep'+(a.n===1?'':'s')+'</span>'+pill+'</summary>';
+  }
+  function renderList(){
+    current = arcs.filter(function(a){ return a._match; });
+    shown = LIMIT;
+    document.getElementById('empty').hidden = current.length>0;
+    paint();
+  }
   function paint(){
-    var slice = current.slice(0, shown);
-    list.innerHTML = slice.map(function(a){
+    list.innerHTML = current.slice(0, shown).map(function(a){
       return '<li><details class="arc" data-k="'+a.start_ep+'">'+rowHTML(a)+'</details></li>';
     }).join('') + (current.length>shown
-      ? '<li style="padding:14px 12px"><button class="toggle" id="more">Show '+
-        Math.min(LIMIT, current.length-shown)+' more of '+(current.length-shown)+'</button></li>'
-      : '');
+      ? '<li class="more"><button class="toggle" id="more">Show '+Math.min(LIMIT,current.length-shown)+
+        ' more of '+(current.length-shown)+'</button></li>' : '');
     var more = document.getElementById('more');
     if(more) more.addEventListener('click', function(){ shown+=LIMIT; paint(); });
   }
-
   list.addEventListener('toggle', function(e){
     var d = e.target;
     if(d.tagName!=='DETAILS' || !d.open || d.dataset.filled) return;
     var a = arcs.find(function(x){ return String(x.start_ep)===d.dataset.k; });
-    if(a){ d.insertAdjacentHTML('beforeend', bodyHTML(a)); d.dataset.filled='1'; }
+    if(a){ d.insertAdjacentHTML('beforeend','<div class="body">'+summaryHTML(a)+episodesHTML(a)+'</div>');
+           d.dataset.filled='1'; }
   }, true);
 
-  function render(){
-    current = arcs.filter(matches);
-    shown = LIMIT;
-    document.getElementById('count').textContent =
-      current.length===arcs.length
-        ? arcs.length+' arcs'
-        : current.length+' of '+arcs.length+' arcs';
-    document.getElementById('empty').hidden = current.length>0;
-    paint();
+  // ---- drawer ----------------------------------------------------------------
+  var drawer = document.getElementById('drawer'), scrim = document.getElementById('scrim');
+  var openIdx = -1;
+  function openArc(i){
+    if(i<0 || i>=arcs.length) return;
+    openIdx = i;
+    var a = arcs[i];
+    document.getElementById('d-meta').innerHTML =
+      '<span class="d-era" style="background:hsl('+hueOf(a.era)+',55%,42%)">'+esc(a.era)+'</span>'+
+      '<span>eps '+a.start_ep+'–'+a.end_ep+'</span><span>'+a.n+' episode'+(a.n===1?'':'s')+'</span>'+
+      (a.status==='ongoing' ? '<span style="color:var(--saffron)">open arc</span>' : '');
+    document.getElementById('d-title').textContent = arcName(a);
+    document.getElementById('d-body').innerHTML =
+      summaryHTML(a) + '<h4>Episodes</h4>' + episodesHTML(a);
+    document.getElementById('d-prev').disabled = i===0;
+    document.getElementById('d-next').disabled = i===arcs.length-1;
+    drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');
+    scrim.classList.add('on');
+    focusIdx = i; wake();
   }
-  render();
-
-  // ======================= spiral =======================
-  // 4,819 episodes are a linear sequence, so the geometry must preserve order while still
-  // fitting on one screen. An Archimedean spiral does both: episode 1 at the centre, the
-  // newest at the rim, every arc visible at once so nothing has to be remembered or
-  // searched for. Canvas rather than SVG -- 419 stroked paths redrawn on every pointer
-  // move is not something 419 DOM nodes handle well.
-  var cv = document.getElementById('spiral'),
-      ctx = cv.getContext('2d'),
-      readout = document.getElementById('readout');
-
-  var TURNS = 13, N = 0, pts = null, arcOf = [], base = null, hot = -1, pinned = -1;
-  arcs.forEach(function(a){ N += a.n; });
-
-  var off = 0;
-  arcs.forEach(function(a){ a._off = off; off += a.n; });
-  for (var ai = 0; ai < arcs.length; ai++)
-    for (var k = 0; k < arcs[ai].n; k++) arcOf.push(ai);
-
-  // Era to hue, walking indigo toward saffron so the ramp itself reads as time passing.
-  var ERA_HUE = {Early:247, Classic:214, Middle:186, Late:34, Current:14};
-  var VERIFIED = '#1F6B4C', INK = '#16161D', STROKE = 0;
-
-  function hueOf(era){ return ERA_HUE[era] == null ? 220 : ERA_HUE[era]; }
-
-  function arcColor(a, i, boost){
-    var l = (i % 2 ? 46 : 58) + (a.status === 'ongoing' ? 8 : 0);
-    // Saturation and alpha carry text signal: an arc with no usable episode text looks
-    // faint, which is an honest reading rather than a decorative one.
-    var sat = 12 + a.signal * 62;
-    var al = (0.30 + a.signal * 0.62) * (boost || 1);
-    return 'hsla(' + hueOf(a.era) + ',' + sat.toFixed(0) + '%,' + l + '%,' +
-           Math.min(al, 1).toFixed(3) + ')';
+  function closeDrawer(){
+    openIdx = -1; drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');
+    scrim.classList.remove('on'); wake();
   }
+  document.getElementById('d-close').addEventListener('click', closeDrawer);
+  scrim.addEventListener('click', closeDrawer);
+  document.getElementById('d-prev').addEventListener('click', function(){ openArc(openIdx-1); glideTo(openIdx); });
+  document.getElementById('d-next').addEventListener('click', function(){ openArc(openIdx+1); glideTo(openIdx); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && openIdx>=0) closeDrawer();
+  });
+
+  // =========================== the field =====================================
+  // Every arc is a soft body laid out in broadcast order as a serpentine river, one band
+  // per era, with a thread running through them in sequence. The pointer is a lens: arcs
+  // near it swell and part to make room (a Sarkar-Brown fisheye), then spring back with a
+  // little overshoot. Moving quickly leaves a wake. The lens is not decoration -- it
+  // magnifies what is near the pointer, so the 106 arcs spanning only 2-4 episodes become
+  // easy to hit instead of being a few pixels wide.
+  var stage = document.getElementById('stage'), cv = document.getElementById('field'),
+      ctx = cv.getContext('2d');
+  var W = 0, H = 0, DPR = 1, nodes = [], bands = [];
+  var ptr = {x:-1e4, y:-1e4, vx:0, vy:0, on:false, px:0, py:0, t:0};
+  var hot = -1, focusIdx = -1, lastMove = 0, running = false, t0 = performance.now();
+
+  var LENS_R = 170, LENS_K = 3.2, MAG = 2.4;
+  var K = REDUCED ? 0.30 : 0.11, DAMP = REDUCED ? 0.30 : 0.78;
+
+  function radiusOf(a){ return Math.max(3.6, Math.min(24, 2.6 + 2.35*Math.sqrt(a.n))); }
 
   function layout(){
-    var W = cv.width, H = cv.height, cx = W / 2, cy = H / 2;
-    var r0 = Math.min(W, H) * 0.055, r1 = Math.min(W, H) * 0.47;
-    var thMax = TURNS * Math.PI * 2;
-    pts = new Float32Array(N * 2);
-    for (var i = 0; i < N; i++){
-      var t = N === 1 ? 0 : i / (N - 1);
-      var th = t * thMax, r = r0 + (r1 - r0) * t;
-      pts[i * 2]     = cx + Math.cos(th - Math.PI / 2) * r;
-      pts[i * 2 + 1] = cy + Math.sin(th - Math.PI / 2) * r;
-    }
-    return (r1 - r0) / TURNS * 0.62;
+    var box = stage.clientWidth;
+    W = box; DPR = Math.min(2, window.devicePixelRatio || 1);
+    var gutter = W < 620 ? 16 : 92, right = 18, gap = W < 620 ? 3 : 4.5;
+    var x0 = gutter, x1 = W - right, y = 56, flip = false;
+    bands = []; var byEra = {};
+    arcs.forEach(function(a, i){ (byEra[a.era] = byEra[a.era] || []).push(i); });
+    var oldNodes = nodes; nodes = [];
+    D.eras.forEach(function(era){
+      var idx = byEra[era]; if(!idx) return;
+      var bandTop = y, rows = [], cur = [], x = x0, maxR = 0;
+      idx.forEach(function(i){
+        var r = radiusOf(arcs[i]);
+        if(x + 2*r > x1 && cur.length){ rows.push({items:cur, maxR:maxR}); cur=[]; x=x0; maxR=0; }
+        cur.push({i:i, r:r, x:x + r}); x += 2*r + gap; maxR = Math.max(maxR, r);
+      });
+      if(cur.length) rows.push({items:cur, maxR:maxR});
+      rows.forEach(function(rw){
+        var cy = y + rw.maxR + 6, lastX = 0;
+        // Serpentine: each row starts on the side where the previous row ended, so the
+        // thread only ever U-turns -- including across era breaks, where a short final row
+        // used to leave the next era starting on the far side of the field.
+        rw.items.forEach(function(it){
+          var hx = flip ? (x0 + x1 - it.x) : it.x;
+          var prev = oldNodes[it.i];
+          lastX = hx;
+          nodes[it.i] = {i:it.i, a:arcs[it.i], r:it.r, hx:hx, hy:cy,
+            x: prev ? prev.x : hx, y: prev ? prev.y : cy, vx:0, vy:0, s:1, al:1,
+            ph: Math.random()*6.283};
+        });
+        y = cy + rw.maxR + 8;
+        flip = lastX > (x0 + x1) / 2;
+      });
+      bands.push({era:era, top:bandTop, bottom:y, first:arcs[idx[0]].start_ep,
+                  last:arcs[idx[idx.length-1]].end_ep});
+      y += 26;
+    });
+    H = y + 6;
+    cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
+    cv.style.height = H + 'px';
+    wake();
   }
 
-  // Uniform grid for nearest-point lookup, so hover stays O(1) instead of scanning 4,819.
-  var GRID = 26, cells = null;
-  function buildGrid(){
-    cells = {};
-    for (var i = 0; i < N; i++){
-      var key = ((pts[i*2] / GRID) | 0) + ',' + ((pts[i*2+1] / GRID) | 0);
-      (cells[key] || (cells[key] = [])).push(i);
-    }
+  function colorOf(a, light, alpha){
+    // Saturation carries text signal: an arc with little episode text is genuinely greyer.
+    var sat = 18 + a.signal*66;
+    return 'hsla('+hueOf(a.era)+','+sat.toFixed(0)+'%,'+light+'%,'+alpha.toFixed(3)+')';
   }
-  function nearest(x, y){
-    var gx = (x / GRID) | 0, gy = (y / GRID) | 0, best = -1, bd = 1e9;
-    for (var a = -1; a <= 1; a++){
-      for (var b = -1; b <= 1; b++){
-        var arr = cells[(gx + a) + ',' + (gy + b)];
-        if (!arr) continue;
-        for (var j = 0; j < arr.length; j++){
-          var i = arr[j], dx = pts[i*2] - x, dy = pts[i*2+1] - y, d = dx*dx + dy*dy;
-          if (d < bd){ bd = d; best = i; }
+
+  function step(now){
+    var t = now - t0;
+    var active = ptr.on || focusIdx >= 0;
+    // The lens centres on the arc being pointed at, not on the raw pointer. A fisheye
+    // pushes everything outward from its focus -- including the arc under the pointer,
+    // which a pointer-centred lens flings several times further away the moment you are
+    // slightly off-centre. Snapping the focus keeps that arc still and magnified while its
+    // neighbours part around it; the springs make the hand-off between arcs smooth.
+    var fx = ptr.x, fy = ptr.y, lock = ptr.on ? hot : focusIdx;
+    if(lock >= 0 && nodes[lock]){ fx = nodes[lock].hx; fy = nodes[lock].hy; }
+    var moving = false;
+    for(var j=0;j<nodes.length;j++){
+      var n = nodes[j]; if(!n) continue;
+      var tx = n.hx, ty = n.hy, ts = 1;
+      if(active){
+        var dx = n.hx - fx, dy = n.hy - fy, d = Math.sqrt(dx*dx + dy*dy);
+        if(d < LENS_R){
+          var u = d / LENS_R;
+          var dd = LENS_R * (LENS_K+1) * u / (LENS_K*u + 1);
+          if(d > 0.001){ tx = fx + dx/d*dd; ty = fy + dy/d*dd; }
+          var f = 1 - u;
+          ts = 1 + (MAG-1)*f*f;
+          if(!REDUCED && ptr.on){ n.vx += ptr.vx*0.05*f*f; n.vy += ptr.vy*0.05*f*f; }
         }
       }
+      if(!REDUCED){
+        tx += Math.sin(t*0.0009 + n.ph)*1.1;
+        ty += Math.cos(t*0.0011 + n.ph*1.3)*1.1;
+      }
+      // With the pointer near an edge, "outward" points off the canvas; keep arcs in view
+      // so they bunch against the edge instead of disappearing.
+      var pad = n.r * ts + 2;
+      tx = Math.max(pad, Math.min(W - pad, tx));
+      ty = Math.max(pad, Math.min(H - pad, ty));
+      if(j === hot || j === openIdx) ts *= 1.18;
+      n.vx = n.vx*DAMP + (tx - n.x)*K;
+      n.vy = n.vy*DAMP + (ty - n.y)*K;
+      n.x += n.vx; n.y += n.vy;
+      n.s += (ts - n.s)*0.2;
+      var ta = (!filtering || n.a._match) ? 1 : 0.12;
+      n.al += (ta - n.al)*0.15;
+      if(Math.abs(n.vx)+Math.abs(n.vy) > 0.02 || Math.abs(ts-n.s) > 0.004 || Math.abs(ta-n.al) > 0.004) moving = true;
     }
-    return bd < Math.pow(STROKE * 1.1, 2) ? best : -1;
+    ptr.vx *= 0.8; ptr.vy *= 0.8;
+    draw(t);
+    // Keep animating while anything moves; at rest, the breathing still needs frames, but
+    // stop entirely when the tab is hidden or motion is reduced and nothing is changing.
+    if(document.hidden || !onScreen || (REDUCED && !moving && !ptr.on)){ running = false; return; }
+    requestAnimationFrame(step);
   }
-
-  function strokeArc(c, ai, width, color){
-    var a = arcs[ai], lo = a._off, hi = lo + a.n - 1;
-    c.beginPath();
-    c.moveTo(pts[lo*2], pts[lo*2+1]);
-    for (var i = lo + 1; i <= hi; i++) c.lineTo(pts[i*2], pts[i*2+1]);
-    c.lineWidth = width; c.strokeStyle = color;
-    c.lineCap = 'round'; c.lineJoin = 'round';
-    c.stroke();
+  // The field breathes continuously, so stop the loop entirely while it is scrolled away.
+  var onScreen = true;
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      onScreen = es[0].isIntersecting; if(onScreen) wake();
+    }).observe(stage);
   }
+  function wake(){ if(!running){ running = true; requestAnimationFrame(step); } }
 
-  function drawBase(width){
-    base = document.createElement('canvas');
-    base.width = cv.width; base.height = cv.height;
-    var c = base.getContext('2d');
-    arcs.forEach(function(a, i){
-      strokeArc(c, i, width, arcColor(a, i));
-      if (a.has_summary){
-        // A dot marks an arc carrying a written synopsis. There are 9 of 419 today, so
-        // how sparse these dots look is itself an accurate reading of coverage.
-        var m = a._off + (a.n >> 1);
-        c.beginPath();
-        c.arc(pts[m*2], pts[m*2+1], width * 0.30, 0, 6.2832);
-        c.fillStyle = VERIFIED; c.fill();
+  function draw(t){
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    ctx.clearRect(0,0,W,H);
+
+    // Era bands: a hairline and a label in the gutter.
+    ctx.textBaseline = 'top';
+    bands.forEach(function(b, k){
+      if(k>0){ ctx.fillStyle = '#1A1E2C'; ctx.fillRect(12, b.top-14, W-24, 1); }
+      if(W >= 620){
+        ctx.fillStyle = 'hsl('+hueOf(b.era)+',55%,62%)';
+        ctx.font = '600 12px Archivo, "Arial Narrow", sans-serif';
+        ctx.fillText(b.era.toUpperCase(), 16, b.top+4);
+        ctx.fillStyle = '#626884';
+        ctx.font = '400 10.5px "IBM Plex Mono", monospace';
+        ctx.fillText(b.first+'–'+b.last, 16, b.top+21);
       }
     });
-  }
 
-  function readTokens(){
-    var cs = getComputedStyle(document.documentElement);
-    VERIFIED = (cs.getPropertyValue('--verified') || '#1F6B4C').trim();
-    INK = (cs.getPropertyValue('--ink') || '#16161D').trim();
-  }
+    // The thread: broadcast order, drawn through the current (displaced) positions so it
+    // bends with the lens rather than cutting across it.
+    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(150,160,210,.13)';
+    ctx.beginPath();
+    for(var i=0;i<nodes.length;i++){ var n=nodes[i]; if(i===0) ctx.moveTo(n.x,n.y); else ctx.lineTo(n.x,n.y); }
+    ctx.stroke();
 
-  function drawSpiral(){
-    ctx.clearRect(0, 0, cv.width, cv.height);
-    if (base) ctx.drawImage(base, 0, 0);
-    var sel = pinned >= 0 ? pinned : hot;
-    if (sel >= 0){
-      var a = arcs[sel];
-      strokeArc(ctx, sel, STROKE * 1.9, 'hsla(0,0%,100%,.5)');
-      strokeArc(ctx, sel, STROKE * 1.35, arcColor(a, sel, 2.4));
-      [a._off, a._off + a.n - 1].forEach(function(i){
-        ctx.beginPath();
-        ctx.arc(pts[i*2], pts[i*2+1], STROKE * 0.42, 0, 6.2832);
-        ctx.fillStyle = INK; ctx.fill();
-      });
+    var sel = openIdx >= 0 ? openIdx : hot;
+    if(sel >= 0){
+      // Light the thread to the neighbours, so where this arc sits in the run is visible.
+      ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(230,232,255,.55)';
+      ctx.beginPath();
+      var lo = Math.max(0, sel-1), hi = Math.min(nodes.length-1, sel+1);
+      ctx.moveTo(nodes[lo].x, nodes[lo].y);
+      for(var q=lo+1;q<=hi;q++) ctx.lineTo(nodes[q].x, nodes[q].y);
+      ctx.stroke();
+    }
+
+    for(var j=0;j<nodes.length;j++){
+      var m = nodes[j]; if(j===sel) continue;
+      drawNode(m, t, false);
+    }
+    if(sel >= 0) drawSelected(nodes[sel], t);
+
+    // The pointer itself: a soft ring showing the lens, since the canvas hides the cursor.
+    if(ptr.on){
+      ctx.beginPath(); ctx.arc(ptr.x, ptr.y, 5, 0, 6.2832);
+      ctx.fillStyle = 'rgba(235,238,255,.9)'; ctx.fill();
+      ctx.beginPath(); ctx.arc(ptr.x, ptr.y, LENS_R*0.42, 0, 6.2832);
+      ctx.strokeStyle = 'rgba(200,205,255,.07)'; ctx.lineWidth = 1; ctx.stroke();
     }
   }
 
-  function rebuild(){
-    readTokens();
-    var dpr = window.devicePixelRatio > 1 ? 2 : 1;
-    var box = cv.parentElement.clientWidth;
-    var side = Math.max(340, Math.min(900, box));
-    cv.width = side * dpr; cv.height = side * dpr;
-    cv.style.height = side + 'px';
-    STROKE = layout();
-    buildGrid();
-    drawBase(STROKE);
-    drawSpiral();
+  function drawNode(n, t, strong){
+    var a = n.a, r = n.r * n.s, al = (0.42 + a.signal*0.58) * n.al;
+    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 6.2832);
+    ctx.fillStyle = colorOf(a, n.i%2 ? 50 : 60, al); ctx.fill();
+    if(a.has_summary){
+      ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(99,199,154,'+(0.95*n.al).toFixed(3)+')';
+      ctx.beginPath(); ctx.arc(n.x, n.y, r+2.5, 0, 6.2832); ctx.stroke();
+    }
+    if(a.status === 'ongoing'){
+      // Open arcs are still being recomputed each run -- so they visibly pulse.
+      var p = REDUCED ? 0.5 : (Math.sin(t*0.004)+1)/2;
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(232,168,96,'+((0.35+0.5*p)*n.al).toFixed(3)+')';
+      ctx.beginPath(); ctx.arc(n.x, n.y, r + 3 + p*5, 0, 6.2832); ctx.stroke();
+    }
   }
 
-  function showReadout(ai, px, py){
-    var a = arcs[ai];
-    var name = a.has_summary && a.title ? a.title : 'Arc ' + a.start_ep + '-' + a.end_ep;
-    var sub = a.has_summary && a.logline ? a.logline
-            : ((a.episodes.find(function(e){ return e.title; }) || {}).title
-               || 'No episode titles carry story text');
-    readout.innerHTML =
-      '<span class="r-eps">eps ' + a.start_ep + '-' + a.end_ep + ' &middot; ' + a.n +
-      ' &middot; ' + a.era + (a.status === 'ongoing' ? ' &middot; open' : '') + '</span>' +
-      '<b>' + esc(name) + '</b>' +
-      '<span class="r-sub">' + esc(sub) + '</span>' +
-      '<span class="r-hint">click to open below</span>';
+  function drawSelected(n, t){
+    var a = n.a, r = n.r * n.s;
+    // Halo, additively blended so it glows rather than paints.
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    var g = ctx.createRadialGradient(n.x, n.y, r*0.4, n.x, n.y, r*3.2);
+    g.addColorStop(0, 'hsla('+hueOf(a.era)+',90%,60%,.55)');
+    g.addColorStop(1, 'hsla('+hueOf(a.era)+',90%,60%,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(n.x, n.y, r*3.2, 0, 6.2832); ctx.fill();
+    ctx.restore();
+
+    drawNode(n, t, true);
+    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 6.2832);
+    ctx.fillStyle = 'hsla('+hueOf(a.era)+',85%,66%,1)'; ctx.fill();
+
+    // Its episodes fan out as satellites, one per episode, so an arc's length is felt.
+    var k = Math.min(a.n, 48), orbit = r + 9 + Math.min(18, a.n*0.25);
+    for(var e=0;e<k;e++){
+      var ang = e/k*6.2832 + (REDUCED ? 0 : t*0.0005) - 1.5708;
+      var ex = n.x + Math.cos(ang)*orbit, ey = n.y + Math.sin(ang)*orbit;
+      ctx.beginPath(); ctx.arc(ex, ey, a.episodes[e] && a.episodes[e].title ? 2.1 : 1.4, 0, 6.2832);
+      ctx.fillStyle = a.episodes[e] && a.episodes[e].shared_with ? 'rgba(232,168,96,.95)'
+        : 'hsla('+hueOf(a.era)+',70%,80%,.85)';
+      ctx.fill();
+    }
+    drawLabel(n, orbit);
+  }
+
+  function drawLabel(n, orbit){
+    var a = n.a;
+    var title = arcName(a);
+    var sub = a.has_summary && a.logline ? a.logline : (firstTitle(a) || 'No episode titles carry story text');
+    var meta = a.era.toUpperCase()+'  ·  EPS '+a.start_ep+'–'+a.end_ep+'  ·  '+a.n+(a.status==='ongoing'?'  ·  OPEN':'');
+    ctx.font = '600 14px "IBM Plex Sans Devanagari", sans-serif';
+    var tw = Math.min(300, ctx.measureText(title).width);
+    ctx.font = '400 12px "IBM Plex Sans Devanagari", sans-serif';
+    if(sub.length > 58) sub = sub.slice(0, 56) + '…';
+    var sw = Math.min(300, ctx.measureText(sub).width);
+    var bw = Math.max(tw, sw, 170) + 24, bh = 66;
+    var bx = n.x + orbit + 14, by = n.y - bh/2;
+    if(bx + bw > W - 8) bx = n.x - orbit - 14 - bw;
+    bx = Math.max(8, bx); by = Math.max(8, Math.min(H - bh - 8, by));
+
+    ctx.fillStyle = 'rgba(16,19,30,.94)';
+    roundRect(bx, by, bw, bh, 5); ctx.fill();
+    ctx.fillStyle = 'hsl('+hueOf(a.era)+',70%,62%)'; ctx.fillRect(bx, by+6, 2.5, bh-12);
+
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = 'hsl('+hueOf(a.era)+',60%,70%)';
+    ctx.font = '500 10px "IBM Plex Mono", monospace';
+    ctx.fillText(meta, bx+12, by+9);
+    ctx.fillStyle = '#EEF0FA';
+    ctx.font = '600 14px "IBM Plex Sans Devanagari", sans-serif';
+    ctx.fillText(clip(title, 300), bx+12, by+23);
+    ctx.fillStyle = '#9CA2BE';
+    ctx.font = '400 12px "IBM Plex Sans Devanagari", sans-serif';
+    ctx.fillText(sub, bx+12, by+43);
+  }
+  function clip(s, w){
+    if(ctx.measureText(s).width <= w) return s;
+    while(s.length > 4 && ctx.measureText(s+'…').width > w) s = s.slice(0,-1);
+    return s + '…';
+  }
+  function roundRect(x,y,w,h,r){
+    ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+  }
+
+  // Picking works on RESTING positions. Because the lens then centres on the picked arc,
+  // that arc does not move, so what you point at is what stays under the pointer.
+  function pick(x, y){
+    var best = -1, bd = 1e9;
+    for(var i=0;i<nodes.length;i++){
+      var n = nodes[i], dx = n.hx-x, dy = n.hy-y, d = dx*dx+dy*dy;
+      if(d < bd){ bd = d; best = i; }
+    }
+    if(best < 0) return -1;
+    var reach = Math.max(26, nodes[best].r*1.8);
+    return bd < reach*reach ? best : -1;
+  }
+
+  function local(ev){
     var r = cv.getBoundingClientRect();
-    var x = Math.min(Math.max(px - 145, 6), Math.max(6, r.width - 300));
-    var y = py < r.height / 2 ? py + 22 : py - readout.offsetHeight - 22;
-    readout.style.left = x + 'px';
-    readout.style.top = Math.max(6, y) + 'px';
-    readout.classList.add('on');
+    return [ev.clientX - r.left, ev.clientY - r.top];
   }
-
-  function toCanvas(ev){
-    var r = cv.getBoundingClientRect();
-    return [(ev.clientX - r.left) * (cv.width / r.width),
-            (ev.clientY - r.top) * (cv.height / r.height),
-            ev.clientX - r.left, ev.clientY - r.top];
-  }
-
+  var downAt = null;
   cv.addEventListener('pointermove', function(ev){
-    var c = toCanvas(ev), i = nearest(c[0], c[1]);
-    var ai = i < 0 ? -1 : arcOf[i];
-    if (ai !== hot){ hot = ai; drawSpiral(); }
-    if (ai < 0) readout.classList.remove('on');
-    else showReadout(ai, c[2], c[3]);
-  });
-
-  cv.addEventListener('pointerleave', function(){
-    hot = -1; readout.classList.remove('on'); drawSpiral();
-  });
-
-  cv.addEventListener('pointerdown', function(ev){
-    var c = toCanvas(ev), i = nearest(c[0], c[1]);
-    if (i < 0) return;
-    var ai = arcOf[i];
-    pinned = pinned === ai ? -1 : ai;
-    drawSpiral();
-    if (pinned < 0) return;
-    var a = arcs[ai];
-    // Clear filters first, otherwise the clicked arc may not be in the current list and
-    // the click would appear to do nothing.
-    state.q = ''; state.era = null; state.tag = null; state.onlySum = false;
-    document.getElementById('q').value = '';
-    [].forEach.call(document.querySelectorAll('.chip'), function(ch){
-      ch.setAttribute('aria-pressed', 'false');
-    });
-    document.getElementById('only-sum').setAttribute('aria-pressed', 'false');
-    current = arcs;
-    shown = Math.max(LIMIT, Math.ceil((ai + 1) / LIMIT) * LIMIT);
-    paint();
-    var d = list.querySelector('details[data-k="' + a.start_ep + '"]');
-    if (d){
-      d.open = true;
-      d.scrollIntoView({block:'center',
-        behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth'});
+    var p = local(ev), now = performance.now();
+    if(ptr.on){
+      var dt = Math.max(8, now - ptr.t);
+      ptr.vx = (p[0]-ptr.x)/dt*16; ptr.vy = (p[1]-ptr.y)/dt*16;
     }
+    ptr.x = p[0]; ptr.y = p[1]; ptr.t = now; ptr.on = true; focusIdx = -1;
+    hot = pick(p[0], p[1]);
+    cv.style.cursor = hot >= 0 ? 'pointer' : 'none';
+    wake();
   });
+  cv.addEventListener('pointerleave', function(){ ptr.on = false; hot = -1; wake(); });
+  cv.addEventListener('pointerdown', function(ev){ var p = local(ev); downAt = p;
+    ptr.x = p[0]; ptr.y = p[1]; ptr.on = true; hot = pick(p[0], p[1]); wake(); });
+  cv.addEventListener('pointerup', function(ev){
+    var p = local(ev);
+    if(downAt && Math.hypot(p[0]-downAt[0], p[1]-downAt[1]) < 10){
+      var i = pick(p[0], p[1]);
+      if(i >= 0) openArc(i);
+    }
+    downAt = null;
+    if(ev.pointerType !== 'mouse'){ ptr.on = false; hot = -1; }
+  });
+
+  // Keyboard: arrow keys step the lens through the run in broadcast order.
+  function glideTo(i){
+    focusIdx = i; hot = i; ptr.on = false; wake();
+    var n = nodes[i]; if(!n) return;
+    var r = cv.getBoundingClientRect(), top = r.top + n.hy;
+    if(top < 80 || top > innerHeight - 80)
+      scrollTo({top: scrollY + top - innerHeight/2, behavior: REDUCED ? 'auto' : 'smooth'});
+  }
+  cv.addEventListener('keydown', function(e){
+    var cur = focusIdx >= 0 ? focusIdx : (hot >= 0 ? hot : -1);
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){ e.preventDefault(); glideTo(Math.min(arcs.length-1, cur+1)); }
+    else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){ e.preventDefault(); glideTo(Math.max(0, cur < 0 ? 0 : cur-1)); }
+    else if(e.key === 'Home'){ e.preventDefault(); glideTo(0); }
+    else if(e.key === 'End'){ e.preventDefault(); glideTo(arcs.length-1); }
+    else if(e.key === 'Enter' && cur >= 0){ e.preventDefault(); openArc(cur); }
+  });
+  cv.addEventListener('blur', function(){ if(openIdx < 0){ focusIdx = -1; hot = -1; wake(); } });
+  document.addEventListener('keydown', function(e){
+    if(openIdx < 0) return;
+    if(e.key === 'ArrowRight' && document.activeElement !== cv){ openArc(Math.min(arcs.length-1, openIdx+1)); glideTo(openIdx); }
+    if(e.key === 'ArrowLeft' && document.activeElement !== cv){ openArc(Math.max(0, openIdx-1)); glideTo(openIdx); }
+  });
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) wake(); });
 
   document.getElementById('legend').innerHTML =
-    D.eras.map(function(e){
-      return '<span><i style="background:hsl(' + hueOf(e) + ',52%,52%)"></i>' + e + '</span>';
-    }).join('') +
-    '<span><i style="background:linear-gradient(90deg,hsla(220,12%,52%,.32),hsla(220,74%,52%,1))"></i>' +
-    'faint = little episode text</span>' +
-    '<span><u></u>has a written synopsis</span>';
+    '<span><i style="background:#4a5a8a"></i>size = episodes in the arc</span>'+
+    '<span><i style="background:hsla(220,18%,55%,.5)"></i>greyer = less episode text</span>'+
+    '<span><i style="background:transparent; box-shadow:0 0 0 2px #63C79A"></i>ringed = written synopsis</span>'+
+    '<span><i style="background:transparent; box-shadow:0 0 0 2px #E8A860"></i>pulsing = still open</span>';
 
-  rebuild();
   var rt;
-  window.addEventListener('resize', function(){
-    clearTimeout(rt); rt = setTimeout(rebuild, 140);
-  });
-  if (matchMedia('(prefers-color-scheme:dark)').addEventListener)
-    matchMedia('(prefers-color-scheme:dark)').addEventListener('change', rebuild);
+  window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(layout, 120); });
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(wake);
 
+  applyFilters();
+  layout();
 })();
 </script>

@@ -551,3 +551,47 @@ the list filter. JavaScript hoisting means the second definition silently replac
 first, so every search and filter would have redrawn the canvas instead of filtering.
 Renamed to `drawSpiral()`, with a duplicate-name scan over the whole script to confirm
 nothing else collides.
+
+
+---
+
+### CP14 — Live field (replaces the CP13 spiral)  `DONE`
+The spiral was a picture you hover over; the request was a surface that physically reacts
+to the pointer. Replaced with a field of soft bodies — one per arc, sized by episodes,
+laid out in broadcast order as a serpentine river, one band per era.
+
+- **Magnetic lens.** Arcs near the pointer swell and part (Sarkar–Brown fisheye) and
+  spring back with slight overshoot; moving fast leaves a wake. The hovered arc blooms —
+  one satellite per episode, its neighbours on the thread lit — and names itself.
+- **Encodes real state:** era = hue, text signal = saturation, green ring = verified
+  synopsis, pulsing ring = open arc still being recomputed. Search and filters dim
+  non-matching arcs in the field, not just in the list.
+- **Reachable without searching:** click opens a drawer with synopsis, all episode links
+  and prev/next arc; arrow keys step the lens through the whole run; Esc closes.
+- Loop stops when the tab is hidden or the field is scrolled off-screen; reduced-motion
+  removes breathing, wake and overshoot but keeps the lens.
+
+**Two defects found by rendering it once in headless Edge — neither was visible to the
+geometry test as first written:**
+1. **The lens pushed away the arc being pointed at.** A fisheye moves everything outward
+   from its focus; with the focus on the raw pointer, an arc 10px off-centre was flung
+   ~42px away, so targeting would have felt like chasing soap. The lens now locks onto
+   the nearest arc's resting position, so that arc stays put and magnified while the rest
+   part around it.
+2. **Long diagonal threads between eras.** Rows alternated direction globally, so a short
+   final row could end on the left while the next era began on the right. Each row now
+   starts on whichever side the previous one ended.
+
+A third, caught by the test: near the canvas edge the lens pushed arcs out of view.
+Targets are now clamped inside the field.
+
+**Exit test:** `node scripts/check_field.js`, at 360 / 800 / 1240px:
+
+| check | result |
+|---|---|
+| arcs overlapping at rest | 0 |
+| arcs pickable by pointing (incl. 106 of ≤4 episodes) | 419 / 419 |
+| hovered arc stays under the pointer | yes — edge clamp nudges 1 arc on desktop, 11 on phone, max 31% of its radius |
+| hovered arc magnified | 2.4× |
+| arcs pushed off-canvas by the lens | 0 |
+| broadcast order continuous through the serpentine | yes |
