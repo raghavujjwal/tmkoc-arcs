@@ -45,16 +45,18 @@ tail past the last sealed boundary is recomputed.
 
 <https://raghavujjwal.github.io/tmkoc-arcs/>
 
-All 419 arcs float as bubbles over a sunny Gokuldham sky — clouds, sun, society rooftops —
-in broadcast order, one band per era (violet, blue, sunflower, marigold, brick-red). The
-pointer is a magnetic lens: the arc under it swells and blooms into its episodes while its
-neighbours part to make room. Click an arc to see its episodes below the field; arrow keys
-step through the run; search and filters fade non-matching arcs.
+All 419 arcs as bubbles on a soft, drifting wash of sky blue, sunflower and coral. Each
+era is a spiral cluster — its first arc at the centre, later arcs winding outward — and
+the five eras flow across the page in a zigzag, each spiral's outer end facing the next.
+The pointer is a magnetic lens: the arc under it swells and blooms into its episodes while
+its neighbours part to make room. Click an arc to see its episodes below; arrow keys step
+through the run; search and filters fade non-matching arcs.
 
 Arcs without a written summary take their name from their most telling episode title, so
 every arc reads as a story. The footer states how many arcs have written summaries.
 
-Geometry is tested at phone, tablet and desktop widths (`node scripts/check_field.js`).
+Layout, lens and picking live in `site/layout.js`, shared by the page and its test
+(`node scripts/check_field.js`), so the tested geometry is the drawn geometry.
 
 ## Episode links
 

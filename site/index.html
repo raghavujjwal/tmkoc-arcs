@@ -70,11 +70,12 @@ input[type=search]:focus-visible,button:focus-visible,a:focus-visible,canvas:foc
 .count{font-size:12.5px; color:var(--faint); margin:0}
 
 /* ---- the stage ----
-   A single deliberate look in both themes: the sunny sky the show's own title cards use
-   over Gokuldham -- blue sky, white cloud, a warm sun -- painted on the canvas itself. */
+   A soft, diffused wash of sky blue, sunflower and coral -- the palette of the show's
+   sunny title cards, blurred into colour rather than drawn as scenery. Painted on the
+   canvas so it can drift slowly behind the arcs. */
 .stage{
   position:relative; border-radius:14px; overflow:hidden;
-  background:#8CC8F2; box-shadow:0 1px 0 rgba(255,255,255,.6) inset, var(--shadow);
+  background:#FCEBD6; box-shadow:0 1px 0 rgba(255,255,255,.6) inset, var(--shadow);
 }
 .stage canvas{display:block; width:100%; touch-action:none; cursor:none}
 .stage canvas:focus-visible{outline-offset:-4px}
@@ -204,6 +205,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
 </div>
 
 <script src="arcs.js"></script>
+<script src="layout.js"></script>
 <script>
 (function(){
   var D = window.ARC_DATA;
@@ -391,115 +393,56 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
   }
 
   // =========================== the field =====================================
-  // One soft body per arc, in broadcast order as a serpentine river with a band per era.
-  // The pointer is a lens: it locks onto the nearest arc, which swells and blooms while its
-  // neighbours part to make room and spring back as you move on. Every arc is drawn in
-  // full colour whether or not its episodes have descriptions -- the field shows the run,
-  // not the state of the metadata.
+  // Five spiral clusters, one per era: each era's first arc at the centre, later arcs
+  // winding outward, the clusters flowing as a zigzag with each spiral's outer end facing
+  // the next era. Geometry lives in layout.js, shared with the test. The pointer is a lens
+  // that locks onto the nearest arc: it swells and blooms while its neighbours part.
+  var L = window.ArcLayout;
   var stage = document.getElementById('stage'), cv = document.getElementById('field'),
       ctx = cv.getContext('2d');
-  var W = 0, H = 0, DPR = 1, nodes = [], bands = [], clouds = [];
+  var W = 0, H = 0, DPR = 1, nodes = [], clusters = [];
   var ptr = {x:-1e4, y:-1e4, vx:0, vy:0, on:false, t:0};
   var hot = -1, focusIdx = -1, running = false, t0 = performance.now();
-
-  var LENS_R = 190, LENS_K = 3.0, MAG = 2.3;
   var K = REDUCED ? 0.30 : 0.11, DAMP = REDUCED ? 0.30 : 0.78;
-  function radiusOf(a){ return Math.max(4, Math.min(24, 2.8 + 2.35*Math.sqrt(a.n))); }
 
   function layout(){
     W = stage.clientWidth; DPR = Math.min(2, window.devicePixelRatio || 1);
-    var small = W < 620;
-    var gutter = small ? 14 : 104, right = 22, gap = small ? 7 : 10;
-    var x0 = gutter, x1 = W - right, y = small ? 70 : 64, flip = false;
-    var byEra = {}; arcs.forEach(function(a, i){ (byEra[a.era] = byEra[a.era] || []).push(i); });
-    var old = nodes; nodes = []; bands = [];
-    D.eras.forEach(function(era){
-      var idx = byEra[era]; if(!idx) return;
-      var top = y, rows = [], cur = [], x = x0, maxR = 0;
-      idx.forEach(function(i){
-        var r = radiusOf(arcs[i]);
-        if(x + 2*r > x1 && cur.length){ rows.push({items:cur, maxR:maxR}); cur=[]; x=x0; maxR=0; }
-        cur.push({i:i, r:r, x:x + r}); x += 2*r + gap; maxR = Math.max(maxR, r);
-      });
-      if(cur.length) rows.push({items:cur, maxR:maxR});
-      rows.forEach(function(rw){
-        var cy = y + rw.maxR + 9, lastX = 0;
-        // Each row starts on the side where the previous one ended, so the thread only
-        // ever U-turns, including across era breaks.
-        rw.items.forEach(function(it){
-          var hx = flip ? (x0 + x1 - it.x) : it.x; lastX = hx;
-          var p = old[it.i];
-          nodes[it.i] = {i:it.i, a:arcs[it.i], r:it.r, hx:hx, hy:cy,
-            x: p ? p.x : hx, y: p ? p.y : cy, vx:0, vy:0, s:1, al:1, ph:Math.random()*6.283};
-        });
-        y = cy + rw.maxR + 14;
-        flip = lastX > (x0 + x1) / 2;
-      });
-      bands.push({era:era, top:top, first:arcs[idx[0]].start_ep, last:arcs[idx[idx.length-1]].end_ep});
-      y += 30;
+    var res = L.compute(arcs, D.eras, W), old = nodes;
+    H = res.H; clusters = res.clusters; nodes = [];
+    res.nodes.forEach(function(p, i){
+      var o = old[i];
+      nodes[i] = {i:i, a:arcs[i], r:p.r, hx:p.hx, hy:p.hy,
+        x: o ? o.x : p.hx, y: o ? o.y : p.hy, vx:0, vy:0, s:1, al:1, ph:Math.random()*6.283};
     });
-    H = y + 64;                       // room for the rooftops along the bottom
     cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
     cv.style.height = H + 'px';
-    makeClouds(); makeSkyline();
+    meshT = -1e9;
     wake();
   }
 
-  // ---- scenery -------------------------------------------------------------------
-  function makeClouds(){
-    clouds = [];
-    var n = Math.max(5, Math.round(W / 170)), seed = 7;
-    function rnd(){ seed = (seed*9301 + 49297) % 233280; return seed/233280; }
-    for(var i=0;i<n;i++){
-      var puffs = [], w = 70 + rnd()*110;
-      for(var k=0;k<5;k++) puffs.push([ (k-2)*w*0.2 + rnd()*10, -rnd()*w*0.16, w*(0.2+rnd()*0.14) ]);
-      clouds.push({x: rnd()*W, y: 30 + rnd()*(H-160), w:w, speed: 0.004 + rnd()*0.008,
-                   a: 0.55 + rnd()*0.3, puffs:puffs});
-    }
-  }
-  var roofs = [];
-  function makeSkyline(){
-    // A low row of society rooftops along the bottom edge -- flat blocks with water tanks,
-    // the way Gokuldham reads from the courtyard.
-    roofs = []; var x = -10, seed = 3;
-    function rnd(){ seed = (seed*9301 + 49297) % 233280; return seed/233280; }
-    while(x < W + 20){
-      var w = 60 + rnd()*90, h = 26 + rnd()*30;
-      roofs.push({x:x, w:w, h:h, tank: rnd() > 0.45, win: Math.floor(w/18)});
-      x += w + 2;
-    }
-  }
-  function drawScenery(t){
-    var g = ctx.createLinearGradient(0, 0, 0, H);
-    g.addColorStop(0, '#3E95DE'); g.addColorStop(0.45, '#8CC8F2');
-    g.addColorStop(0.82, '#CFE9F7'); g.addColorStop(1, '#FFE3A8');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-
-    var sx = W - 120, sy = 90;
-    var sg = ctx.createRadialGradient(sx, sy, 10, sx, sy, 260);
-    sg.addColorStop(0, 'rgba(255,236,150,.95)'); sg.addColorStop(0.18, 'rgba(255,214,90,.55)');
-    sg.addColorStop(1, 'rgba(255,214,90,0)');
-    ctx.fillStyle = sg; ctx.fillRect(0, 0, W, H);
-    ctx.beginPath(); ctx.arc(sx, sy, 38, 0, 6.2832); ctx.fillStyle = '#FFE070'; ctx.fill();
-
-    clouds.forEach(function(c){
-      var cx = ((c.x + (REDUCED ? 0 : t*c.speed)) % (W + 260)) - 130;
-      ctx.fillStyle = 'rgba(255,255,255,'+c.a.toFixed(2)+')';
-      c.puffs.forEach(function(p){
-        ctx.beginPath(); ctx.arc(cx + p[0], c.y + p[1], p[2], 0, 6.2832); ctx.fill();
-      });
-    });
-
-    var base = H;
-    roofs.forEach(function(r){
-      ctx.fillStyle = 'rgba(217,83,43,.22)';
-      ctx.fillRect(r.x, base - r.h, r.w, r.h);
-      ctx.fillStyle = 'rgba(255,248,230,.55)';
-      for(var k=0;k<r.win;k++) ctx.fillRect(r.x + 8 + k*18, base - r.h + 9, 7, 8);
-      if(r.tank){
-        ctx.fillStyle = 'rgba(217,83,43,.28)';
-        ctx.fillRect(r.x + r.w*0.62, base - r.h - 10, 16, 10);
-      }
+  // ---- background: a soft, diffused wash of sky blue, sunflower and coral -------------
+  // Painted small and scaled up, which is what makes it genuinely soft (and cheap), then
+  // refreshed a few times a second as the colour pools drift slowly.
+  var mesh = document.createElement('canvas'), mctx = mesh.getContext('2d'), meshT = -1e9;
+  var BLOBS = [
+    {c:[110,184,242], x:0.10, y:0.12, r:0.70, ox:0.05, oy:0.04, sp:0.00011},
+    {c:[160,214,250], x:0.90, y:0.30, r:0.60, ox:0.04, oy:0.06, sp:0.00009},
+    {c:[255,214,110], x:0.55, y:0.05, r:0.55, ox:0.07, oy:0.03, sp:0.00013},
+    {c:[255,172,112], x:0.22, y:0.78, r:0.60, ox:0.05, oy:0.05, sp:0.00010},
+    {c:[255,128,104], x:0.88, y:0.92, r:0.55, ox:0.04, oy:0.05, sp:0.00012},
+    {c:[255,226,150], x:0.50, y:0.55, r:0.45, ox:0.08, oy:0.06, sp:0.00008}
+  ];
+  function paintMesh(t){
+    var mw = Math.max(40, Math.round(W/10)), mh = Math.max(40, Math.round(H/10));
+    if(mesh.width !== mw || mesh.height !== mh){ mesh.width = mw; mesh.height = mh; }
+    mctx.fillStyle = '#FCEBD6'; mctx.fillRect(0, 0, mw, mh);
+    var big = Math.max(mw, mh);
+    BLOBS.forEach(function(b, k){
+      var a = REDUCED ? 0 : t*b.sp + k*1.7;
+      var x = (b.x + Math.cos(a)*b.ox)*mw, y = (b.y + Math.sin(a*1.3)*b.oy)*mh, r = b.r*big;
+      var g = mctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, 'rgba('+b.c+',.85)'); g.addColorStop(1, 'rgba('+b.c+',0)');
+      mctx.fillStyle = g; mctx.fillRect(0, 0, mw, mh);
     });
   }
 
@@ -507,26 +450,21 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
   function step(now){
     var t = now - t0;
     var fx = ptr.x, fy = ptr.y, lock = ptr.on ? hot : focusIdx, active = ptr.on || focusIdx >= 0;
-    // The lens centres on the arc being pointed at, not the raw pointer: a fisheye pushes
-    // everything outward from its focus, including the arc under the pointer.
     if(lock >= 0 && nodes[lock]){ fx = nodes[lock].hx; fy = nodes[lock].hy; }
     var moving = false;
     for(var j=0;j<nodes.length;j++){
       var n = nodes[j]; if(!n) continue;
       var tx = n.hx, ty = n.hy, ts = 1;
       if(active){
-        var dx = n.hx - fx, dy = n.hy - fy, d = Math.sqrt(dx*dx + dy*dy);
-        if(d < LENS_R){
-          var u = d / LENS_R, dd = LENS_R * (LENS_K+1) * u / (LENS_K*u + 1);
-          if(d > 0.001){ tx = fx + dx/d*dd; ty = fy + dy/d*dd; }
-          var f = 1 - u; ts = 1 + (MAG-1)*f*f;
-          if(!REDUCED && ptr.on){ n.vx += ptr.vx*0.05*f*f; n.vy += ptr.vy*0.05*f*f; }
+        var lt = L.lensTarget(n, fx, fy, W, H);
+        tx = lt.x; ty = lt.y; ts = lt.s;
+        if(!REDUCED && ptr.on && ts > 1){
+          var f = Math.sqrt((ts-1)/(L.MAG-1));
+          n.vx += ptr.vx*0.05*f*f; n.vy += ptr.vy*0.05*f*f;
         }
       }
       if(!REDUCED){ tx += Math.sin(t*0.0009 + n.ph)*1.2; ty += Math.cos(t*0.0011 + n.ph*1.3)*1.2; }
       if(j === hot || j === openIdx) ts *= 1.15;
-      var pad = n.r * ts + 3;
-      tx = Math.max(pad, Math.min(W - pad, tx)); ty = Math.max(pad, Math.min(H - pad, ty));
       n.vx = n.vx*DAMP + (tx - n.x)*K; n.vy = n.vy*DAMP + (ty - n.y)*K;
       n.x += n.vx; n.y += n.vy;
       n.s += (ts - n.s)*0.2;
@@ -535,6 +473,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
       if(Math.abs(n.vx)+Math.abs(n.vy) > 0.02 || Math.abs(ts-n.s) > 0.004 || Math.abs(ta-n.al) > 0.004) moving = true;
     }
     ptr.vx *= 0.8; ptr.vy *= 0.8;
+    if(t - meshT > 120){ paintMesh(t); meshT = t; }
     draw(t);
     if(document.hidden || !onScreen || (REDUCED && !moving && !ptr.on)){ running = false; return; }
     requestAnimationFrame(step);
@@ -547,26 +486,24 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
 
   function draw(t){
     ctx.setTransform(DPR,0,0,DPR,0,0);
-    drawScenery(t);
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(mesh, 0, 0, W, H);
 
-    ctx.textBaseline = 'top';
-    bands.forEach(function(b, k){
-      if(k>0){ ctx.fillStyle = 'rgba(255,255,255,.5)'; ctx.fillRect(18, b.top - 18, W - 36, 1.5); }
-      if(W >= 620){
-        ctx.fillStyle = eraColor(b.era, -14);
-        ctx.font = '800 13px Archivo, "Arial Narrow", sans-serif';
-        ctx.fillText(b.era.toUpperCase(), 20, b.top + 6);
-        ctx.fillStyle = 'rgba(18,48,90,.62)';
-        ctx.font = '500 10.5px "IBM Plex Mono", monospace';
-        ctx.fillText(b.first + '–' + b.last, 20, b.top + 24);
-      }
+    // The thread through broadcast order: solid along each spiral, a soft dashed curve
+    // from one era's last arc to the next era's first.
+    ctx.lineWidth = 1.4; ctx.strokeStyle = 'rgba(24,45,90,.20)';
+    clusters.forEach(function(c){
+      ctx.beginPath();
+      c.idx.forEach(function(i, k){ var n = nodes[i]; if(k===0) ctx.moveTo(n.x, n.y); else ctx.lineTo(n.x, n.y); });
+      ctx.stroke();
     });
-
-    // The thread through broadcast order, bending with the lens.
-    ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(255,255,255,.55)';
-    ctx.beginPath();
-    for(var i=0;i<nodes.length;i++){ var n=nodes[i]; if(i===0) ctx.moveTo(n.x,n.y); else ctx.lineTo(n.x,n.y); }
-    ctx.stroke();
+    ctx.setLineDash([4, 6]); ctx.strokeStyle = 'rgba(24,45,90,.28)';
+    for(var k=0;k<clusters.length-1;k++){
+      var a = nodes[clusters[k].idx[clusters[k].idx.length-1]], b = nodes[clusters[k+1].idx[0]];
+      var mx = (a.x + b.x)/2, my = (a.y + b.y)/2 - 40;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.quadraticCurveTo(mx, my, b.x, b.y); ctx.stroke();
+    }
+    ctx.setLineDash([]);
 
     var sel = openIdx >= 0 && !ptr.on ? openIdx : (hot >= 0 ? hot : openIdx);
     if(sel >= 0){
@@ -578,6 +515,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
     }
     for(var j=0;j<nodes.length;j++){ if(j!==sel) drawNode(nodes[j], t); }
     if(openIdx >= 0 && openIdx !== sel) drawNode(nodes[openIdx], t, true);
+    drawEraLabels();
     if(sel >= 0) drawSelected(nodes[sel], t);
 
     if(ptr.on){
@@ -587,9 +525,28 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
     }
   }
 
+  // Era labels go above the arcs, on a soft backing, so bubbles pushed up by the lens can
+  // never hide them.
+  function drawEraLabels(){
+    ctx.textBaseline = 'top'; ctx.textAlign = 'center';
+    clusters.forEach(function(c){
+      var sub = 'episodes ' + c.first + '–' + c.last;
+      ctx.font = '500 10.5px "IBM Plex Mono", monospace';
+      var w = Math.max(ctx.measureText(sub).width, 60) + 22;
+      ctx.fillStyle = 'rgba(255,250,240,.72)';
+      roundRect(c.cx - w/2, c.labelY - 5, w, 36, 10); ctx.fill();
+      ctx.fillStyle = eraColor(c.era, -18);
+      ctx.font = '800 13px Archivo, "Arial Narrow", sans-serif';
+      ctx.fillText(c.era.toUpperCase(), c.cx, c.labelY);
+      ctx.fillStyle = 'rgba(24,35,59,.6)';
+      ctx.font = '500 10.5px "IBM Plex Mono", monospace';
+      ctx.fillText(sub, c.cx, c.labelY + 16);
+    });
+    ctx.textAlign = 'left';
+  }
+
   function drawNode(n, t, marked){
     var a = n.a, r = n.r * n.s;
-    // A soft drop shadow and a white rim lift each arc off the sky like a balloon.
     ctx.beginPath(); ctx.arc(n.x + 1.2, n.y + 2, r, 0, 6.2832);
     ctx.fillStyle = 'rgba(18,48,90,'+(0.14*n.al).toFixed(3)+')'; ctx.fill();
     var g = ctx.createRadialGradient(n.x - r*0.35, n.y - r*0.4, r*0.1, n.x, n.y, r);
@@ -602,7 +559,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
       // The newest arcs are still being recomputed each run -- so they visibly pulse.
       var p = REDUCED ? 0.5 : (Math.sin(t*0.004)+1)/2;
       ctx.lineWidth = 2;
-      ctx.strokeStyle = 'rgba(255,255,255,'+((0.4+0.5*p)*n.al).toFixed(3)+')';
+      ctx.strokeStyle = 'rgba(255,255,255,'+((0.45+0.5*p)*n.al).toFixed(3)+')';
       ctx.beginPath(); ctx.arc(n.x, n.y, r + 4 + p*6, 0, 6.2832); ctx.stroke();
     }
   }
@@ -610,10 +567,9 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
   function drawSelected(n, t){
     var a = n.a, r = n.r * n.s;
     var g = ctx.createRadialGradient(n.x, n.y, r*0.5, n.x, n.y, r*3);
-    g.addColorStop(0, 'rgba(255,245,200,.85)'); g.addColorStop(1, 'rgba(255,245,200,0)');
+    g.addColorStop(0, 'rgba(255,250,225,.9)'); g.addColorStop(1, 'rgba(255,250,225,0)');
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(n.x, n.y, r*3, 0, 6.2832); ctx.fill();
     drawNode(n, t, true);
-
     // Its episodes fan out as satellites, one per episode, so an arc's length is felt.
     var k = Math.min(a.n, 48), orbit = r + 10 + Math.min(18, a.n*0.25);
     for(var e=0;e<k;e++){
@@ -637,11 +593,9 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
     var bx = n.x + orbit + 14, by = n.y - bh/2;
     if(bx + bw > W - 8) bx = n.x - orbit - 14 - bw;
     bx = Math.max(8, bx); by = Math.max(8, Math.min(H - bh - 8, by));
-
-    ctx.fillStyle = 'rgba(18,48,90,.18)'; roundRect(bx+2, by+4, bw, bh, 10); ctx.fill();
-    ctx.fillStyle = '#FFFFFF'; roundRect(bx, by, bw, bh, 10); ctx.fill();
+    ctx.fillStyle = 'rgba(18,48,90,.16)'; roundRect(bx+2, by+4, bw, bh, 10); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.97)'; roundRect(bx, by, bw, bh, 10); ctx.fill();
     ctx.fillStyle = eraColor(a.era); roundRect(bx, by, 5, bh, 3); ctx.fill();
-
     ctx.textBaseline = 'top';
     ctx.fillStyle = eraColor(a.era, -16);
     ctx.font = '500 10px "IBM Plex Mono", monospace';
@@ -663,18 +617,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
     ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
   }
 
-  // Picking works on resting positions; the lens then centres on the picked arc, so what
-  // you point at stays under the pointer.
-  function pick(x, y){
-    var best = -1, bd = 1e9;
-    for(var i=0;i<nodes.length;i++){
-      var n = nodes[i], dx = n.hx-x, dy = n.hy-y, d = dx*dx+dy*dy;
-      if(d < bd){ bd = d; best = i; }
-    }
-    if(best < 0) return -1;
-    var reach = Math.max(30, nodes[best].r*1.9);
-    return bd < reach*reach ? best : -1;
-  }
+  function pick(x, y){ return L.pick(nodes, x, y); }
 
   function local(ev){ var r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
   var downAt = null;
@@ -715,8 +658,9 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
 
   document.getElementById('legend').innerHTML =
     D.eras.map(function(e){ return '<span><i style="background:'+eraColor(e)+'"></i>'+e+'</span>'; }).join('') +
-    '<span><i style="background:#8CC8F2"></i>bigger bubble = longer arc</span>'+
-    '<span><i style="background:transparent; box-shadow:0 0 0 2px #8CC8F2"></i>pulsing = still unfolding</span>';
+    '<span>each swirl is one era: it starts at the centre and winds outward</span>'+
+    '<span>bigger bubble = longer arc</span>'+
+    '<span><i style="background:transparent; box-shadow:0 0 0 2px #E1CFA9"></i>pulsing = still unfolding</span>';
 
   var rt;
   window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(layout, 120); });

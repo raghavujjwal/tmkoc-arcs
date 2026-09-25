@@ -616,3 +616,34 @@ missing descriptions; more space between bubbles; no long static list.
   pass nearly doubled the desktop field (743 → 1,365px); settled at 1,067px.
 - **List**: the 419-row list is gone. The panel below the field shows only the clicked
   arc (episodes, prev/next, back to field), or matching arcs while searching.
+
+
+---
+
+### CP16 — Spiral clusters on a soft wash  `DONE`
+Requested: no literal sun/scenery — a soft, diffused blend of blue, yellow and orange-red;
+and a layout that is more than straight rows, with more room between bubbles.
+
+- **Background:** six slowly drifting colour pools (sky blue, pale blue, sunflower, cream,
+  apricot, coral) painted at 1/10 resolution and scaled up, which makes them genuinely
+  soft and cheap to animate.
+- **Layout:** each era is a spiral cluster, first arc at the centre winding outward;
+  clusters flow as a W-shaped wave on wide screens, two staggered columns on tablets, one
+  column on phones; each spiral is rotated so its outer end faces the next era, joined by
+  a dashed thread. Desktop field: 1,146px.
+- **Single source of geometry:** layout, lens and picking moved to `site/layout.js`, loaded
+  by both the page and `check_field.js`. Twice before, the test replicated the maths and
+  drifted from the page; that can no longer happen.
+
+**Defects found by the test and fixed, not waved through:**
+1. The first packer raced ahead along the spiral when blocked, leaving **200px** gaps
+   between consecutive arcs. It now steps outward at the same angle: worst step 79px,
+   96.9% of steps within 30px.
+2. Era labels collided with arcs in the wave layout — clusters were spaced as circles
+   only. Placement now clears each label box too.
+3. From the render: bubbles pushed up by the lens covered their era label. Labels are
+   now drawn above the arcs on a soft backing.
+
+The order criterion changed from one fixed step limit to a stated requirement: no step
+skips more than two large bubbles (catches turn-skipping), and ≥95% of steps are tight.
+The 13 looser steps all sit on outer turns next to very large arcs.
