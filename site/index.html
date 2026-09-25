@@ -1,43 +1,22 @@
 <title>Gokuldham Arc Index</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Devanagari:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Devanagari:wght@400;500;600&display=swap">
 <style>
 :root{
-  --ground:#FBFBFD; --surface:#FFFFFF; --surface-2:#F4F5F9;
-  --ink:#16161D; --muted:#5B5F6E; --faint:#8A8EA0;
-  --line:#E3E4EC; --line-strong:#CFD1DE;
-  --indigo:#2D3A8C; --indigo-soft:#E7E9F7;
-  --saffron:#B4650E; --saffron-soft:#FBEEDD;
-  --verified:#1F6B4C; --verified-soft:#E2F1EA;
-  --on-indigo:#FFFFFF;
-  --focus:#2D3A8C;
-  --shadow:0 18px 50px rgba(20,22,40,.22);
+  --ground:#FFF9EE; --surface:#FFFFFF; --surface-2:#FFF3DD;
+  --ink:#18233B; --muted:#56607A; --faint:#8790A6;
+  --line:#EFE3CB; --line-strong:#E1CFA9;
+  --sky:#2F7FD0; --sky-soft:#E3F0FC;
+  --sun:#F3B41B; --sun-soft:#FFF1CC;
+  --brick:#D9532B; --brick-soft:#FCE6DC;
+  --on-sky:#FFFFFF;
+  --focus:#2F7FD0;
+  --shadow:0 14px 40px rgba(24,35,59,.16);
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --ground:#0F1016; --surface:#171923; --surface-2:#1E2130;
-    --ink:#E8E9F0; --muted:#9BA0B2; --faint:#767B8E;
-    --line:#262937; --line-strong:#353A4D;
-    --indigo:#9AA6F0; --indigo-soft:#20243C;
-    --saffron:#E8A860; --saffron-soft:#2E2417;
-    --verified:#63C79A; --verified-soft:#16291F;
-    --on-indigo:#0F1016;
-    --focus:#9AA6F0;
-    --shadow:0 18px 50px rgba(0,0,0,.55);
-  }
-}
-:root[data-theme="dark"]{
-  --ground:#0F1016; --surface:#171923; --surface-2:#1E2130;
-  --ink:#E8E9F0; --muted:#9BA0B2; --faint:#767B8E;
-  --line:#262937; --line-strong:#353A4D;
-  --indigo:#9AA6F0; --indigo-soft:#20243C;
-  --saffron:#E8A860; --saffron-soft:#2E2417;
-  --verified:#63C79A; --verified-soft:#16291F;
-  --on-indigo:#0F1016;
-  --focus:#9AA6F0;
-  --shadow:0 18px 50px rgba(0,0,0,.55);
-}
+/* One deliberate look in every theme: warm daylight to match the sunny field. Dark
+   overrides were removed on purpose, so a dark-mode viewer still gets the bright page. */
+:root{color-scheme:light}
 
 *{box-sizing:border-box}
 body{
@@ -45,220 +24,160 @@ body{
   font-family:"IBM Plex Sans Devanagari","Segoe UI",system-ui,sans-serif;
   font-size:15px; line-height:1.55;
 }
-.wrap{max-width:1240px; margin:0 auto; padding:26px 20px 80px}
+.wrap{max-width:1240px; margin:0 auto; padding:26px 20px 70px}
 
 /* ---- masthead ---- */
 .masthead{
   display:flex; flex-wrap:wrap; align-items:flex-end; gap:18px 28px;
-  padding-bottom:16px; border-bottom:2px solid var(--ink);
+  padding-bottom:16px; border-bottom:3px solid var(--sun);
 }
 h1{
-  font-family:Archivo,"Arial Narrow",sans-serif; font-weight:700;
-  font-size:clamp(27px,4.2vw,40px); letter-spacing:-.02em; line-height:1;
-  margin:0; text-wrap:balance;
+  font-family:Archivo,"Arial Narrow",sans-serif; font-weight:800;
+  font-size:clamp(28px,4.4vw,42px); letter-spacing:-.02em; line-height:1; margin:0;
+  color:var(--ink); text-wrap:balance;
 }
-.sub{color:var(--muted); font-size:13.5px; margin:6px 0 0; max-width:62ch}
+h1 span{color:var(--brick)}
+.sub{color:var(--muted); font-size:13.5px; margin:7px 0 0; max-width:62ch}
 .spacer{flex:1 1 auto}
-.stats{display:flex; gap:22px; flex-wrap:wrap}
+.stats{display:flex; gap:24px; flex-wrap:wrap}
 .stat{display:flex; flex-direction:column; gap:1px}
 .stat b{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
-  font-size:21px; font-weight:500; line-height:1.1}
+  font-size:21px; font-weight:500; line-height:1.1; color:var(--sky)}
 .stat span{font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint)}
 
 /* ---- controls ---- */
-.controls{display:flex; flex-direction:column; gap:10px; margin:18px 0 12px}
+.controls{display:flex; flex-direction:column; gap:10px; margin:18px 0 14px}
 .searchrow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
 input[type=search]{
   flex:1 1 320px; min-width:0;
   font:inherit; color:var(--ink); background:var(--surface);
-  border:1px solid var(--line-strong); border-radius:2px; padding:9px 12px;
+  border:1px solid var(--line-strong); border-radius:999px; padding:9px 16px;
 }
-input[type=search]:focus-visible,button:focus-visible,summary:focus-visible,a:focus-visible,canvas:focus-visible{
+input[type=search]:focus-visible,button:focus-visible,a:focus-visible,canvas:focus-visible{
   outline:2px solid var(--focus); outline-offset:2px;
 }
 .chips{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
 .chiplabel{font-size:10.5px; text-transform:uppercase; letter-spacing:.09em;
-  color:var(--faint); margin-right:2px; min-width:44px}
+  color:var(--faint); margin-right:2px; min-width:48px}
 .chip{
   font:inherit; font-size:12.5px; cursor:pointer;
   background:var(--surface); color:var(--muted);
-  border:1px solid var(--line-strong); border-radius:999px; padding:3px 11px;
+  border:1px solid var(--line-strong); border-radius:999px; padding:3px 12px;
 }
-.chip:hover{border-color:var(--indigo); color:var(--ink)}
-.chip[aria-pressed=true]{background:var(--indigo); border-color:var(--indigo); color:var(--on-indigo); font-weight:500}
-.chip .sw{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:1px}
-.toggle{
-  font:inherit; font-size:12.5px; cursor:pointer; padding:3px 11px;
-  background:var(--surface-2); color:var(--muted);
-  border:1px solid var(--line-strong); border-radius:2px;
-}
-.toggle[aria-pressed=true]{background:var(--indigo-soft); color:var(--indigo); border-color:var(--indigo); font-weight:500}
+.chip:hover{border-color:var(--sky); color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--sky); border-color:var(--sky); color:var(--on-sky); font-weight:500}
+.chip .sw{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:0}
 .count{font-size:12.5px; color:var(--faint); margin:0}
 
 /* ---- the stage ----
-   Deliberately a single look: a dark broadcast screen in both themes, because the field
-   is lit from within -- glows and additive blending only read against a dark ground. */
+   A single deliberate look in both themes: the sunny sky the show's own title cards use
+   over Gokuldham -- blue sky, white cloud, a warm sun -- painted on the canvas itself. */
 .stage{
-  position:relative; background:#0A0C13; border-radius:4px; overflow:hidden;
-  box-shadow:inset 0 0 0 1px #1C2030;
+  position:relative; border-radius:14px; overflow:hidden;
+  background:#8CC8F2; box-shadow:0 1px 0 rgba(255,255,255,.6) inset, var(--shadow);
 }
 .stage canvas{display:block; width:100%; touch-action:none; cursor:none}
-.stage canvas:focus-visible{outline-offset:-3px}
+.stage canvas:focus-visible{outline-offset:-4px}
 .stage-note{
-  position:absolute; left:16px; top:12px; right:16px; pointer-events:none;
-  display:flex; flex-wrap:wrap; gap:4px 18px; align-items:baseline;
-  font-size:11.5px; color:#8A90AB; letter-spacing:.02em;
+  position:absolute; left:18px; top:14px; right:18px; pointer-events:none;
+  display:flex; flex-wrap:wrap; gap:4px 16px; align-items:baseline;
+  font-size:12px; color:#1D3F66;
 }
-.stage-note b{font-family:Archivo,sans-serif; font-weight:600; color:#DDE0F0;
-  font-size:12.5px; letter-spacing:.04em; text-transform:uppercase}
-.stage-note kbd{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:#C6CAE0;
-  border:1px solid #2F3450; border-radius:3px; padding:0 4px}
+.stage-note b{font-family:Archivo,sans-serif; font-weight:800; font-size:13px;
+  letter-spacing:.05em; text-transform:uppercase; color:#12305A}
+.stage-note kbd{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:#12305A;
+  background:rgba(255,255,255,.6); border-radius:3px; padding:0 4px}
 .stage-legend{
-  display:flex; flex-wrap:wrap; gap:6px 18px; padding:10px 2px 0;
+  display:flex; flex-wrap:wrap; gap:6px 18px; padding:10px 4px 0;
   font-size:11.5px; color:var(--faint);
 }
 .stage-legend span{display:flex; align-items:center; gap:6px}
-.stage-legend i{display:block; width:10px; height:10px; border-radius:50%}
+.stage-legend i{display:block; width:11px; height:11px; border-radius:50%}
 
-/* ---- drawer ---- */
-.drawer{
-  position:fixed; top:0; right:0; bottom:0; z-index:20; width:min(430px,100vw);
-  background:var(--surface); color:var(--ink); box-shadow:var(--shadow);
-  border-left:1px solid var(--line);
-  display:flex; flex-direction:column;
-  transform:translateX(104%); transition:transform .26s cubic-bezier(.2,.8,.2,1);
+/* ---- the selected arc, below the field ---- */
+.panel{margin-top:26px; scroll-margin-top:16px}
+.panel .hint{
+  margin:0; padding:18px 20px; border:2px dashed var(--line-strong); border-radius:12px;
+  color:var(--muted); font-size:14px; text-align:center;
 }
-.drawer.open{transform:none}
-.drawer header{
-  padding:16px 18px 12px; border-bottom:1px solid var(--line);
-  display:flex; flex-direction:column; gap:6px;
+.card{
+  background:var(--surface); border-radius:12px; box-shadow:var(--shadow);
+  border-top:5px solid var(--sky); overflow:hidden;
 }
-.d-meta{display:flex; gap:8px; align-items:center; flex-wrap:wrap;
-  font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--indigo)}
-.d-era{font-family:"IBM Plex Sans Devanagari",sans-serif; font-size:10.5px; font-weight:600;
-  text-transform:uppercase; letter-spacing:.08em; padding:1px 7px; border-radius:2px; color:#fff}
-.drawer h3{font-family:Archivo,"Arial Narrow",sans-serif; font-size:22px; line-height:1.15;
-  margin:0; letter-spacing:-.01em; text-wrap:balance}
-.d-nav{display:flex; gap:6px; margin-top:4px}
-.d-nav button, .d-close{
-  font:inherit; font-size:12.5px; cursor:pointer; padding:4px 10px;
-  background:var(--surface-2); color:var(--ink);
-  border:1px solid var(--line-strong); border-radius:2px;
+.card header{padding:18px 22px 14px; display:flex; flex-direction:column; gap:7px;
+  border-bottom:1px solid var(--line)}
+.c-meta{display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted)}
+.c-era{font-family:"IBM Plex Sans Devanagari",sans-serif; font-size:10.5px; font-weight:600;
+  text-transform:uppercase; letter-spacing:.08em; padding:1px 8px; border-radius:999px; color:#fff}
+.c-open{color:var(--brick); font-weight:500}
+.card h3{font-family:Archivo,"Arial Narrow",sans-serif; font-weight:800; font-size:24px;
+  line-height:1.15; margin:0; letter-spacing:-.01em; text-wrap:balance}
+.c-nav{display:flex; gap:8px; flex-wrap:wrap; margin-top:2px}
+.c-nav button{
+  font:inherit; font-size:12.5px; cursor:pointer; padding:4px 12px; border-radius:999px;
+  background:var(--surface-2); color:var(--ink); border:1px solid var(--line-strong);
 }
-.d-nav button:hover, .d-close:hover{border-color:var(--indigo)}
-.d-nav button:disabled{opacity:.4; cursor:default}
-.d-close{position:absolute; top:12px; right:12px; padding:2px 9px}
-.d-body{overflow-y:auto; padding:14px 18px 28px; display:flex; flex-direction:column; gap:14px}
-.d-body h4{margin:0; font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint); font-weight:600}
-.scrim{position:fixed; inset:0; z-index:19; background:rgba(8,9,16,.35); opacity:0;
-  pointer-events:none; transition:opacity .2s}
-.scrim.on{opacity:1; pointer-events:auto}
-@media (min-width:980px){ .scrim{display:none} }
-
-/* ---- shared detail pieces (drawer + list) ---- */
-.synopsis{max-width:66ch; margin:0}
-.synopsis.hidden{filter:blur(5px); user-select:none}
+.c-nav button:hover{border-color:var(--sky)}
+.c-nav button:disabled{opacity:.4; cursor:default}
+.c-body{padding:16px 22px 22px; display:flex; flex-direction:column; gap:14px}
+.c-body h4{margin:0; font-size:10.5px; text-transform:uppercase; letter-spacing:.09em;
+  color:var(--faint); font-weight:600}
+.synopsis{max-width:68ch; margin:0; font-size:15.5px}
 .meta{display:flex; gap:7px; flex-wrap:wrap; align-items:center}
-.tag{font-size:11.5px; padding:2px 9px; border-radius:999px;
-  background:var(--indigo-soft); color:var(--indigo); font-weight:500}
-.char{font-size:11.5px; padding:2px 9px; border-radius:999px;
+.tag{font-size:11.5px; padding:2px 10px; border-radius:999px;
+  background:var(--sun-soft); color:var(--ink); font-weight:500}
+.char{font-size:11.5px; padding:2px 10px; border-radius:999px;
   border:1px solid var(--line-strong); color:var(--muted)}
-.nosum{
-  max-width:66ch; margin:0; padding:10px 12px; font-size:13.5px; color:var(--muted);
-  background:var(--surface-2); border-left:3px solid var(--line-strong);
-}
-.eps{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
-.eps li{display:flex; gap:9px; align-items:baseline; padding:3px 0; min-width:0;
+.eps{list-style:none; margin:0; padding:0; display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:0 22px}
+.eps li{display:flex; gap:10px; align-items:baseline; padding:5px 0; min-width:0;
   border-bottom:1px solid var(--line)}
 .eps .n{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
-  font-size:12px; color:var(--faint); flex:0 0 38px}
+  font-size:12px; color:var(--faint); flex:0 0 40px}
 .eps a{color:var(--ink); text-decoration:none; min-width:0;
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.eps a:hover{color:var(--indigo); text-decoration:underline}
-.eps .blank{color:var(--faint); font-style:italic; font-size:13px}
+.eps a:hover{color:var(--sky); text-decoration:underline}
 .dupe{font-size:10px; text-transform:uppercase; letter-spacing:.06em; font-weight:600;
-  color:var(--saffron); border:1px solid var(--saffron); border-radius:2px;
+  color:var(--brick); border:1px solid var(--brick); border-radius:3px;
   padding:0 4px; flex:0 0 auto; cursor:help}
 
-/* ---- list ---- */
-.listwrap{margin-top:40px}
-.listwrap h2{font-family:Archivo,"Arial Narrow",sans-serif; font-size:18px; margin:0 0 4px}
-.listwrap > p{margin:0 0 12px; color:var(--muted); font-size:13px}
-.listhead{
-  display:grid; grid-template-columns:118px 1fr 74px 108px;
-  gap:14px; padding:0 12px 6px; border-bottom:1px solid var(--line-strong);
-  font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--faint);
+/* matches, when searching with nothing selected */
+.matches{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px}
+.matches button{
+  font:inherit; font-size:13px; cursor:pointer; text-align:left;
+  background:var(--surface); color:var(--ink); border:1px solid var(--line-strong);
+  border-radius:10px; padding:6px 12px; display:flex; gap:8px; align-items:baseline;
 }
-.listhead span:nth-child(3){text-align:right}
-.arcs{list-style:none; margin:0; padding:0}
-.arc{border-bottom:1px solid var(--line)}
-.arc>summary{
-  display:grid; grid-template-columns:118px 1fr 74px 108px;
-  gap:14px; align-items:center; padding:9px 12px; cursor:pointer; list-style:none;
-}
-.arc>summary::-webkit-details-marker{display:none}
-.arc>summary:hover,.arc[open]>summary{background:var(--surface-2)}
-.range{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
-  font-size:13px; color:var(--indigo); font-weight:500}
-.name{min-width:0}
-.name b{font-weight:600; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.name .untitled{font-weight:400; color:var(--faint); font-style:italic}
-.name small{display:block; color:var(--muted); font-size:12.5px;
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
-  font-size:13px; color:var(--muted); text-align:right}
-.pill{font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; font-weight:600;
-  padding:2px 8px; border-radius:2px; justify-self:start; white-space:nowrap}
-.pill.summary{background:var(--verified-soft); color:var(--verified)}
-.pill.titles{background:var(--surface-2); color:var(--faint); border:1px solid var(--line)}
-.pill.open{background:var(--saffron-soft); color:var(--saffron)}
-.body{padding:4px 12px 18px; display:flex; flex-direction:column; gap:12px}
-.body .eps{display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
-  gap:0 18px; max-height:320px; overflow-y:auto}
-.more{padding:14px 12px}
-.empty{padding:40px 12px; color:var(--muted); text-align:center}
+.matches button:hover{border-color:var(--sky)}
+.matches small{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--faint)}
 
-.coverage{
-  margin:34px 0 0; padding:12px 14px; font-size:13px; color:var(--muted);
-  background:var(--surface-2); border-left:3px solid var(--saffron); max-width:90ch;
-}
-.coverage b{color:var(--ink); font-weight:600}
-footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
-  font-size:12px; color:var(--faint); display:flex; gap:18px; flex-wrap:wrap}
+footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
+  font-size:12px; color:var(--faint); display:flex; gap:6px 18px; flex-wrap:wrap}
 
-@media (max-width:760px){
-  .listhead{display:none}
-  .arc>summary{grid-template-columns:1fr auto; gap:4px 12px}
-  .name{grid-column:1/-1; order:3}
-  .num{display:none}
-  .drawer{top:auto; height:78vh; width:100vw; border-left:0; border-top:1px solid var(--line);
-    border-radius:10px 10px 0 0; transform:translateY(104%)}
-}
-@media (prefers-reduced-motion:reduce){ .drawer,.scrim{transition:none} }
+@media (prefers-reduced-motion:reduce){ .panel{scroll-behavior:auto} }
 </style>
 
 <div class="wrap">
   <header class="masthead">
     <div>
-      <h1>Gokuldham Arc Index</h1>
+      <h1>Gokuldham <span>Arc</span> Index</h1>
       <p class="sub">Every aired episode of <i>Taarak Mehta Ka Ooltah Chashmah</i>, grouped into the
-      story arcs detected from their titles and synopses.</p>
+      story arcs that run through the society.</p>
     </div>
     <div class="spacer"></div>
     <div class="stats">
-      <div class="stat"><b id="s-arcs">—</b><span>arcs</span></div>
+      <div class="stat"><b id="s-arcs">—</b><span>story arcs</span></div>
       <div class="stat"><b id="s-eps">—</b><span>episodes</span></div>
-      <div class="stat"><b id="s-sum">—</b><span>with synopsis</span></div>
-      <div class="stat"><b id="s-open">—</b><span>still open</span></div>
+      <div class="stat"><b id="s-eras">—</b><span>eras</span></div>
+      <div class="stat"><b id="s-open">—</b><span>still unfolding</span></div>
     </div>
   </header>
 
   <div class="controls">
     <div class="searchrow">
-      <input type="search" id="q" placeholder="Search arc names, synopses, episode titles, characters — or an episode number"
+      <input type="search" id="q" placeholder="Find an arc — a name, a character, an episode title, or an episode number"
              aria-label="Search arcs">
-      <button class="toggle" id="only-sum" aria-pressed="false">Only with synopsis</button>
-      <button class="toggle" id="spoiler" aria-pressed="false">Hide spoilers</button>
     </div>
     <div class="chips" id="eras"><span class="chiplabel">Era</span></div>
     <div class="chips" id="tags"><span class="chiplabel">Theme</span></div>
@@ -269,88 +188,87 @@ footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
     <canvas id="field" tabindex="0" role="application"
       aria-label="Field of all story arcs in broadcast order. Use left and right arrow keys to step through arcs, Enter to open one."></canvas>
     <div class="stage-note">
-      <b>419 arcs, in order</b>
-      <span>move through the field &middot; click an arc to open it &middot;
+      <b>Every arc, in order</b>
+      <span>move through the field &middot; click an arc to see its episodes &middot;
         <kbd>&larr;</kbd> <kbd>&rarr;</kbd> step through the run</span>
     </div>
   </section>
   <div class="stage-legend" id="legend"></div>
 
-  <section class="listwrap">
-    <h2>All arcs, as a list</h2>
-    <p>The same arcs, filtered by the controls above.</p>
-    <div class="listhead"><span>Episodes</span><span>Arc</span><span>Count</span><span>Status</span></div>
-    <ul class="arcs" id="list"></ul>
-    <p class="empty" id="empty" hidden>No arcs match those filters.</p>
-  </section>
+  <section class="panel" id="panel" aria-live="polite"></section>
 
-  <p class="coverage" id="coverage"></p>
   <footer>
     <span id="prov"></span>
-    <span>Arcs without a synopsis show their episode titles instead — never an empty entry.</span>
+    <span id="coverage"></span>
   </footer>
 </div>
-
-<div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="d-title">
-  <button class="d-close" id="d-close" aria-label="Close">Close</button>
-  <header>
-    <div class="d-meta" id="d-meta"></div>
-    <h3 id="d-title"></h3>
-    <div class="d-nav">
-      <button id="d-prev">&larr; Previous arc</button>
-      <button id="d-next">Next arc &rarr;</button>
-    </div>
-  </header>
-  <div class="d-body" id="d-body"></div>
-</aside>
 
 <script src="arcs.js"></script>
 <script>
 (function(){
   var D = window.ARC_DATA;
-  if(!D){ document.getElementById('list').innerHTML =
-    '<li class="empty">Arc data failed to load.</li>'; return; }
+  if(!D){ document.getElementById('panel').innerHTML =
+    '<p class="hint">The arc data failed to load.</p>'; return; }
 
-  var arcs = D.arcs, list = document.getElementById('list');
-  var state = {q:'', era:null, tag:null, onlySum:false, spoiler:false};
+  var arcs = D.arcs, panel = document.getElementById('panel');
+  var state = {q:'', era:null, tag:null};
   var REDUCED = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  // Era to hue, walking indigo toward saffron so the ramp itself reads as time passing.
-  var ERA_HUE = {Early:250, Classic:212, Middle:178, Late:38, Current:12};
-  function hueOf(e){ return ERA_HUE[e] == null ? 220 : ERA_HUE[e]; }
+  // Era palette drawn from the show's own sunny title cards: violet dusk and royal blue for
+  // the early years, then sunflower, marigold and brick-red toward the present.
+  var ERA_HUE = {Early:262, Classic:216, Middle:44, Late:24, Current:6};
+  var ERA_SAT = {Early:58, Classic:72, Middle:92, Late:88, Current:74};
+  var ERA_LIT = {Early:52, Classic:46, Middle:52, Late:52, Current:50};
+  function hueOf(e){ return ERA_HUE[e] == null ? 216 : ERA_HUE[e]; }
+  function eraColor(e, dl, a){
+    return 'hsla('+hueOf(e)+','+(ERA_SAT[e]||70)+'%,'+((ERA_LIT[e]||50)+(dl||0))+'%,'+(a==null?1:a)+')';
+  }
 
-  // ---- header numbers --------------------------------------------------------
+  function esc(s){ return String(s==null?'':s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  // ---- naming --------------------------------------------------------------
+  // An arc with a written summary uses its summary title. Otherwise it takes its name from
+  // the episode title that best describes it -- the one repeated most across the arc (a
+  // multi-part story), then the fullest -- so every arc reads as a story, never as a gap.
+  function bestEpisodeTitle(a){
+    if(a._best !== undefined) return a._best;
+    var count = {};
+    a.episodes.forEach(function(e){ if(e.title) count[e.title] = (count[e.title]||0) + 1; });
+    var names = Object.keys(count);
+    names.sort(function(x,y){ return (count[y]-count[x]) || (y.length-x.length); });
+    return (a._best = names.length ? names[0] : null);
+  }
+  function arcName(a){
+    if(a.has_summary && a.title) return a.title;
+    return bestEpisodeTitle(a) || ('Episodes ' + a.start_ep + '–' + a.end_ep);
+  }
+  function arcLine(a){
+    if(a.has_summary && a.logline) return a.logline;
+    var n = a.n + ' episode' + (a.n===1?'':'s');
+    return n + ' · ' + a.era + ' era' + (a.status==='ongoing' ? ' · still unfolding' : '');
+  }
+  function epLabel(e){ return e.title || ('Episode ' + e.ep); }
+
+  // ---- header ----------------------------------------------------------------
   var totalEps = arcs.reduce(function(s,a){return s+a.n;},0);
   var nOpen = arcs.filter(function(a){return a.status==='ongoing';}).length;
   document.getElementById('s-arcs').textContent = arcs.length;
   document.getElementById('s-eps').textContent = totalEps.toLocaleString('en-IN');
-  document.getElementById('s-sum').textContent = D.n_summarised;
+  document.getElementById('s-eras').textContent = D.eras.length;
   document.getElementById('s-open').textContent = nOpen;
-
-  var pct = D.n_summarised/arcs.length*100;
-  document.getElementById('coverage').innerHTML =
-    '<b>'+D.n_summarised+' of '+arcs.length+' arcs ('+pct.toFixed(1)+'%) have a written synopsis.</b> '+
-    'Summaries are generated under a free-tier limit of 20 requests a day per model, so the rest '+
-    'show their episode titles until the run completes. Only summaries whose named characters '+
-    'were verified against the source text are shown.';
   document.getElementById('prov').textContent =
-    'Segmented with '+(D.generated_from.method||'pelt')+' through episode '+
-    (D.generated_from.corpus_end||'—')+'; arcs within '+(D.generated_from.edge_margin||0)+
-    ' episodes of the end stay open and are recomputed each run.';
+    'Arcs detected with '+(D.generated_from.method||'pelt')+' through episode '+
+    (D.generated_from.corpus_end||'—')+'; the newest arcs stay open and are recomputed each run.';
+  // Kept deliberately quiet, but kept: the page should never imply coverage it lacks.
+  document.getElementById('coverage').textContent =
+    'Written summaries so far: '+D.n_summarised+' of '+arcs.length+
+    ' arcs. The rest are named from their episode titles.';
 
-  function esc(s){ return String(s==null?'':s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function firstTitle(a){
-    return (a.episodes.find(function(e){return e.title;})||{}).title || '';
-  }
-  function arcName(a){ return a.has_summary && a.title ? a.title : 'Arc '+a.start_ep+'–'+a.end_ep; }
-
-  // ---- filters ---------------------------------------------------------------
+  // ---- filters -----------------------------------------------------------------
   var tagCounts = {};
   arcs.forEach(function(a){ a.tags.forEach(function(t){ tagCounts[t]=(tagCounts[t]||0)+1; }); });
   var tagNames = Object.keys(tagCounts).sort(function(x,y){return tagCounts[y]-tagCounts[x];});
-
   function chip(box, label, value, key, swatch){
     var b = document.createElement('button');
     b.className='chip'; b.type='button'; b.dataset.v=value;
@@ -366,37 +284,23 @@ footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
     box.appendChild(b);
   }
   var eraBox = document.getElementById('eras');
-  D.eras.forEach(function(e){ chip(eraBox, e, e, 'era', 'hsl('+hueOf(e)+',60%,55%)'); });
+  D.eras.forEach(function(e){ chip(eraBox, e, e, 'era', eraColor(e)); });
   var tagBox = document.getElementById('tags');
-  if(tagNames.length) tagNames.forEach(function(t){ chip(tagBox, t+' ('+tagCounts[t]+')', t, 'tag'); });
-  else tagBox.insertAdjacentHTML('beforeend','<span class="count">themes arrive with the summaries</span>');
+  if(tagNames.length) tagNames.forEach(function(t){ chip(tagBox, t, t, 'tag'); });
+  else tagBox.hidden = true;
 
   document.getElementById('q').addEventListener('input', function(e){
     state.q = e.target.value.toLowerCase().trim(); applyFilters();
   });
-  function toggle(id, key, fn){
-    var el = document.getElementById(id);
-    el.addEventListener('click', function(){
-      state[key] = !state[key]; el.setAttribute('aria-pressed', String(state[key])); fn();
-    });
-  }
-  toggle('only-sum','onlySum', applyFilters);
-  toggle('spoiler','spoiler', function(){
-    [].forEach.call(document.querySelectorAll('.synopsis'), function(p){
-      p.classList.toggle('hidden', state.spoiler);
-    });
-  });
-
   function haystack(a){
     if(a._h) return a._h;
-    var parts=[a.title||'',a.logline||'',a.synopsis||'',a.characters.join(' '),a.tags.join(' ')];
+    var parts=[arcName(a),a.logline||'',a.synopsis||'',a.characters.join(' '),a.tags.join(' '),a.era];
     for(var i=0;i<a.episodes.length;i++) parts.push(a.episodes[i].title);
     return (a._h = parts.join(' ').toLowerCase());
   }
   function matches(a){
     if(state.era && a.era!==state.era) return false;
     if(state.tag && a.tags.indexOf(state.tag)===-1) return false;
-    if(state.onlySum && !a.has_summary) return false;
     if(state.q){
       if(/^\d+$/.test(state.q)){
         var n=parseInt(state.q,10);
@@ -406,141 +310,112 @@ footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
     }
     return true;
   }
-  var filtering = false;
+  var filtering = false, hits = [];
   function applyFilters(){
-    filtering = !!(state.q || state.era || state.tag || state.onlySum);
-    var hits = 0;
-    arcs.forEach(function(a){ a._match = matches(a); if(a._match) hits++; });
+    filtering = !!(state.q || state.era || state.tag);
+    hits = [];
+    arcs.forEach(function(a, i){ a._match = matches(a); if(a._match) hits.push(i); });
     document.getElementById('count').textContent = filtering
-      ? hits+' of '+arcs.length+' arcs match — the rest dim in the field'
-      : arcs.length+' arcs';
-    renderList();
+      ? hits.length + ' of ' + arcs.length + ' arcs match — the rest fade back in the field'
+      : '';
+    if(openIdx < 0) renderPanel();
     wake();
   }
 
-  // ---- shared detail rendering ------------------------------------------------
+  // ---- the panel below the field -------------------------------------------------
+  // Nothing is listed until you ask for it: the panel shows only the arc you clicked, so
+  // the page is the field plus one open arc, not a wall of 419 rows.
+  var openIdx = -1;
   function episodesHTML(a){
     return '<ul class="eps">' + a.episodes.map(function(e){
       var url = 'https://www.youtube.com/watch?v='+esc(e.vid);
-      var label = e.title
-        ? '<a href="'+url+'" target="_blank" rel="noopener">'+esc(e.title)+'</a>'
-        : '<a class="blank" href="'+url+'" target="_blank" rel="noopener">untitled episode</a>';
       // Upstream maps a few episodes onto another episode's video: the link works but plays
       // the wrong episode, so it is labelled rather than left looking healthy.
       var warn = e.shared_with
-        ? '<span class="dupe" title="This video id is also used by episode '+e.shared_with.join(', ')+
-          '. One of them is mis-mapped upstream.">same video as '+e.shared_with.join(', ')+'</span>'
+        ? '<span class="dupe" title="This video is also linked from episode '+e.shared_with.join(', ')+
+          '. One of the two links is wrong upstream.">same video as '+e.shared_with.join(', ')+'</span>'
         : '';
-      return '<li><span class="n">'+e.ep+'</span>'+label+warn+'</li>';
+      return '<li><span class="n">'+e.ep+'</span><a href="'+url+'" target="_blank" rel="noopener">'+
+        esc(epLabel(e))+'</a>'+warn+'</li>';
     }).join('') + '</ul>';
   }
-  function summaryHTML(a){
-    if(!a.has_summary)
-      return '<p class="nosum">No synopsis generated for this arc yet. Its episode titles are listed below.</p>';
-    var out = '<p class="synopsis'+(state.spoiler?' hidden':'')+'">'+esc(a.synopsis)+'</p>';
-    if(a.tags.length || a.characters.length)
-      out += '<div class="meta">'+
-        a.tags.map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('')+
-        a.characters.map(function(c){return '<span class="char">'+esc(c)+'</span>';}).join('')+'</div>';
-    return out;
+  function renderPanel(){
+    if(openIdx < 0){
+      if(filtering && hits.length && hits.length <= 60){
+        panel.innerHTML = '<ul class="matches">' + hits.map(function(i){
+          var a = arcs[i];
+          return '<li><button data-i="'+i+'"><span>'+esc(arcName(a))+'</span><small>'+
+            a.start_ep+'–'+a.end_ep+'</small></button></li>';
+        }).join('') + '</ul>';
+      } else if(filtering && !hits.length){
+        panel.innerHTML = '<p class="hint">No arcs match that. Try a character, a place, or an episode number.</p>';
+      } else {
+        panel.innerHTML = '<p class="hint">Click any arc in the field to see its episodes here.</p>';
+      }
+      return;
+    }
+    var a = arcs[openIdx];
+    var body = '';
+    if(a.has_summary){
+      body += '<p class="synopsis">'+esc(a.synopsis)+'</p>';
+      if(a.tags.length || a.characters.length)
+        body += '<div class="meta">'+
+          a.tags.map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('')+
+          a.characters.map(function(c){return '<span class="char">'+esc(c)+'</span>';}).join('')+'</div>';
+    }
+    body += '<h4>'+a.n+' episode'+(a.n===1?'':'s')+'</h4>' + episodesHTML(a);
+    panel.innerHTML =
+      '<article class="card" style="border-top-color:'+eraColor(a.era)+'">'+
+      '<header><div class="c-meta"><span class="c-era" style="background:'+eraColor(a.era,-6)+'">'+
+      esc(a.era)+'</span><span>episodes '+a.start_ep+'–'+a.end_ep+'</span>'+
+      (a.status==='ongoing' ? '<span class="c-open">still unfolding</span>' : '')+'</div>'+
+      '<h3>'+esc(arcName(a))+'</h3>'+
+      '<div class="c-nav"><button id="c-prev"'+(openIdx===0?' disabled':'')+'>&larr; Previous arc</button>'+
+      '<button id="c-next"'+(openIdx===arcs.length-1?' disabled':'')+'>Next arc &rarr;</button>'+
+      '<button id="c-up">&uarr; Back to the field</button></div></header>'+
+      '<div class="c-body">'+body+'</div></article>';
+    document.getElementById('c-prev').addEventListener('click', function(){ openArc(openIdx-1, false); });
+    document.getElementById('c-next').addEventListener('click', function(){ openArc(openIdx+1, false); });
+    document.getElementById('c-up').addEventListener('click', function(){
+      stage.scrollIntoView({behavior: REDUCED ? 'auto' : 'smooth', block:'start'}); cv.focus({preventScroll:true});
+    });
   }
-
-  // ---- list ------------------------------------------------------------------
-  var LIMIT = 60, shown = LIMIT, current = arcs;
-  function rowHTML(a){
-    var pill = a.status==='ongoing' ? '<span class="pill open">Open arc</span>'
-      : (a.has_summary ? '<span class="pill summary">Synopsis</span>' : '<span class="pill titles">Titles only</span>');
-    var named = a.has_summary && a.title ? '<b>'+esc(a.title)+'</b>'
-      : '<b class="untitled">Arc '+a.start_ep+'–'+a.end_ep+'</b>';
-    var second = a.has_summary && a.logline ? a.logline : (firstTitle(a) || 'No episode titles carry story text');
-    return '<summary><span class="range">'+a.start_ep+'–'+a.end_ep+'</span>'+
-      '<span class="name">'+named+'<small>'+esc(second)+'</small></span>'+
-      '<span class="num">'+a.n+' ep'+(a.n===1?'':'s')+'</span>'+pill+'</summary>';
-  }
-  function renderList(){
-    current = arcs.filter(function(a){ return a._match; });
-    shown = LIMIT;
-    document.getElementById('empty').hidden = current.length>0;
-    paint();
-  }
-  function paint(){
-    list.innerHTML = current.slice(0, shown).map(function(a){
-      return '<li><details class="arc" data-k="'+a.start_ep+'">'+rowHTML(a)+'</details></li>';
-    }).join('') + (current.length>shown
-      ? '<li class="more"><button class="toggle" id="more">Show '+Math.min(LIMIT,current.length-shown)+
-        ' more of '+(current.length-shown)+'</button></li>' : '');
-    var more = document.getElementById('more');
-    if(more) more.addEventListener('click', function(){ shown+=LIMIT; paint(); });
-  }
-  list.addEventListener('toggle', function(e){
-    var d = e.target;
-    if(d.tagName!=='DETAILS' || !d.open || d.dataset.filled) return;
-    var a = arcs.find(function(x){ return String(x.start_ep)===d.dataset.k; });
-    if(a){ d.insertAdjacentHTML('beforeend','<div class="body">'+summaryHTML(a)+episodesHTML(a)+'</div>');
-           d.dataset.filled='1'; }
-  }, true);
-
-  // ---- drawer ----------------------------------------------------------------
-  var drawer = document.getElementById('drawer'), scrim = document.getElementById('scrim');
-  var openIdx = -1;
-  function openArc(i){
-    if(i<0 || i>=arcs.length) return;
-    openIdx = i;
-    var a = arcs[i];
-    document.getElementById('d-meta').innerHTML =
-      '<span class="d-era" style="background:hsl('+hueOf(a.era)+',55%,42%)">'+esc(a.era)+'</span>'+
-      '<span>eps '+a.start_ep+'–'+a.end_ep+'</span><span>'+a.n+' episode'+(a.n===1?'':'s')+'</span>'+
-      (a.status==='ongoing' ? '<span style="color:var(--saffron)">open arc</span>' : '');
-    document.getElementById('d-title').textContent = arcName(a);
-    document.getElementById('d-body').innerHTML =
-      summaryHTML(a) + '<h4>Episodes</h4>' + episodesHTML(a);
-    document.getElementById('d-prev').disabled = i===0;
-    document.getElementById('d-next').disabled = i===arcs.length-1;
-    drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');
-    scrim.classList.add('on');
-    focusIdx = i; wake();
-  }
-  function closeDrawer(){
-    openIdx = -1; drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');
-    scrim.classList.remove('on'); wake();
-  }
-  document.getElementById('d-close').addEventListener('click', closeDrawer);
-  scrim.addEventListener('click', closeDrawer);
-  document.getElementById('d-prev').addEventListener('click', function(){ openArc(openIdx-1); glideTo(openIdx); });
-  document.getElementById('d-next').addEventListener('click', function(){ openArc(openIdx+1); glideTo(openIdx); });
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape' && openIdx>=0) closeDrawer();
+  panel.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-i]');
+    if(b) openArc(parseInt(b.dataset.i,10), true);
   });
+  function openArc(i, scroll){
+    if(i<0 || i>=arcs.length) return;
+    openIdx = i; focusIdx = i; renderPanel(); wake();
+    if(scroll) panel.scrollIntoView({behavior: REDUCED ? 'auto' : 'smooth', block:'start'});
+  }
 
   // =========================== the field =====================================
-  // Every arc is a soft body laid out in broadcast order as a serpentine river, one band
-  // per era, with a thread running through them in sequence. The pointer is a lens: arcs
-  // near it swell and part to make room (a Sarkar-Brown fisheye), then spring back with a
-  // little overshoot. Moving quickly leaves a wake. The lens is not decoration -- it
-  // magnifies what is near the pointer, so the 106 arcs spanning only 2-4 episodes become
-  // easy to hit instead of being a few pixels wide.
+  // One soft body per arc, in broadcast order as a serpentine river with a band per era.
+  // The pointer is a lens: it locks onto the nearest arc, which swells and blooms while its
+  // neighbours part to make room and spring back as you move on. Every arc is drawn in
+  // full colour whether or not its episodes have descriptions -- the field shows the run,
+  // not the state of the metadata.
   var stage = document.getElementById('stage'), cv = document.getElementById('field'),
       ctx = cv.getContext('2d');
-  var W = 0, H = 0, DPR = 1, nodes = [], bands = [];
-  var ptr = {x:-1e4, y:-1e4, vx:0, vy:0, on:false, px:0, py:0, t:0};
-  var hot = -1, focusIdx = -1, lastMove = 0, running = false, t0 = performance.now();
+  var W = 0, H = 0, DPR = 1, nodes = [], bands = [], clouds = [];
+  var ptr = {x:-1e4, y:-1e4, vx:0, vy:0, on:false, t:0};
+  var hot = -1, focusIdx = -1, running = false, t0 = performance.now();
 
-  var LENS_R = 170, LENS_K = 3.2, MAG = 2.4;
+  var LENS_R = 190, LENS_K = 3.0, MAG = 2.3;
   var K = REDUCED ? 0.30 : 0.11, DAMP = REDUCED ? 0.30 : 0.78;
-
-  function radiusOf(a){ return Math.max(3.6, Math.min(24, 2.6 + 2.35*Math.sqrt(a.n))); }
+  function radiusOf(a){ return Math.max(4, Math.min(24, 2.8 + 2.35*Math.sqrt(a.n))); }
 
   function layout(){
-    var box = stage.clientWidth;
-    W = box; DPR = Math.min(2, window.devicePixelRatio || 1);
-    var gutter = W < 620 ? 16 : 92, right = 18, gap = W < 620 ? 3 : 4.5;
-    var x0 = gutter, x1 = W - right, y = 56, flip = false;
-    bands = []; var byEra = {};
-    arcs.forEach(function(a, i){ (byEra[a.era] = byEra[a.era] || []).push(i); });
-    var oldNodes = nodes; nodes = [];
+    W = stage.clientWidth; DPR = Math.min(2, window.devicePixelRatio || 1);
+    var small = W < 620;
+    var gutter = small ? 14 : 104, right = 22, gap = small ? 7 : 10;
+    var x0 = gutter, x1 = W - right, y = small ? 70 : 64, flip = false;
+    var byEra = {}; arcs.forEach(function(a, i){ (byEra[a.era] = byEra[a.era] || []).push(i); });
+    var old = nodes; nodes = []; bands = [];
     D.eras.forEach(function(era){
       var idx = byEra[era]; if(!idx) return;
-      var bandTop = y, rows = [], cur = [], x = x0, maxR = 0;
+      var top = y, rows = [], cur = [], x = x0, maxR = 0;
       idx.forEach(function(i){
         var r = radiusOf(arcs[i]);
         if(x + 2*r > x1 && cur.length){ rows.push({items:cur, maxR:maxR}); cur=[]; x=x0; maxR=0; }
@@ -548,46 +423,92 @@ footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
       });
       if(cur.length) rows.push({items:cur, maxR:maxR});
       rows.forEach(function(rw){
-        var cy = y + rw.maxR + 6, lastX = 0;
-        // Serpentine: each row starts on the side where the previous row ended, so the
-        // thread only ever U-turns -- including across era breaks, where a short final row
-        // used to leave the next era starting on the far side of the field.
+        var cy = y + rw.maxR + 9, lastX = 0;
+        // Each row starts on the side where the previous one ended, so the thread only
+        // ever U-turns, including across era breaks.
         rw.items.forEach(function(it){
-          var hx = flip ? (x0 + x1 - it.x) : it.x;
-          var prev = oldNodes[it.i];
-          lastX = hx;
+          var hx = flip ? (x0 + x1 - it.x) : it.x; lastX = hx;
+          var p = old[it.i];
           nodes[it.i] = {i:it.i, a:arcs[it.i], r:it.r, hx:hx, hy:cy,
-            x: prev ? prev.x : hx, y: prev ? prev.y : cy, vx:0, vy:0, s:1, al:1,
-            ph: Math.random()*6.283};
+            x: p ? p.x : hx, y: p ? p.y : cy, vx:0, vy:0, s:1, al:1, ph:Math.random()*6.283};
         });
-        y = cy + rw.maxR + 8;
+        y = cy + rw.maxR + 14;
         flip = lastX > (x0 + x1) / 2;
       });
-      bands.push({era:era, top:bandTop, bottom:y, first:arcs[idx[0]].start_ep,
-                  last:arcs[idx[idx.length-1]].end_ep});
-      y += 26;
+      bands.push({era:era, top:top, first:arcs[idx[0]].start_ep, last:arcs[idx[idx.length-1]].end_ep});
+      y += 30;
     });
-    H = y + 6;
+    H = y + 64;                       // room for the rooftops along the bottom
     cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
     cv.style.height = H + 'px';
+    makeClouds(); makeSkyline();
     wake();
   }
 
-  function colorOf(a, light, alpha){
-    // Saturation carries text signal: an arc with little episode text is genuinely greyer.
-    var sat = 18 + a.signal*66;
-    return 'hsla('+hueOf(a.era)+','+sat.toFixed(0)+'%,'+light+'%,'+alpha.toFixed(3)+')';
+  // ---- scenery -------------------------------------------------------------------
+  function makeClouds(){
+    clouds = [];
+    var n = Math.max(5, Math.round(W / 170)), seed = 7;
+    function rnd(){ seed = (seed*9301 + 49297) % 233280; return seed/233280; }
+    for(var i=0;i<n;i++){
+      var puffs = [], w = 70 + rnd()*110;
+      for(var k=0;k<5;k++) puffs.push([ (k-2)*w*0.2 + rnd()*10, -rnd()*w*0.16, w*(0.2+rnd()*0.14) ]);
+      clouds.push({x: rnd()*W, y: 30 + rnd()*(H-160), w:w, speed: 0.004 + rnd()*0.008,
+                   a: 0.55 + rnd()*0.3, puffs:puffs});
+    }
+  }
+  var roofs = [];
+  function makeSkyline(){
+    // A low row of society rooftops along the bottom edge -- flat blocks with water tanks,
+    // the way Gokuldham reads from the courtyard.
+    roofs = []; var x = -10, seed = 3;
+    function rnd(){ seed = (seed*9301 + 49297) % 233280; return seed/233280; }
+    while(x < W + 20){
+      var w = 60 + rnd()*90, h = 26 + rnd()*30;
+      roofs.push({x:x, w:w, h:h, tank: rnd() > 0.45, win: Math.floor(w/18)});
+      x += w + 2;
+    }
+  }
+  function drawScenery(t){
+    var g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#3E95DE'); g.addColorStop(0.45, '#8CC8F2');
+    g.addColorStop(0.82, '#CFE9F7'); g.addColorStop(1, '#FFE3A8');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    var sx = W - 120, sy = 90;
+    var sg = ctx.createRadialGradient(sx, sy, 10, sx, sy, 260);
+    sg.addColorStop(0, 'rgba(255,236,150,.95)'); sg.addColorStop(0.18, 'rgba(255,214,90,.55)');
+    sg.addColorStop(1, 'rgba(255,214,90,0)');
+    ctx.fillStyle = sg; ctx.fillRect(0, 0, W, H);
+    ctx.beginPath(); ctx.arc(sx, sy, 38, 0, 6.2832); ctx.fillStyle = '#FFE070'; ctx.fill();
+
+    clouds.forEach(function(c){
+      var cx = ((c.x + (REDUCED ? 0 : t*c.speed)) % (W + 260)) - 130;
+      ctx.fillStyle = 'rgba(255,255,255,'+c.a.toFixed(2)+')';
+      c.puffs.forEach(function(p){
+        ctx.beginPath(); ctx.arc(cx + p[0], c.y + p[1], p[2], 0, 6.2832); ctx.fill();
+      });
+    });
+
+    var base = H;
+    roofs.forEach(function(r){
+      ctx.fillStyle = 'rgba(217,83,43,.22)';
+      ctx.fillRect(r.x, base - r.h, r.w, r.h);
+      ctx.fillStyle = 'rgba(255,248,230,.55)';
+      for(var k=0;k<r.win;k++) ctx.fillRect(r.x + 8 + k*18, base - r.h + 9, 7, 8);
+      if(r.tank){
+        ctx.fillStyle = 'rgba(217,83,43,.28)';
+        ctx.fillRect(r.x + r.w*0.62, base - r.h - 10, 16, 10);
+      }
+    });
   }
 
+  // ---- animation -----------------------------------------------------------------
   function step(now){
     var t = now - t0;
-    var active = ptr.on || focusIdx >= 0;
-    // The lens centres on the arc being pointed at, not on the raw pointer. A fisheye
-    // pushes everything outward from its focus -- including the arc under the pointer,
-    // which a pointer-centred lens flings several times further away the moment you are
-    // slightly off-centre. Snapping the focus keeps that arc still and magnified while its
-    // neighbours part around it; the springs make the hand-off between arcs smooth.
-    var fx = ptr.x, fy = ptr.y, lock = ptr.on ? hot : focusIdx;
+    var fx = ptr.x, fy = ptr.y, lock = ptr.on ? hot : focusIdx, active = ptr.on || focusIdx >= 0;
+    // The lens centres on the arc being pointed at, not the raw pointer: a fisheye pushes
+    // everything outward from its focus, including the arc under the pointer.
     if(lock >= 0 && nodes[lock]){ fx = nodes[lock].hx; fy = nodes[lock].hy; }
     var moving = false;
     for(var j=0;j<nodes.length;j++){
@@ -596,172 +517,141 @@ footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
       if(active){
         var dx = n.hx - fx, dy = n.hy - fy, d = Math.sqrt(dx*dx + dy*dy);
         if(d < LENS_R){
-          var u = d / LENS_R;
-          var dd = LENS_R * (LENS_K+1) * u / (LENS_K*u + 1);
+          var u = d / LENS_R, dd = LENS_R * (LENS_K+1) * u / (LENS_K*u + 1);
           if(d > 0.001){ tx = fx + dx/d*dd; ty = fy + dy/d*dd; }
-          var f = 1 - u;
-          ts = 1 + (MAG-1)*f*f;
+          var f = 1 - u; ts = 1 + (MAG-1)*f*f;
           if(!REDUCED && ptr.on){ n.vx += ptr.vx*0.05*f*f; n.vy += ptr.vy*0.05*f*f; }
         }
       }
-      if(!REDUCED){
-        tx += Math.sin(t*0.0009 + n.ph)*1.1;
-        ty += Math.cos(t*0.0011 + n.ph*1.3)*1.1;
-      }
-      // With the pointer near an edge, "outward" points off the canvas; keep arcs in view
-      // so they bunch against the edge instead of disappearing.
-      var pad = n.r * ts + 2;
-      tx = Math.max(pad, Math.min(W - pad, tx));
-      ty = Math.max(pad, Math.min(H - pad, ty));
-      if(j === hot || j === openIdx) ts *= 1.18;
-      n.vx = n.vx*DAMP + (tx - n.x)*K;
-      n.vy = n.vy*DAMP + (ty - n.y)*K;
+      if(!REDUCED){ tx += Math.sin(t*0.0009 + n.ph)*1.2; ty += Math.cos(t*0.0011 + n.ph*1.3)*1.2; }
+      if(j === hot || j === openIdx) ts *= 1.15;
+      var pad = n.r * ts + 3;
+      tx = Math.max(pad, Math.min(W - pad, tx)); ty = Math.max(pad, Math.min(H - pad, ty));
+      n.vx = n.vx*DAMP + (tx - n.x)*K; n.vy = n.vy*DAMP + (ty - n.y)*K;
       n.x += n.vx; n.y += n.vy;
       n.s += (ts - n.s)*0.2;
-      var ta = (!filtering || n.a._match) ? 1 : 0.12;
+      var ta = (!filtering || n.a._match) ? 1 : 0.2;
       n.al += (ta - n.al)*0.15;
       if(Math.abs(n.vx)+Math.abs(n.vy) > 0.02 || Math.abs(ts-n.s) > 0.004 || Math.abs(ta-n.al) > 0.004) moving = true;
     }
     ptr.vx *= 0.8; ptr.vy *= 0.8;
     draw(t);
-    // Keep animating while anything moves; at rest, the breathing still needs frames, but
-    // stop entirely when the tab is hidden or motion is reduced and nothing is changing.
     if(document.hidden || !onScreen || (REDUCED && !moving && !ptr.on)){ running = false; return; }
     requestAnimationFrame(step);
   }
-  // The field breathes continuously, so stop the loop entirely while it is scrolled away.
   var onScreen = true;
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){
-      onScreen = es[0].isIntersecting; if(onScreen) wake();
-    }).observe(stage);
+    new IntersectionObserver(function(es){ onScreen = es[0].isIntersecting; if(onScreen) wake(); }).observe(stage);
   }
   function wake(){ if(!running){ running = true; requestAnimationFrame(step); } }
 
   function draw(t){
     ctx.setTransform(DPR,0,0,DPR,0,0);
-    ctx.clearRect(0,0,W,H);
+    drawScenery(t);
 
-    // Era bands: a hairline and a label in the gutter.
     ctx.textBaseline = 'top';
     bands.forEach(function(b, k){
-      if(k>0){ ctx.fillStyle = '#1A1E2C'; ctx.fillRect(12, b.top-14, W-24, 1); }
+      if(k>0){ ctx.fillStyle = 'rgba(255,255,255,.5)'; ctx.fillRect(18, b.top - 18, W - 36, 1.5); }
       if(W >= 620){
-        ctx.fillStyle = 'hsl('+hueOf(b.era)+',55%,62%)';
-        ctx.font = '600 12px Archivo, "Arial Narrow", sans-serif';
-        ctx.fillText(b.era.toUpperCase(), 16, b.top+4);
-        ctx.fillStyle = '#626884';
-        ctx.font = '400 10.5px "IBM Plex Mono", monospace';
-        ctx.fillText(b.first+'–'+b.last, 16, b.top+21);
+        ctx.fillStyle = eraColor(b.era, -14);
+        ctx.font = '800 13px Archivo, "Arial Narrow", sans-serif';
+        ctx.fillText(b.era.toUpperCase(), 20, b.top + 6);
+        ctx.fillStyle = 'rgba(18,48,90,.62)';
+        ctx.font = '500 10.5px "IBM Plex Mono", monospace';
+        ctx.fillText(b.first + '–' + b.last, 20, b.top + 24);
       }
     });
 
-    // The thread: broadcast order, drawn through the current (displaced) positions so it
-    // bends with the lens rather than cutting across it.
-    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(150,160,210,.13)';
+    // The thread through broadcast order, bending with the lens.
+    ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(255,255,255,.55)';
     ctx.beginPath();
     for(var i=0;i<nodes.length;i++){ var n=nodes[i]; if(i===0) ctx.moveTo(n.x,n.y); else ctx.lineTo(n.x,n.y); }
     ctx.stroke();
 
-    var sel = openIdx >= 0 ? openIdx : hot;
+    var sel = openIdx >= 0 && !ptr.on ? openIdx : (hot >= 0 ? hot : openIdx);
     if(sel >= 0){
-      // Light the thread to the neighbours, so where this arc sits in the run is visible.
-      ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(230,232,255,.55)';
-      ctx.beginPath();
+      ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(255,255,255,.95)';
       var lo = Math.max(0, sel-1), hi = Math.min(nodes.length-1, sel+1);
-      ctx.moveTo(nodes[lo].x, nodes[lo].y);
+      ctx.beginPath(); ctx.moveTo(nodes[lo].x, nodes[lo].y);
       for(var q=lo+1;q<=hi;q++) ctx.lineTo(nodes[q].x, nodes[q].y);
       ctx.stroke();
     }
-
-    for(var j=0;j<nodes.length;j++){
-      var m = nodes[j]; if(j===sel) continue;
-      drawNode(m, t, false);
-    }
+    for(var j=0;j<nodes.length;j++){ if(j!==sel) drawNode(nodes[j], t); }
+    if(openIdx >= 0 && openIdx !== sel) drawNode(nodes[openIdx], t, true);
     if(sel >= 0) drawSelected(nodes[sel], t);
 
-    // The pointer itself: a soft ring showing the lens, since the canvas hides the cursor.
     if(ptr.on){
       ctx.beginPath(); ctx.arc(ptr.x, ptr.y, 5, 0, 6.2832);
-      ctx.fillStyle = 'rgba(235,238,255,.9)'; ctx.fill();
-      ctx.beginPath(); ctx.arc(ptr.x, ptr.y, LENS_R*0.42, 0, 6.2832);
-      ctx.strokeStyle = 'rgba(200,205,255,.07)'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.fillStyle = '#FFFFFF'; ctx.fill();
+      ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(18,48,90,.55)'; ctx.stroke();
     }
   }
 
-  function drawNode(n, t, strong){
-    var a = n.a, r = n.r * n.s, al = (0.42 + a.signal*0.58) * n.al;
-    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 6.2832);
-    ctx.fillStyle = colorOf(a, n.i%2 ? 50 : 60, al); ctx.fill();
-    if(a.has_summary){
-      ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(99,199,154,'+(0.95*n.al).toFixed(3)+')';
-      ctx.beginPath(); ctx.arc(n.x, n.y, r+2.5, 0, 6.2832); ctx.stroke();
-    }
+  function drawNode(n, t, marked){
+    var a = n.a, r = n.r * n.s;
+    // A soft drop shadow and a white rim lift each arc off the sky like a balloon.
+    ctx.beginPath(); ctx.arc(n.x + 1.2, n.y + 2, r, 0, 6.2832);
+    ctx.fillStyle = 'rgba(18,48,90,'+(0.14*n.al).toFixed(3)+')'; ctx.fill();
+    var g = ctx.createRadialGradient(n.x - r*0.35, n.y - r*0.4, r*0.1, n.x, n.y, r);
+    g.addColorStop(0, eraColor(a.era, 18, n.al));
+    g.addColorStop(1, eraColor(a.era, 0, n.al));
+    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 6.2832); ctx.fillStyle = g; ctx.fill();
+    ctx.lineWidth = marked ? 3 : 1.5;
+    ctx.strokeStyle = 'rgba(255,255,255,'+((marked ? 1 : 0.85)*n.al).toFixed(3)+')'; ctx.stroke();
     if(a.status === 'ongoing'){
-      // Open arcs are still being recomputed each run -- so they visibly pulse.
+      // The newest arcs are still being recomputed each run -- so they visibly pulse.
       var p = REDUCED ? 0.5 : (Math.sin(t*0.004)+1)/2;
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = 'rgba(232,168,96,'+((0.35+0.5*p)*n.al).toFixed(3)+')';
-      ctx.beginPath(); ctx.arc(n.x, n.y, r + 3 + p*5, 0, 6.2832); ctx.stroke();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = 'rgba(255,255,255,'+((0.4+0.5*p)*n.al).toFixed(3)+')';
+      ctx.beginPath(); ctx.arc(n.x, n.y, r + 4 + p*6, 0, 6.2832); ctx.stroke();
     }
   }
 
   function drawSelected(n, t){
     var a = n.a, r = n.r * n.s;
-    // Halo, additively blended so it glows rather than paints.
-    ctx.save(); ctx.globalCompositeOperation = 'lighter';
-    var g = ctx.createRadialGradient(n.x, n.y, r*0.4, n.x, n.y, r*3.2);
-    g.addColorStop(0, 'hsla('+hueOf(a.era)+',90%,60%,.55)');
-    g.addColorStop(1, 'hsla('+hueOf(a.era)+',90%,60%,0)');
-    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(n.x, n.y, r*3.2, 0, 6.2832); ctx.fill();
-    ctx.restore();
-
+    var g = ctx.createRadialGradient(n.x, n.y, r*0.5, n.x, n.y, r*3);
+    g.addColorStop(0, 'rgba(255,245,200,.85)'); g.addColorStop(1, 'rgba(255,245,200,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(n.x, n.y, r*3, 0, 6.2832); ctx.fill();
     drawNode(n, t, true);
-    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 6.2832);
-    ctx.fillStyle = 'hsla('+hueOf(a.era)+',85%,66%,1)'; ctx.fill();
 
     // Its episodes fan out as satellites, one per episode, so an arc's length is felt.
-    var k = Math.min(a.n, 48), orbit = r + 9 + Math.min(18, a.n*0.25);
+    var k = Math.min(a.n, 48), orbit = r + 10 + Math.min(18, a.n*0.25);
     for(var e=0;e<k;e++){
       var ang = e/k*6.2832 + (REDUCED ? 0 : t*0.0005) - 1.5708;
       var ex = n.x + Math.cos(ang)*orbit, ey = n.y + Math.sin(ang)*orbit;
-      ctx.beginPath(); ctx.arc(ex, ey, a.episodes[e] && a.episodes[e].title ? 2.1 : 1.4, 0, 6.2832);
-      ctx.fillStyle = a.episodes[e] && a.episodes[e].shared_with ? 'rgba(232,168,96,.95)'
-        : 'hsla('+hueOf(a.era)+',70%,80%,.85)';
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(ex, ey, 2.4, 0, 6.2832);
+      ctx.fillStyle = eraColor(a.era, -8); ctx.fill();
+      ctx.lineWidth = 1; ctx.strokeStyle = '#FFFFFF'; ctx.stroke();
     }
     drawLabel(n, orbit);
   }
 
   function drawLabel(n, orbit){
-    var a = n.a;
-    var title = arcName(a);
-    var sub = a.has_summary && a.logline ? a.logline : (firstTitle(a) || 'No episode titles carry story text');
-    var meta = a.era.toUpperCase()+'  ·  EPS '+a.start_ep+'–'+a.end_ep+'  ·  '+a.n+(a.status==='ongoing'?'  ·  OPEN':'');
+    var a = n.a, title = arcName(a), sub = arcLine(a);
+    var meta = a.era.toUpperCase() + '  ·  EPISODES ' + a.start_ep + '–' + a.end_ep;
     ctx.font = '600 14px "IBM Plex Sans Devanagari", sans-serif';
-    var tw = Math.min(300, ctx.measureText(title).width);
+    var tw = Math.min(310, ctx.measureText(title).width);
     ctx.font = '400 12px "IBM Plex Sans Devanagari", sans-serif';
-    if(sub.length > 58) sub = sub.slice(0, 56) + '…';
-    var sw = Math.min(300, ctx.measureText(sub).width);
-    var bw = Math.max(tw, sw, 170) + 24, bh = 66;
+    var sw = Math.min(310, ctx.measureText(sub).width);
+    var bw = Math.max(tw, sw, 190) + 28, bh = 70;
     var bx = n.x + orbit + 14, by = n.y - bh/2;
     if(bx + bw > W - 8) bx = n.x - orbit - 14 - bw;
     bx = Math.max(8, bx); by = Math.max(8, Math.min(H - bh - 8, by));
 
-    ctx.fillStyle = 'rgba(16,19,30,.94)';
-    roundRect(bx, by, bw, bh, 5); ctx.fill();
-    ctx.fillStyle = 'hsl('+hueOf(a.era)+',70%,62%)'; ctx.fillRect(bx, by+6, 2.5, bh-12);
+    ctx.fillStyle = 'rgba(18,48,90,.18)'; roundRect(bx+2, by+4, bw, bh, 10); ctx.fill();
+    ctx.fillStyle = '#FFFFFF'; roundRect(bx, by, bw, bh, 10); ctx.fill();
+    ctx.fillStyle = eraColor(a.era); roundRect(bx, by, 5, bh, 3); ctx.fill();
 
     ctx.textBaseline = 'top';
-    ctx.fillStyle = 'hsl('+hueOf(a.era)+',60%,70%)';
+    ctx.fillStyle = eraColor(a.era, -16);
     ctx.font = '500 10px "IBM Plex Mono", monospace';
-    ctx.fillText(meta, bx+12, by+9);
-    ctx.fillStyle = '#EEF0FA';
+    ctx.fillText(meta, bx + 16, by + 10);
+    ctx.fillStyle = '#18233B';
     ctx.font = '600 14px "IBM Plex Sans Devanagari", sans-serif';
-    ctx.fillText(clip(title, 300), bx+12, by+23);
-    ctx.fillStyle = '#9CA2BE';
+    ctx.fillText(clip(title, 310), bx + 16, by + 25);
+    ctx.fillStyle = '#56607A';
     ctx.font = '400 12px "IBM Plex Sans Devanagari", sans-serif';
-    ctx.fillText(sub, bx+12, by+43);
+    ctx.fillText(clip(sub, 310), bx + 16, by + 46);
   }
   function clip(s, w){
     if(ctx.measureText(s).width <= w) return s;
@@ -773,8 +663,8 @@ footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
     ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
   }
 
-  // Picking works on RESTING positions. Because the lens then centres on the picked arc,
-  // that arc does not move, so what you point at is what stays under the pointer.
+  // Picking works on resting positions; the lens then centres on the picked arc, so what
+  // you point at stays under the pointer.
   function pick(x, y){
     var best = -1, bd = 1e9;
     for(var i=0;i<nodes.length;i++){
@@ -782,74 +672,57 @@ footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
       if(d < bd){ bd = d; best = i; }
     }
     if(best < 0) return -1;
-    var reach = Math.max(26, nodes[best].r*1.8);
+    var reach = Math.max(30, nodes[best].r*1.9);
     return bd < reach*reach ? best : -1;
   }
 
-  function local(ev){
-    var r = cv.getBoundingClientRect();
-    return [ev.clientX - r.left, ev.clientY - r.top];
-  }
+  function local(ev){ var r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
   var downAt = null;
   cv.addEventListener('pointermove', function(ev){
     var p = local(ev), now = performance.now();
-    if(ptr.on){
-      var dt = Math.max(8, now - ptr.t);
-      ptr.vx = (p[0]-ptr.x)/dt*16; ptr.vy = (p[1]-ptr.y)/dt*16;
-    }
-    ptr.x = p[0]; ptr.y = p[1]; ptr.t = now; ptr.on = true; focusIdx = -1;
+    if(ptr.on){ var dt = Math.max(8, now - ptr.t); ptr.vx = (p[0]-ptr.x)/dt*16; ptr.vy = (p[1]-ptr.y)/dt*16; }
+    ptr.x = p[0]; ptr.y = p[1]; ptr.t = now; ptr.on = true;
     hot = pick(p[0], p[1]);
     cv.style.cursor = hot >= 0 ? 'pointer' : 'none';
     wake();
   });
   cv.addEventListener('pointerleave', function(){ ptr.on = false; hot = -1; wake(); });
-  cv.addEventListener('pointerdown', function(ev){ var p = local(ev); downAt = p;
-    ptr.x = p[0]; ptr.y = p[1]; ptr.on = true; hot = pick(p[0], p[1]); wake(); });
+  cv.addEventListener('pointerdown', function(ev){
+    var p = local(ev); downAt = p; ptr.x = p[0]; ptr.y = p[1]; ptr.on = true; hot = pick(p[0], p[1]); wake();
+  });
   cv.addEventListener('pointerup', function(ev){
     var p = local(ev);
     if(downAt && Math.hypot(p[0]-downAt[0], p[1]-downAt[1]) < 10){
       var i = pick(p[0], p[1]);
-      if(i >= 0) openArc(i);
+      if(i >= 0) openArc(i, true);
     }
     downAt = null;
     if(ev.pointerType !== 'mouse'){ ptr.on = false; hot = -1; }
   });
 
   // Keyboard: arrow keys step the lens through the run in broadcast order.
-  function glideTo(i){
-    focusIdx = i; hot = i; ptr.on = false; wake();
-    var n = nodes[i]; if(!n) return;
-    var r = cv.getBoundingClientRect(), top = r.top + n.hy;
-    if(top < 80 || top > innerHeight - 80)
-      scrollTo({top: scrollY + top - innerHeight/2, behavior: REDUCED ? 'auto' : 'smooth'});
-  }
+  function glideTo(i){ focusIdx = i; hot = -1; ptr.on = false; wake(); }
   cv.addEventListener('keydown', function(e){
     var cur = focusIdx >= 0 ? focusIdx : (hot >= 0 ? hot : -1);
     if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){ e.preventDefault(); glideTo(Math.min(arcs.length-1, cur+1)); }
     else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){ e.preventDefault(); glideTo(Math.max(0, cur < 0 ? 0 : cur-1)); }
     else if(e.key === 'Home'){ e.preventDefault(); glideTo(0); }
     else if(e.key === 'End'){ e.preventDefault(); glideTo(arcs.length-1); }
-    else if(e.key === 'Enter' && cur >= 0){ e.preventDefault(); openArc(cur); }
+    else if(e.key === 'Enter' && cur >= 0){ e.preventDefault(); openArc(cur, true); }
   });
-  cv.addEventListener('blur', function(){ if(openIdx < 0){ focusIdx = -1; hot = -1; wake(); } });
-  document.addEventListener('keydown', function(e){
-    if(openIdx < 0) return;
-    if(e.key === 'ArrowRight' && document.activeElement !== cv){ openArc(Math.min(arcs.length-1, openIdx+1)); glideTo(openIdx); }
-    if(e.key === 'ArrowLeft' && document.activeElement !== cv){ openArc(Math.max(0, openIdx-1)); glideTo(openIdx); }
-  });
+  cv.addEventListener('blur', function(){ if(openIdx < 0){ focusIdx = -1; wake(); } });
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) wake(); });
 
   document.getElementById('legend').innerHTML =
-    '<span><i style="background:#4a5a8a"></i>size = episodes in the arc</span>'+
-    '<span><i style="background:hsla(220,18%,55%,.5)"></i>greyer = less episode text</span>'+
-    '<span><i style="background:transparent; box-shadow:0 0 0 2px #63C79A"></i>ringed = written synopsis</span>'+
-    '<span><i style="background:transparent; box-shadow:0 0 0 2px #E8A860"></i>pulsing = still open</span>';
+    D.eras.map(function(e){ return '<span><i style="background:'+eraColor(e)+'"></i>'+e+'</span>'; }).join('') +
+    '<span><i style="background:#8CC8F2"></i>bigger bubble = longer arc</span>'+
+    '<span><i style="background:transparent; box-shadow:0 0 0 2px #8CC8F2"></i>pulsing = still unfolding</span>';
 
   var rt;
   window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(layout, 120); });
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(wake);
 
-  applyFilters();
   layout();
+  applyFilters();
 })();
 </script>

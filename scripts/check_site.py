@@ -36,14 +36,15 @@ def main() -> int:
     dark_media = re.search(r"@media \(prefers-color-scheme:dark\)\{\s*:root:not\(\[data-theme=\"light\"\]\)\{(.*?)\}",
                            html, re.S)
     dark_attr = re.search(r":root\[data-theme=\"dark\"\]\{(.*?)\}", html, re.S)
-    ok_parity = bool(dark_media and dark_attr)
-    if ok_parity:
+    single_theme = not dark_media and not dark_attr and "color-scheme:light" in html
+    ok_parity = bool(dark_media and dark_attr) or single_theme
+    if dark_media and dark_attr:
         a = set(re.findall(r"(--[a-z0-9-]+)\s*:", dark_media.group(1)))
         b = set(re.findall(r"(--[a-z0-9-]+)\s*:", dark_attr.group(1)))
         ok_parity = a == b and a.issubset(defined_light)
         if not ok_parity:
             detail.append(f"    media-only: {sorted(a - b)}  attr-only: {sorted(b - a)}")
-    checks["dark tokens match across @media and [data-theme]"] = ok_parity
+    checks["theme tokens consistent (or a deliberate single light theme)"] = ok_parity
 
     # --- DOM wiring --------------------------------------------------------
     ids_in_markup = set(re.findall(r'\bid="([A-Za-z0-9_-]+)"', html))

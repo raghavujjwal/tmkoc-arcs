@@ -19,13 +19,13 @@ const src = fs.readFileSync(path.join(__dirname, '..', 'site', 'arcs.js'), 'utf8
 const D = JSON.parse(src.replace(/^window\.ARC_DATA=/, '').replace(/;\s*$/, ''));
 const arcs = D.arcs;
 
-const LENS_R = 170, LENS_K = 3.2, MAG = 2.4;
-const radiusOf = a => Math.max(3.6, Math.min(24, 2.6 + 2.35 * Math.sqrt(a.n)));
+const LENS_R = 190, LENS_K = 3.0, MAG = 2.3;
+const radiusOf = a => Math.max(4, Math.min(24, 2.8 + 2.35 * Math.sqrt(a.n)));
 
 function layout(W) {
-  const gutter = W < 620 ? 16 : 92, right = 18, gap = W < 620 ? 3 : 4.5;
+  const small = W < 620, gutter = small ? 14 : 104, right = 22, gap = small ? 7 : 10;
   const x0 = gutter, x1 = W - right;
-  let y = 56, flip = false;
+  let y = small ? 70 : 64, flip = false;
   const nodes = [], eraStart = new Set();
   const byEra = {};
   arcs.forEach((a, i) => (byEra[a.era] = byEra[a.era] || []).push(i));
@@ -40,17 +40,17 @@ function layout(W) {
     }
     if (cur.length) rows.push({ items: cur, maxR });
     for (const rw of rows) {
-      const cy = y + rw.maxR + 6; let lastX = 0;
+      const cy = y + rw.maxR + 9; let lastX = 0;
       for (const it of rw.items) {
         const hx = flip ? (x0 + x1 - it.x) : it.x; lastX = hx;
         nodes[it.i] = { i: it.i, r: it.r, hx, hy: cy };
       }
-      y = cy + rw.maxR + 8;
+      y = cy + rw.maxR + 14;
       flip = lastX > (x0 + x1) / 2;          // next row starts where this one ended
     }
-    y += 26;
+    y += 30;
   }
-  return { nodes, H: y + 6, eraStart, rowGap: 0 };
+  return { nodes, H: y + 64, eraStart, rowGap: 0 };
 }
 
 // Steady state of the spring: every node sits exactly at its lens target.
@@ -63,7 +63,7 @@ function lensed(nodes, fx, fy, W, H) {
       if (d > 0.001) { x = fx + dx / d * dd; y = fy + dy / d * dd; }
       s = 1 + (MAG - 1) * (1 - u) ** 2;
     }
-    const pad = n.r * s + 2;                       // same edge clamp as the page
+    const pad = n.r * s + 3;                       // same edge clamp as the page
     x = Math.max(pad, Math.min(W - pad, x));
     y = Math.max(pad, Math.min(H - pad, y));
     return { i: n.i, x, y, r: n.r * s };
@@ -77,7 +77,7 @@ function pick(nodes, x, y) {
     const d = Math.hypot(n.hx - x, n.hy - y);
     if (d < bd) { bd = d; best = n.i; }
   }
-  return best >= 0 && bd < Math.max(26, nodes[best].r * 1.8) ? best : -1;
+  return best >= 0 && bd < Math.max(30, nodes[best].r * 1.9) ? best : -1;
 }
 
 let allPass = true;
@@ -122,7 +122,9 @@ for (const W of [360, 800, 1240]) {
       continue;
     }
     const d = Math.hypot(nodes[i].hx - nodes[i - 1].hx, nodes[i].hy - nodes[i - 1].hy);
-    const lim = nodes[i].r + nodes[i - 1].r + 60;
+    // A row U-turn spans the vertical step between rows (up to 2x24px radii + 23px of
+    // spacing); anything beyond that allowance would mean order visibly breaks.
+    const lim = nodes[i].r + nodes[i - 1].r + 75;
     worst = Math.max(worst, d - (nodes[i].r + nodes[i - 1].r));
     if (d > lim) jumps++;
   }

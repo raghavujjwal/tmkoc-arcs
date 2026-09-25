@@ -595,3 +595,24 @@ Targets are now clamped inside the field.
 | hovered arc magnified | 2.4× |
 | arcs pushed off-canvas by the lens | 0 |
 | broadcast order continuous through the serpentine | yes |
+
+
+---
+
+### CP15 — Sunny redesign  `DONE`
+Requested: brighter than black, in the show's own sunny title-card palette; don't expose
+missing descriptions; more space between bubbles; no long static list.
+
+- **Sky stage**: blue gradient to a warm horizon, sun glow, drifting clouds, a row of
+  society rooftops. Era palette violet → royal blue → sunflower → marigold → brick-red.
+  The whole page is now one warm light theme in every OS theme — a dark-mode viewer
+  otherwise got a navy frame around the bright sky (seen in the headless-Edge render).
+- **Missing descriptions no longer show as gaps**: no greying by text signal, no "no
+  synopsis" boxes, no "untitled episode" labels. Arcs without a summary are named from
+  their most repeated, then fullest, episode title — real data, not invented. Summaries
+  are **not** fabricated; the footer quietly states 9 of 419 have written summaries, so
+  the page never implies coverage it lacks.
+- **Spacing**: wider gaps and row spacing, then pulled back after measuring — the first
+  pass nearly doubled the desktop field (743 → 1,365px); settled at 1,067px.
+- **List**: the 419-row list is gone. The panel below the field shows only the clicked
+  arc (episodes, prev/next, back to field), or matching arcs while searching.

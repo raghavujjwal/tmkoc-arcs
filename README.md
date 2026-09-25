@@ -45,16 +45,16 @@ tail past the last sealed boundary is recomputed.
 
 <https://raghavujjwal.github.io/tmkoc-arcs/>
 
-A live field of all 419 arcs in broadcast order — one band per era, one soft body per arc
-(size = episodes), a thread running through them in sequence. The pointer is a magnetic
-lens: the arc under it swells and blooms into its episodes while its neighbours part to
-make room, then spring back as you move on. Arrow keys step the lens through the run;
-clicking opens a drawer with the synopsis, every episode link, and previous/next arc.
-Search and filters dim non-matching arcs live. Below it, the same arcs as a list.
+All 419 arcs float as bubbles over a sunny Gokuldham sky — clouds, sun, society rooftops —
+in broadcast order, one band per era (violet, blue, sunflower, marigold, brick-red). The
+pointer is a magnetic lens: the arc under it swells and blooms into its episodes while its
+neighbours part to make room. Click an arc to see its episodes below the field; arrow keys
+step through the run; search and filters fade non-matching arcs.
 
-Geometry is tested at phone, tablet and desktop widths (`node scripts/check_field.js`):
-no arcs overlap, every arc is pickable including the 106 spanning 2–4 episodes, the
-hovered arc stays under the pointer, and broadcast order runs continuously.
+Arcs without a written summary take their name from their most telling episode title, so
+every arc reads as a story. The footer states how many arcs have written summaries.
+
+Geometry is tested at phone, tablet and desktop widths (`node scripts/check_field.js`).
 
 ## Episode links
 
