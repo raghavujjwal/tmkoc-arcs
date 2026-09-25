@@ -41,7 +41,11 @@ h1{
   font-size:clamp(28px,4.4vw,42px); letter-spacing:-.02em; line-height:1; margin:0;
   color:var(--ink); text-wrap:balance;
 }
-h1 span{color:var(--brick)}
+h1{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+h1 .arc{color:var(--brick)}
+/* The show's logo, shown at no more than ~110px so the 223x164 source stays crisp. */
+.logo{height:clamp(70px, 9vw, 110px); width:auto; display:block; border-radius:12px;
+  box-shadow:0 6px 18px rgba(24,35,59,.18)}
 .sub{color:var(--muted); font-size:13.5px; margin:7px 0 0; max-width:62ch}
 .spacer{flex:1 1 auto}
 .stats{display:flex; gap:24px; flex-wrap:wrap}
@@ -167,7 +171,8 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
 <div class="wrap">
   <header class="masthead">
     <div>
-      <h1>Gokuldham <span>Arc</span> Index</h1>
+      <h1><img class="logo" src="logo.png" alt="Taarak Mehta Ka Ooltah Chashmah" width="223" height="164">
+        <span><span class="arc">Arc</span> Index</span></h1>
       <p class="sub">Every aired episode of <i>Taarak Mehta Ka Ooltah Chashmah</i>, grouped into the
       story arcs that run through the society.</p>
     </div>
