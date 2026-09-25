@@ -57,6 +57,10 @@ def main() -> int:
 
     # --- data contract the page relies on ----------------------------------
     arcs = data["arcs"]
+    from stamp_assets import check as stale_assets
+    stale = stale_assets()
+    checks["every asset URL carries its current content fingerprint"] = not stale
+    detail.extend("    " + x for x in stale)
     checks["arcs.js mirrors arcs.json"] = (
         (SITE / "arcs.js").read_text(encoding="utf-8").startswith("window.ARC_DATA=")
     )

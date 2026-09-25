@@ -718,3 +718,17 @@ nothing leaves the field.
 2. By the render — mojibake ("â€"" for an en dash). The page never declared an encoding;
    GitHub Pages sends one in its headers, but a browser without it guessed, and guessed
    differently between two loads of the same file. `<meta charset="utf-8">` added.
+
+
+### CP20 — Cache-proof asset URLs  `DONE`
+Reported: "the website is not responding and loading to the newer version".
+A fresh browser loaded the new version with no errors, so the site itself worked. The
+cause was caching: GitHub Pages serves every file with `Cache-Control: max-age=600`, so a
+browser could hold the **new** `index.html` with a **cached old** `layout.js`. The new page
+calls `pickEra`/`computeEra`, which the old script lacks, so every hover and click threw —
+the page looked frozen.
+
+`scripts/stamp_assets.py` now fingerprints every asset URL with a hash of its contents
+(`layout.js?v=e5d8b0fdd4`), so a new page always requests new files, while unchanged files
+keep their URL and stay cached. `build_site.py` re-stamps automatically; `check_site.py`
+fails on any stale fingerprint (verified by editing `layout.js` without re-stamping).

@@ -36,7 +36,7 @@ body{
    the image itself. (The Jetha-G packet, bg.jpg, is kept for switching back.) Fixed to the viewport so it stays put
    while the page scrolls over it; kept low enough in opacity that text reads cleanly. */
 #backdrop{position:fixed; top:3vh; bottom:3vh; left:0; right:0; z-index:0; pointer-events:none;
-  background:url(bg-kim.webp) center / contain no-repeat;
+  background:url(bg-kim.webp?v=db41cce70e) center / contain no-repeat;
   opacity:.14; filter:blur(2px) saturate(.9)}
 
 /* ---- masthead ---- */
@@ -193,7 +193,7 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
 <div class="wrap">
   <header class="masthead">
     <div>
-      <h1><img class="logo" src="logo.png" alt="Taarak Mehta Ka Ooltah Chashmah" width="223" height="164">
+      <h1><img class="logo" src="logo.png?v=b0393cc4b2" alt="Taarak Mehta Ka Ooltah Chashmah" width="223" height="164">
         <span><span class="arc">Arc</span> Index</span></h1>
       <p class="sub">Every aired episode of <i>Taarak Mehta Ka Ooltah Chashmah</i>, grouped into the
       story arcs that run through the society.</p>
@@ -236,8 +236,8 @@ footer{margin-top:30px; padding-top:14px; border-top:1px solid rgba(24,35,59,.14
   </footer>
 </div>
 
-<script src="arcs.js"></script>
-<script src="layout.js"></script>
+<script src="arcs.js?v=0968dc1933"></script>
+<script src="layout.js?v=e5d8b0fdd4"></script>
 <script>
 (function(){
   var D = window.ARC_DATA;

@@ -164,6 +164,10 @@ def main() -> int:
     # Also emit as a script that assigns a global. A published artifact serves scripts
     # unconditionally, so this sidesteps any question about fetching JSON from the page.
     (SITE_DIR / "arcs.js").write_text(f"window.ARC_DATA={body};", encoding="utf-8")
+    # arcs.js just changed, so its fingerprint in index.html must too -- otherwise browsers
+    # keep serving the cached old data under the old URL.
+    from stamp_assets import stamp
+    stamp()
 
     # CP11 exit test.
     checks = {
